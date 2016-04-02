@@ -5,8 +5,6 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Snake/snake/RenderPanel.class" afterPath="$PROJECT_DIR$/out/production/Snake/snake/RenderPanel.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Snake/snake/Snake.class" afterPath="$PROJECT_DIR$/out/production/Snake/snake/Snake.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/snake/RenderPanel.java" afterPath="$PROJECT_DIR$/src/snake/RenderPanel.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/snake/Snake.java" afterPath="$PROJECT_DIR$/src/snake/Snake.java" />
     </list>
     <ignored path="Snake.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -507,7 +505,14 @@
       <option name="project" value="LOCAL" />
       <updated>1459514368444</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Working but the orientations are all wrong...">
+      <created>1459564908213</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1459564908213</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -553,7 +558,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Moving head." />
-    <option name="LAST_COMMIT_MESSAGE" value="Moving head." />
+    <MESSAGE value="Working but the orientations are all wrong..." />
+    <option name="LAST_COMMIT_MESSAGE" value="Working but the orientations are all wrong..." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
