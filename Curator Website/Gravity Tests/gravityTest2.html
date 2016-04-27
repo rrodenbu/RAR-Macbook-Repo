@@ -1,0 +1,257 @@
+<!doctype html>
+<html>
+	<head>
+		<!--
+			Original code by mrdoob
+			http://www.mrdoob.com/projects/chromeexperiments/google-gravity/2013.html
+
+			This code modified by @wellcaffeinated http://wellcaffeinated.net
+		-->
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+		<title>Test2</title> 
+		<style>
+
+
+		</style>
+	</head>
+	<body>
+        <div id="viewport" class ="position: relative; height: 100%; background: #1d1f20;">
+		<div id="header">
+           <button id="btnG" class="physics-element" style="height:100px;width:100px;border-radius:50%;overflow:hidden;color:#000;font-size:13px;background:-webkit-linear-gradient(top,#DAF7A6,#DAF7A6);">Button 1</button>
+           <button id="btnG" class="physics-element" style="height:100px;width:100px;border-radius:50%;overflow:hidden;color:#000;font-size:13px;background:-webkit-linear-gradient(top,#FFC300,#FFC300);">Button 2</button>
+           <button id="btnG" class="physics-element" style="height:100px;width:100px;border-radius:50%;overflow:hidden;color:#000;font-size:13px;background:-webkit-linear-gradient(top,#FF5733,#FF5733);">Button 3</button>
+           <button id="btnG" class="physics-element" style="height:100px;width:100px;border-radius:50%;overflow:hidden;color:#000;font-size:13px;background:-webkit-linear-gradient(top,#C70039,#C70039);">Button 4</button>
+        </div>
+        </div>
+		<script src="http://wellcaffeinated.net/PhysicsJS/examples/physicsjs-full.js"></script>
+		<script>
+			/**
+			 * Original code by mrdoob
+			 * http://www.mrdoob.com/projects/chromeexperiments/google-gravity/2013.html
+			 *
+			 * This code modified by @wellcaffeinated http://wellcaffeinated.net
+			 */
+            
+            //bounds of the window
+             var viewWidth = window.innerWidth,
+                 viewHeight = window.innerHeight,
+                 viewportBounds = Physics.aabb(0,0,window.innerWidth, window.innerHeight),
+                 edgeBound,
+                 renderer;
+            
+            // renderer
+            var render = Physics.renderer('pixi', {
+                el:'viewport'
+            )}
+            world.add(renderer);                              
+	        Physics.util.ticker.subscribe( loop );
+            Physics.util.ticker.start(); 
+            function loop( time ) {
+				world.step( time );
+	            world.render();
+			}
+            // contrain objects to these bounds
+            edgeBounce = Physics.behavior('edge-collision-detection', {
+	               aabb: viewportBounds,
+	               restitution: 0.4,
+	               cof: 0.5
+	        });
+            // resize events
+            window.addEventListener('resize', function () {
+                // as of 0.7.0 the renderer will auto resize... so we just take the values from the renderer
+                viewportBounds = Physics.aabb(0, 0, renderer.width, renderer.height);
+                // update the boundaries
+                edgeBounce.setAABB(viewportBounds);
+
+            }, true);
+            // Get physics-element elements
+            elements = getElementsByClass("physics-element");
+            function getElementsByClass( searchClass ) {
+				var classElements = [];
+				var els = document.getElementsByTagName('*');
+				var elsLen = els.length
+
+				for (i = 0, j = 0; i < elsLen; i++) {
+
+					var classes = els[i].className.split(' ');
+					for (k = 0; k < classes.length; k++)
+						if ( classes[k] == searchClass )
+							classElements[j++] = els[i];
+				}
+				return classElements;
+			}
+            for ( var i = 0; i < elements.length; i ++ ) {
+                properties[i] = getElementProperties( elements[i] );
+            }
+            function getElementProperties( element ) {
+
+				var x = 0;
+				var y = 0;
+				var width = element.offsetWidth;
+				var height = element.offsetHeight;
+				
+				do {
+					
+					x += element.offsetLeft;
+					y += element.offsetTop;
+
+				} while ( element = element.offsetParent );
+
+				return [ x, y, width, height ];
+			}
+            for ( var i = 0; i < elements.length; i ++ ) {
+                
+                var element = elements[ i ];
+                element.style.position = 'absolute';
+                element.style.left = ( - properties[i][2]/2) + 'px'; //     will be set by renderer
+                element.style.top = ( - properties[i][3]/2) + 'px';
+                element.style.width = properties[i][2] + 'px';
+				    	
+				bodies[i] = Physics.body('circle', {
+                    width:90,
+                    height:90,
+                    x: properties[i][0] + properties[i][2]/2,
+                    y: properties[i][1] + properties[i][3]/2,
+				});
+                bodies[i].view = element;
+                
+                // Clean position dependencies
+                
+                while ( element.offsetParent ) {
+                    element = element.offsetParent;
+                    element.style.position = 'static';
+                }
+                
+            }
+
+            // add the bodies to the world
+            world.add( bodies );
+            
+            
+            
+            
+            
+            /*var renderer = Physics.renderer('dom', {
+		            el: document.body,
+		            width: window.innerWidth,
+		            height: window.innerHeight,
+		        });
+				world.add( renderer );*/
+            
+            
+            
+			var stage = [ window.screenX, window.screenY, window.innerWidth, window.innerHeight ];
+			getBrowserDimensions();
+
+			var isMouseDown = false;
+
+			var worldAABB;
+			var world;
+			var edgeBounce;
+			var iterations = 16;
+			var timeStep = 1000 / 260; 
+
+			var constraints;
+			var mouseJoint;
+			var mouse = { x: 0, y: 0 };
+
+			var mouseOnClick = [];
+
+			var elements = [];
+			var bodies = [];
+			var properties = [];
+
+			var query, page = 0;
+
+			var gravity = { x: 0.00, y: 1 };
+			var gravityBehavior;
+
+			init();
+
+
+			//
+
+			function init() {
+				//window.addEventListener( 'deviceorientation', onWindowDeviceOrientation, false );
+
+				// init PhysicsJS
+
+				worldAABB = Physics.aabb.apply(null, stage);
+
+				world = Physics({
+					timestep: timeStep,
+					maxIPF: iterations
+				});
+
+				
+	            world.add( edgeBounce );
+	            world.add( Physics.behavior('body-collision-detection', { checkAll: false }) );
+		        world.add( Physics.behavior('sweep-prune') );
+		        world.add( Physics.behavior('body-impulse-response') );
+
+		        // constraints
+		        constraints = Physics.behavior('verlet-constraints', {
+                    iterations: 2
+                });
+                world.add( constraints );
+
+		        // add gravity
+		        gravityBehavior = Physics.behavior('constant-acceleration', { acc: gravity });
+        		world.add( gravityBehavior );
+
+
+				
+
+				}
+
+				
+				
+				// position the views
+				//world.render();
+
+				
+
+				/*// magic to trigger GPU
+				world.subscribe('render', function( data ){
+					var style;
+					for ( var i = 0, l = data.bodies.length; i < l; ++i ){
+						
+						style = data.bodies[ i ].view.style;
+						style.WebkitTransform += ' translateZ(0)';
+						style.MozTransform += ' translateZ(0)';
+						style.MsTransform += ' translateZ(0)';
+						style.transform += ' translateZ(0)';
+					}
+				});*/
+			}
+
+
+
+			//
+
+			function loop( time ) {
+
+				if (getBrowserDimensions())
+					setWalls();
+
+				//delta[0] += (0 - delta[0]) * .5;
+				//delta[1] += (0 - delta[1]) * .5;
+
+				gravityBehavior.setAcceleration({ 
+					x: gravity.x * 5e-4, 
+					y: gravity.y * 5e-4
+				});
+
+
+				world.step( time );
+	            world.render();
+			}
+
+			// .. UTILS
+			
+
+		</script>
+
+	</body>
+</html>
