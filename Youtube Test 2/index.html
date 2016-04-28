@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html >
+  <head>
+    <meta charset="UTF-8">
+    <title>Detect Video Autoplay</title>
+    <meta name="viewport" content="width=device-width">
+    
+    <link rel="stylesheet" href="css/normalize.css">
+
+    
+        <link rel="stylesheet" href="css/style.css">
+
+    
+    
+    
+  </head>
+
+  <body>
+
+    <h1>HTML5 Video Test</h1>
+<p>Test for <strong>autoplay</strong> support, and check to make sure video is <strong>buffered</strong>.</p>
+
+<p>Autoplay support: <code id="output-support"></code></p>
+
+<p>Video buffered <code id="output-buffered">...buffering</code></p>
+
+<!-- loader -->
+<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/15309/ajax-loader.gif" alt="Loading" id="video-loading">
+
+<!-- video -->
+<video width="400" controls id="video-player" title="Test Video">
+  <source src="http://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+  
+  Your browser does not support HTML5 video.
+</video>
+    
+        <script src="js/index.js"></script>
+
+    
+    
+    
+  </body>
+</html>

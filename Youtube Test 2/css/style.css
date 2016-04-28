@@ -1,0 +1,23 @@
+body {
+  margin: 1em;
+}
+
+code {
+  background: #eee;
+  padding: .3em;
+  border-radius: 3px;
+}
+
+#video-player {
+  display: none;
+  max-width: 400px;
+  width: 100%;
+  height: auto;
+}
+#video-player.html5-video-supported {
+  display: block;
+}
+
+#video-loading {
+  opacity: .5;
+}
