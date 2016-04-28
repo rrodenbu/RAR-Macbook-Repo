@@ -114,7 +114,7 @@ body {
     background-size: cover;
     background-position: center;
     color: #555555;
-    height: 100vh; /*sizes to size of viewport*/
+
     text-align: center;
 }
 #home h1 { /*Top header of home page */

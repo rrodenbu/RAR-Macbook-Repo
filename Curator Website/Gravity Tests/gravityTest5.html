@@ -15,7 +15,7 @@
 
     var color = d3.scale.category10()
                         .domain(d3.range(m));
-
+ 
     // The largest node for each cluster.
     var clusters = new Array(m);
 
@@ -57,16 +57,11 @@
                   .style("fill", function(d) { return color(d.cluster); })
                   .call(force.drag())
                   .on("click", function(){//http://stackoverflow.com/questions/9080862/d3-js-adding-click-action-to-a-force-layout-circle
-                  .append("text").text()
                   d3.select(this)
                      .style("fill","white")
                      .style("stroke","red")
                   });
 
-   node.append("text")
-      .attr("dy", ".3em")
-      .style("text-anchor", "middle")
-      .text(hello);
     
     node.transition()
         .duration(750)
