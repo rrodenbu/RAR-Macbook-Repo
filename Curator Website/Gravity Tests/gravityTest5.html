@@ -67,7 +67,7 @@
         .duration(750)
         .delay(function(d, i) { return i * 5; })
         .attrTween("r", function(d) {
-            var i = d3.interpolate(0, d.radius);
+            var i = d3.interpolate(d.radius, d.radius+10);
             return function(t) { return d.radius = i(t); };
         });
 
