@@ -1,7 +1,7 @@
 import ocean.Fish; //Because in different package.
-import ocean.Seaweed;
+import ocean.plants.Seaweed;
 
-//import ocean.*;
+//import ocean.*; //so you dont have to keep importing different methods
 
 /**
  * Created by rrodenbu on 5/25/16.
