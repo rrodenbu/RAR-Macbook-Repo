@@ -138,6 +138,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <color key="barTintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     </tabBar>
                     <connections>
                         <segue destination="an8-DZ-bOH" kind="relationship" relationship="viewControllers" id="dLH-xP-7E2"/>
@@ -235,6 +236,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Wuh-l8-MuE">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -257,6 +259,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="bfg-4o-VEf">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -345,6 +348,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="4Cg-uH-apF">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -399,6 +403,6 @@
         <image name="Smartphone Tablet-30" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="hnv-IY-CiX"/>
+        <segue reference="vgc-At-t7Z"/>
     </inferredMetricsTieBreakers>
 </document>
