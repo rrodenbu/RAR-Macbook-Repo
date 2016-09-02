@@ -80,6 +80,9 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="tableView" destination="kES-lR-CDM" id="IMX-9c-bT5"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Sn5-mJ-6gB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

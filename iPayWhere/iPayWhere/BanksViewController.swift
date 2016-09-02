@@ -8,18 +8,24 @@
 
 import UIKit
 
-class BanksViewController: UITableViewController {
+class BanksViewController: UITableViewController, UISearchDisplayDelegate, UISearchBarDelegate {
     
-    var banks:[Bank] = banksData;
-
+    var banks:[Bank] = banksData
+    var banksArray = [Bank]()
+    var filteredBanks = [Bank]()
+    
+    let searchController = UISearchController(searchResultsController: nil)
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        
+        searchController.searchResultsUpdater = self
+        searchController.dimsBackgroundDuringPresentation = false
+        definesPresentationContext = true
+        tableView.tableHeaderView = searchController.searchBar
+        
+        banksArray = banksData
+        self.tableView.reloadData()
     }
 
     override func didReceiveMemoryWarning() {
@@ -34,18 +40,33 @@ class BanksViewController: UITableViewController {
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return banks.count
+        if searchController.active && searchController.searchBar.text != "" {
+            return filteredBanks.count
+        }
+        return banksArray.count
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath)
         -> UITableViewCell {
             let cell = tableView.dequeueReusableCellWithIdentifier("BankCell", forIndexPath: indexPath) as! BankCell
             
-            let bank = banks[indexPath.row] as Bank
-            cell.bank = bankterm
+            let bank: Bank
+            if searchController.active && searchController.searchBar.text != "" {
+                bank = filteredBanks[indexPath.row]
+            } else {
+                bank = banksArray[indexPath.row]
+            }
+            cell.bank = bank
             return cell
     }
 
+    func filterContentForSearchText(searchText: String, scope: String = "Text") {
+        filteredBanks = banksArray.filter({ (bank) -> Bool in
+            return (bank.name?.lowercaseString.containsString(searchText.lowercaseString))!
+        })
+        tableView.reloadData()
+    }
+    
     /*
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath)
@@ -102,3 +123,10 @@ class BanksViewController: UITableViewController {
     */
 
 }
+
+extension BanksViewController: UISearchResultsUpdating {
+    func updateSearchResultsForSearchController(searchController: UISearchController) {
+        filterContentForSearchText(searchController.searchBar.text!)
+    }
+}
+
