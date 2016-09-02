@@ -17,6 +17,8 @@
 		302E2F251D78ECDC009CACD5 /* SampleData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302E2F241D78ECDC009CACD5 /* SampleData.swift */; };
 		302E2F271D791914009CACD5 /* BankCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302E2F261D791914009CACD5 /* BankCell.swift */; };
 		302E2F291D7998FD009CACD5 /* BankViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302E2F281D7998FD009CACD5 /* BankViewController.swift */; };
+		302E2F2B1D79A638009CACD5 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302E2F2A1D79A638009CACD5 /* MapViewController.swift */; };
+		302E2F2D1D79AFD0009CACD5 /* LocationSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302E2F2C1D79AFD0009CACD5 /* LocationSearch.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +34,8 @@
 		302E2F241D78ECDC009CACD5 /* SampleData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SampleData.swift; sourceTree = "<group>"; };
 		302E2F261D791914009CACD5 /* BankCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BankCell.swift; sourceTree = "<group>"; };
 		302E2F281D7998FD009CACD5 /* BankViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BankViewController.swift; sourceTree = "<group>"; };
+		302E2F2A1D79A638009CACD5 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		302E2F2C1D79AFD0009CACD5 /* LocationSearch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationSearch.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,6 +79,8 @@
 				302E2F241D78ECDC009CACD5 /* SampleData.swift */,
 				302E2F261D791914009CACD5 /* BankCell.swift */,
 				302E2F281D7998FD009CACD5 /* BankViewController.swift */,
+				302E2F2A1D79A638009CACD5 /* MapViewController.swift */,
+				302E2F2C1D79AFD0009CACD5 /* LocationSearch.swift */,
 			);
 			path = iPayWhere;
 			sourceTree = "<group>";
@@ -151,12 +157,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				302E2F291D7998FD009CACD5 /* BankViewController.swift in Sources */,
+				302E2F2D1D79AFD0009CACD5 /* LocationSearch.swift in Sources */,
 				302E2F0D1D78A79A009CACD5 /* ViewController.swift in Sources */,
 				302E2F271D791914009CACD5 /* BankCell.swift in Sources */,
 				302E2F231D78EC58009CACD5 /* Bank.swift in Sources */,
 				302E2F211D78EC29009CACD5 /* BanksViewController.swift in Sources */,
 				302E2F251D78ECDC009CACD5 /* SampleData.swift in Sources */,
 				302E2F0B1D78A79A009CACD5 /* AppDelegate.swift in Sources */,
+				302E2F2B1D79A638009CACD5 /* MapViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -42,7 +42,7 @@ class BanksViewController: UITableViewController {
             let cell = tableView.dequeueReusableCellWithIdentifier("BankCell", forIndexPath: indexPath) as! BankCell
             
             let bank = banks[indexPath.row] as Bank
-            cell.bank = bank
+            cell.bank = bankterm
             return cell
     }
 
