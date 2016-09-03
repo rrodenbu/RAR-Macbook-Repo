@@ -14,6 +14,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <activityIndicatorView key="tableFooterView" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="gray" id="jH2-RM-qfY">
+                            <rect key="frame" x="0.0" y="152" width="375" height="20"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        </activityIndicatorView>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="BankCell" rowHeight="60" id="3bv-DC-Mrk" customClass="BankCell" customModule="iPayWhere" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="92" width="375" height="60"/>
@@ -81,6 +85,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="activityIndicatorView" destination="jH2-RM-qfY" id="QlW-NL-Vdp"/>
                         <outlet property="tableView" destination="kES-lR-CDM" id="IMX-9c-bT5"/>
                     </connections>
                 </tableViewController>

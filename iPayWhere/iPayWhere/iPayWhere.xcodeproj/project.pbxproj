@@ -19,6 +19,7 @@
 		302E2F291D7998FD009CACD5 /* BankViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302E2F281D7998FD009CACD5 /* BankViewController.swift */; };
 		302E2F2B1D79A638009CACD5 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302E2F2A1D79A638009CACD5 /* MapViewController.swift */; };
 		302E2F2D1D79AFD0009CACD5 /* LocationSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302E2F2C1D79AFD0009CACD5 /* LocationSearch.swift */; };
+		302E2F301D7A0C5B009CACD5 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 302E2F2F1D7A0C5B009CACD5 /* CloudKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,8 @@
 		302E2F281D7998FD009CACD5 /* BankViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BankViewController.swift; sourceTree = "<group>"; };
 		302E2F2A1D79A638009CACD5 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		302E2F2C1D79AFD0009CACD5 /* LocationSearch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationSearch.swift; sourceTree = "<group>"; };
+		302E2F2E1D7A0C2C009CACD5 /* iPayWhere.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = iPayWhere.entitlements; sourceTree = "<group>"; };
+		302E2F2F1D7A0C5B009CACD5 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -43,6 +46,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				302E2F301D7A0C5B009CACD5 /* CloudKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -52,6 +56,7 @@
 		302E2EFE1D78A799009CACD5 = {
 			isa = PBXGroup;
 			children = (
+				302E2F2F1D7A0C5B009CACD5 /* CloudKit.framework */,
 				302E2F091D78A79A009CACD5 /* iPayWhere */,
 				302E2F081D78A799009CACD5 /* Products */,
 			);
@@ -68,6 +73,7 @@
 		302E2F091D78A79A009CACD5 /* iPayWhere */ = {
 			isa = PBXGroup;
 			children = (
+				302E2F2E1D7A0C2C009CACD5 /* iPayWhere.entitlements */,
 				302E2F201D78EC29009CACD5 /* BanksViewController.swift */,
 				302E2F0A1D78A79A009CACD5 /* AppDelegate.swift */,
 				302E2F0C1D78A79A009CACD5 /* ViewController.swift */,
@@ -117,6 +123,12 @@
 				TargetAttributes = {
 					302E2F061D78A799009CACD5 = {
 						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = QYDDDH8RL4;
+						SystemCapabilities = {
+							com.apple.iCloud = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -277,6 +289,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = iPayWhere/iPayWhere.entitlements;
 				INFOPLIST_FILE = iPayWhere/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.buddhabuddha.iPayWhere;
@@ -288,6 +301,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = iPayWhere/iPayWhere.entitlements;
 				INFOPLIST_FILE = iPayWhere/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.buddhabuddha.iPayWhere;

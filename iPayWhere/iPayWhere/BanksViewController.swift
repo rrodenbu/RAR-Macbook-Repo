@@ -7,27 +7,75 @@
 //
 
 import UIKit
+import CloudKit
 
 class BanksViewController: UITableViewController, UISearchDisplayDelegate, UISearchBarDelegate {
     
+    @IBOutlet var activityIndicatorView: UIActivityIndicatorView!
     var banks:[Bank] = banksData
     var banksArray = [Bank]()
     var filteredBanks = [Bank]()
+    
+    let container = CKContainer.defaultContainer()
+    var publicDatabase: CKDatabase?
+    var currentRecord: CKRecord?
     
     let searchController = UISearchController(searchResultsController: nil)
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Retrieve Data
+        publicDatabase = container.publicCloudDatabase
+        getData()
+        
+        // Search
         searchController.searchResultsUpdater = self
         searchController.dimsBackgroundDuringPresentation = false
         definesPresentationContext = true
         tableView.tableHeaderView = searchController.searchBar
         
-        banksArray = banksData
-        self.tableView.reloadData()
     }
-
+    
+    
+    func getData() { //https://www.reddit.com/r/swift/comments/2txhvb/fetching_record_data_in_cloudkit/
+        
+        let predicate = NSPredicate(value: true)
+        
+        let query = CKQuery(recordType: "Banks", predicate: predicate)
+        print("QUEUERY")
+        print(query)
+        publicDatabase?.performQuery(query, inZoneWithID: nil, completionHandler: ({results, error in
+                                        
+            if (error != nil) {
+                dispatch_async(dispatch_get_main_queue()) {
+                    print("PROBLEMS, PROBLEMS, PROBLEMS")
+                }
+            } else {
+                if results!.count > 0 {
+                    
+                    for data in results! {
+                        let bankName = data.objectForKey("Name") as! String
+                        print(bankName)
+                        let bank = Bank(name: bankName)
+                        self.banksArray.append(bank)
+                    }
+                    self.tableView.reloadData()
+                    var record = results![0] as CKRecord
+                    self.currentRecord = record
+                                                
+                    dispatch_async(dispatch_get_main_queue()) {
+                        let name = record.objectForKey("Name") as! String
+                    }
+                } else {
+                    dispatch_async(dispatch_get_main_queue()) {
+                        print("NO MATCH")
+                    }
+                }
+            }
+        }))
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -56,6 +104,7 @@ class BanksViewController: UITableViewController, UISearchDisplayDelegate, UISea
             } else {
                 bank = banksArray[indexPath.row]
             }
+            
             cell.bank = bank
             return cell
     }
@@ -66,51 +115,6 @@ class BanksViewController: UITableViewController, UISearchDisplayDelegate, UISea
         })
         tableView.reloadData()
     }
-    
-    /*
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath)
-
-        // Configure the cell...
-
-        return cell
-    }
-    */
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if editingStyle == .Delete {
-            // Delete the row from the data source
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-        } else if editingStyle == .Insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
 
     /*
     // MARK: - Navigation
