@@ -20,6 +20,7 @@
 		302E2F2B1D79A638009CACD5 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302E2F2A1D79A638009CACD5 /* MapViewController.swift */; };
 		302E2F2D1D79AFD0009CACD5 /* LocationSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302E2F2C1D79AFD0009CACD5 /* LocationSearch.swift */; };
 		302E2F301D7A0C5B009CACD5 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 302E2F2F1D7A0C5B009CACD5 /* CloudKit.framework */; };
+		30BC85551D7CA8F20025EE44 /* AllBanksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BC85541D7CA8F20025EE44 /* AllBanksViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,6 +40,7 @@
 		302E2F2C1D79AFD0009CACD5 /* LocationSearch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationSearch.swift; sourceTree = "<group>"; };
 		302E2F2E1D7A0C2C009CACD5 /* iPayWhere.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = iPayWhere.entitlements; sourceTree = "<group>"; };
 		302E2F2F1D7A0C5B009CACD5 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
+		30BC85541D7CA8F20025EE44 /* AllBanksViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllBanksViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,6 +97,7 @@
 				302E2F221D78EC58009CACD5 /* Bank.swift */,
 				302E2F281D7998FD009CACD5 /* BankViewController.swift */,
 				302E2F201D78EC29009CACD5 /* BanksViewController.swift */,
+				30BC85541D7CA8F20025EE44 /* AllBanksViewController.swift */,
 			);
 			name = Bank;
 			sourceTree = "<group>";
@@ -180,6 +183,7 @@
 				302E2F2D1D79AFD0009CACD5 /* LocationSearch.swift in Sources */,
 				302E2F0D1D78A79A009CACD5 /* ViewController.swift in Sources */,
 				302E2F271D791914009CACD5 /* BankCell.swift in Sources */,
+				30BC85551D7CA8F20025EE44 /* AllBanksViewController.swift in Sources */,
 				302E2F231D78EC58009CACD5 /* Bank.swift in Sources */,
 				302E2F211D78EC29009CACD5 /* BanksViewController.swift in Sources */,
 				302E2F251D78ECDC009CACD5 /* SampleData.swift in Sources */,

@@ -72,33 +72,116 @@ class BanksViewController: UITableViewController, UISearchDisplayDelegate, UISea
         getData()
     }
     
-    func getData() { //https://www.reddit.com/r/swift/comments/2txhvb/fetching_record_data_in_cloudkit/
+    
+    
+    
+    
+    
+    
+    func cloudKitLoadRecords(result: (objects: [CKRecord]?, error: NSError?) -> Void){
         
-        let predicate = NSPredicate(value: true)
-        let query = CKQuery(recordType: "Banks", predicate: predicate)
+        // predicate
+        var predicate = NSPredicate(value: true)
         
-        publicDatabase?.performQuery(query, inZoneWithID: nil, completionHandler: ({results, error in
-                                        
-            if (error != nil) {
-                dispatch_async(dispatch_get_main_queue()) {
-                    print("PROBLEMS, PROBLEMS, PROBLEMS")
+        // query
+        let cloudKitQuery = CKQuery(recordType: "Banks", predicate: predicate)
+        
+        // records to store
+        var records = [CKRecord]()
+        
+        //operation basis
+        let publicDatabase = CKContainer.defaultContainer().publicCloudDatabase
+        
+        // recurrent operations function
+        var recurrentOperationsCounter = 101
+        func recurrentOperations(cursor: CKQueryCursor?){
+            let recurrentOperation = CKQueryOperation(cursor: cursor!)
+            recurrentOperation.recordFetchedBlock = { (record:CKRecord!) -> Void in
+                //print("-> cloudKitLoadRecords - recurrentOperations - fetch \(recurrentOperationsCounter++)")
+                records.append(record)
+            }
+            recurrentOperation.queryCompletionBlock = { (cursor:CKQueryCursor?, error:NSError?) -> Void in
+                if ((error) != nil)
+                {
+                    //print("-> cloudKitLoadRecords - recurrentOperations - error - \(error)")
+                    result(objects: nil, error: error)
                 }
-            } else {
-                if results!.count > 0 {
-                    dispatch_async(dispatch_get_main_queue()) {
-                        self.data = results!
-                        self.retrieveData()
+                else
+                {
+                    if cursor != nil
+                    {
+                        //print("-> cloudKitLoadRecords - recurrentOperations - records \(records.count) - cursor \(cursor!.description)")
+                        recurrentOperations(cursor!)
                     }
-                } else {
-                    dispatch_async(dispatch_get_main_queue()) {
-                        print("NO MATCH")
+                    else
+                    {
+                        //print("-> cloudKitLoadRecords - recurrentOperations - records \(records.count) - cursor nil - done")
+                        result(objects: records, error: nil)
                     }
                 }
             }
-        }))
+            publicDatabase.addOperation(recurrentOperation)
+        }
+        
+        // initial operation
+        let initialOperation = CKQueryOperation(query: cloudKitQuery)
+        initialOperation.recordFetchedBlock = { (record:CKRecord!) -> Void in
+            //print("-> cloudKitLoadRecords - initialOperation - fetch \(initialOperationCounter++)")
+            records.append(record)
+        }
+        initialOperation.queryCompletionBlock = { (cursor:CKQueryCursor?, error:NSError?) -> Void in
+            if ((error) != nil)
+            {
+                //print("-> cloudKitLoadRecords - initialOperation - error - \(error)")
+                result(objects: nil, error: error)
+            }
+            else
+            {
+                if cursor != nil
+                {
+                    //print("-> cloudKitLoadRecords - initialOperation - records \(records.count) - cursor \(cursor!.description)")
+                    recurrentOperations(cursor!)
+                }
+                else
+                {
+                    //print("-> cloudKitLoadRecords - initialOperation - records \(records.count) - cursor nil - done")
+                    result(objects: records, error: nil)
+                }
+            }
+        }
+        publicDatabase.addOperation(initialOperation)
+    }
+    
+    func getData() { //https://www.reddit.com/r/swift/comments/2txhvb/fetching_record_data_in_cloudkit/
+        
+        cloudKitLoadRecords() { (queryObjects, error) -> Void in
+            dispatch_async(dispatch_get_main_queue()) {
+                if error != nil
+                {
+                    // handle error
+                }
+                else
+                {
+                    // clean objects array if you need to
+                    self.data.removeAll()
+                    
+                    if queryObjects!.count == 0
+                    {
+                        // do nothing
+                    }
+                    else
+                    {
+                        // attach found objects to your object array
+                        self.data = queryObjects!
+                        self.retrieveData()
+                    }
+                }
+            }
+        }
     }
     
     func retrieveData() {
+        self.banksArray = [Bank]()
         for data in self.data {
             let bankName = data.objectForKey("Name") as! String
             let bank = Bank(name: bankName)
@@ -156,15 +239,28 @@ class BanksViewController: UITableViewController, UISearchDisplayDelegate, UISea
             selectedCell = banksArray[indexPath.row].name!
         }
         
-        performSegueWithIdentifier("toMapSegue", sender: self)
+        performSegueWithIdentifier("toSelectedBankMap", sender: self)
     }
 
+    @IBAction func allBanksMapButton(sender: AnyObject) {
+        performSegueWithIdentifier("toAllBanksMap", sender: self)
+    }
+    
+    @IBAction func unwindToBankTable(segue: UIStoryboardSegue) {
+    }
+    
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "toMapSegue"{
-            var DestViewController = segue.destinationViewController as! UINavigationController
+        if segue.identifier == "toSelectedBankMap"{
+            let DestViewController = segue.destinationViewController as! UINavigationController
             let targetController = DestViewController.topViewController as! BankViewController
             targetController.bankSelected = selectedCell
+        }
+        
+        if segue.identifier == "toAllBanksMap"{
+            let DestViewController = segue.destinationViewController as! UINavigationController
+            let targetController = DestViewController.topViewController as! AllBanksViewController
+            targetController.allBanksArray = banksArray
         }
     }
 

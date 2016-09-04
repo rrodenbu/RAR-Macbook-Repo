@@ -1,33 +1,27 @@
 //
-//  BankViewController.swift
+//  AllBanksViewController.swift
 //  iPayWhere
 //
-//  Created by Riley Rodenburg on 9/2/16.
+//  Created by Riley Rodenburg on 9/4/16.
 //  Copyright © 2016 buddhabuddha. All rights reserved.
 //
 
 import UIKit
 import MapKit
 
-var selectedBank : String = ""
-
-class BankViewController: UIViewController {
-
-    var bankSelected : String = ""
+class AllBanksViewController: UIViewController {
+    
+    var allBanksArray = [Bank]()
     
     let locationManager = CLLocationManager()
     var matchingItems: [MKMapItem] = []
     var annotations = [MKPointAnnotation]()
-    
     @IBOutlet var mapView: MKMapView!
     
     override func viewDidLoad() {
-        print("data from ReceiveViewController is \(bankSelected)")
+        super.viewDidLoad()
         
-        selectedBank = bankSelected
-        
-        self.title = "\(bankSelected) Locations";
-        self.navigationController!.navigationBar.titleTextAttributes = [NSFontAttributeName: UIFont(name: "Arial", size: 12.0)!];
+        print(allBanksArray)
         
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
@@ -36,7 +30,7 @@ class BankViewController: UIViewController {
     }
 }
 
-extension BankViewController : CLLocationManagerDelegate {
+extension AllBanksViewController : CLLocationManagerDelegate {
     
     func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
         if status == .AuthorizedWhenInUse {
@@ -48,7 +42,6 @@ extension BankViewController : CLLocationManagerDelegate {
         guard let location = locations.first else { return }
         let span = MKCoordinateSpanMake(0.05, 0.05)
         let region = MKCoordinateRegion(center: location.coordinate, span: span)
-        print(region)
         mapView.setRegion(region, animated: true)
         
     }
@@ -58,9 +51,14 @@ extension BankViewController : CLLocationManagerDelegate {
     }
     
     func getLocations() {
+        for bank in allBanksArray {
+            addPinToMap(bank.name)
+        }
+        
+    }
+    func addPinToMap(bankName: String) {
         let request = MKLocalSearchRequest()
-        //print(selectedBank)
-        request.naturalLanguageQuery = selectedBank
+        request.naturalLanguageQuery = bankName
         request.region = mapView.region
         let search = MKLocalSearch(request: request)
         
@@ -80,8 +78,7 @@ extension BankViewController : CLLocationManagerDelegate {
         let latitude = item.placemark.coordinate.latitude
         let longitude = item.placemark.coordinate.longitude
         let coordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
-        let name = item.name
-        print(name)
+        let name = item.name!
         let annotation = MKPointAnnotation()
         annotation.coordinate = coordinate
         annotation.title = "\(name)"
@@ -92,6 +89,4 @@ extension BankViewController : CLLocationManagerDelegate {
     func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
         print("error:: \(error)")
     }
-    
-    
 }

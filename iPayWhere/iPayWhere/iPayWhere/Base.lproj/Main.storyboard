@@ -50,15 +50,14 @@
                     <navigationItem key="navigationItem" title="Banks" id="XaS-2d-qzQ">
                         <barButtonItem key="rightBarButtonItem" systemItem="trash" id="bIq-Bb-iTy">
                             <connections>
-                                <segue destination="6gr-NY-DLv" kind="popoverPresentation" popoverAnchorBarButtonItem="bIq-Bb-iTy" id="vgc-At-t7Z">
-                                    <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
-                                </segue>
+                                <action selector="allBanksMapButton:" destination="hXG-pi-QRb" id="Nc3-Dl-vN6"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="kES-lR-CDM" id="IMX-9c-bT5"/>
-                        <segue destination="wC9-9O-89C" kind="show" identifier="toMapSegue" id="shw-0x-mrY"/>
+                        <segue destination="wC9-9O-89C" kind="show" identifier="toSelectedBankMap" id="shw-0x-mrY"/>
+                        <segue destination="6gr-NY-DLv" kind="show" identifier="toAllBanksMap" id="ehO-Xx-MwQ"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Sn5-mJ-6gB" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -94,7 +93,11 @@
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Bank" id="veG-h6-nLq">
-                        <barButtonItem key="leftBarButtonItem" systemItem="done" id="aPj-5V-thO"/>
+                        <barButtonItem key="leftBarButtonItem" systemItem="done" id="aPj-5V-thO">
+                            <connections>
+                                <segue destination="3hM-gh-6KP" kind="unwind" unwindAction="unwindToBankTable:" id="I8z-ey-D8h"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
@@ -102,8 +105,9 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TR1-P8-1we" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="3hM-gh-6KP" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="2333.5" y="-405.5"/>
+            <point key="canvasLocation" x="1932.5" y="-405.5"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="u5M-sv-xhY">
@@ -120,7 +124,6 @@
                     <connections>
                         <segue destination="an8-DZ-bOH" kind="relationship" relationship="viewControllers" id="dLH-xP-7E2"/>
                         <segue destination="Dm8-ep-Aaq" kind="relationship" relationship="viewControllers" id="KFy-Hn-Nu5"/>
-                        <segue destination="sI9-ru-39r" kind="relationship" relationship="viewControllers" id="fYu-O1-ozX"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ysH-Lf-prg" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -151,23 +154,17 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Stores" id="csJ-XG-SOy">
-                        <barButtonItem key="rightBarButtonItem" title="Map" id="J2I-61-bPn">
-                            <connections>
-                                <segue destination="6gr-NY-DLv" kind="popoverPresentation" identifier="toMapSegue" popoverAnchorBarButtonItem="J2I-61-bPn" id="eHa-s3-v2F">
-                                    <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
-                                </segue>
-                            </connections>
-                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Map" id="J2I-61-bPn"/>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UUR-Pm-I5k" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="936.5" y="407.5"/>
+            <point key="canvasLocation" x="950.5" y="407.5"/>
         </scene>
-        <!--Map-->
+        <!--All Banks-->
         <scene sceneID="dds-su-OQZ">
             <objects>
-                <viewController id="0Pk-oG-gtE" customClass="MapViewController" customModule="iPayWhere" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="0Pk-oG-gtE" customClass="AllBanksViewController" customModule="iPayWhere" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ds4-Tm-319"/>
                         <viewControllerLayoutGuide type="bottom" id="z7S-bo-aE9"/>
@@ -176,8 +173,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="E0k-9M-UkV">
-                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="E0k-9M-UkV">
+                                <rect key="frame" x="0.0" y="64" width="375" height="536"/>
                                 <connections>
                                     <outlet property="delegate" destination="0Pk-oG-gtE" id="tEF-AC-yJb"/>
                                 </connections>
@@ -191,16 +188,21 @@
                             <constraint firstItem="E0k-9M-UkV" firstAttribute="top" secondItem="ds4-Tm-319" secondAttribute="bottom" id="wem-Sf-7aQ"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Map" id="mgo-Y2-PSA">
-                        <barButtonItem key="leftBarButtonItem" systemItem="done" id="ASA-lE-3Ur"/>
+                    <navigationItem key="navigationItem" title="All Banks" id="mgo-Y2-PSA">
+                        <barButtonItem key="leftBarButtonItem" systemItem="done" id="ASA-lE-3Ur">
+                            <connections>
+                                <segue destination="UPg-AP-yXn" kind="unwind" unwindAction="unwindToBankTable:" id="c34-W1-Upm"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="mapView" destination="E0k-9M-UkV" id="lK6-YQ-BP2"/>
+                        <outlet property="mapView" destination="E0k-9M-UkV" id="yBj-Be-By0"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oiy-Bt-dnh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="UPg-AP-yXn" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="2058.5" y="367.5"/>
+            <point key="canvasLocation" x="1932.5" y="-1150.5"/>
         </scene>
         <!--Banks-->
         <scene sceneID="W73-C3-tBo">
@@ -249,22 +251,22 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="z1J-j0-y3J" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="276.5" y="407.5"/>
+            <point key="canvasLocation" x="345.5" y="407.5"/>
         </scene>
         <!--Apps-->
         <scene sceneID="e36-AQ-Cgv">
             <objects>
                 <tableViewController id="JDc-85-gmh" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="WSv-v4-Gdz">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="3qX-po-Ajc">
-                                <rect key="frame" x="0.0" y="92" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="92" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="3qX-po-Ajc" id="gvf-FL-9tv">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -274,15 +276,7 @@
                             <outlet property="delegate" destination="JDc-85-gmh" id="2LX-JL-pOa"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Apps" id="eF0-2Y-oxX">
-                        <barButtonItem key="rightBarButtonItem" title="Map" id="hxc-ZC-aXE">
-                            <connections>
-                                <segue destination="6gr-NY-DLv" kind="popoverPresentation" popoverAnchorBarButtonItem="hxc-ZC-aXE" id="hnv-IY-CiX">
-                                    <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
-                                </segue>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Apps" id="eF0-2Y-oxX"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BNc-yt-ITt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -327,7 +321,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ijo-As-AyL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1601" y="-405"/>
+            <point key="canvasLocation" x="1444.5" y="-405.5"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="8Lv-B1-fcv">
@@ -345,7 +339,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Exx-c5-Hem" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1571" y="368"/>
+            <point key="canvasLocation" x="1444.5" y="-1150.5"/>
         </scene>
     </scenes>
     <resources>
@@ -354,7 +348,4 @@
         <image name="Shop-30" width="30" height="30"/>
         <image name="Smartphone Tablet-30" width="30" height="30"/>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="eHa-s3-v2F"/>
-    </inferredMetricsTieBreakers>
 </document>
