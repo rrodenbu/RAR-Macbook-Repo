@@ -11,11 +11,8 @@ import MapKit
 
 class MapViewController : UIViewController {
     let locationManager = CLLocationManager()
-    
     var matchingItems: [MKMapItem] = []
-    
     var annotations = [MKPointAnnotation]()
-    
     @IBOutlet var mapView: MKMapView!
     
     override func viewDidLoad() {

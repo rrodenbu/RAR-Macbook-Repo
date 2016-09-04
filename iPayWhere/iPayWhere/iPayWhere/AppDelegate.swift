@@ -15,8 +15,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        UISearchBar.appearance().tintColor = UIColor.whiteColor()
-        UITextField.appearanceWhenContainedInInstancesOfClasses([UISearchBar.self]).tintColor = UIColor.whiteColor()
+        
+        //UISearchBar.appearance().backgroundColor = UIColor.candyGreen()
+        //UISearchBar.appearance().tintColor = UIColor.candyGreen()
+        //UITextField.appearanceWhenContainedInInstancesOfClasses([UISearchBar.self]).tintColor = UIColor.candyGreen()
         return true
     }
     func applicationWillResignActive(application: UIApplication) {

@@ -74,21 +74,29 @@
 			isa = PBXGroup;
 			children = (
 				302E2F2E1D7A0C2C009CACD5 /* iPayWhere.entitlements */,
-				302E2F201D78EC29009CACD5 /* BanksViewController.swift */,
 				302E2F0A1D78A79A009CACD5 /* AppDelegate.swift */,
 				302E2F0C1D78A79A009CACD5 /* ViewController.swift */,
 				302E2F0E1D78A79A009CACD5 /* Main.storyboard */,
 				302E2F111D78A79A009CACD5 /* Assets.xcassets */,
 				302E2F131D78A79A009CACD5 /* LaunchScreen.storyboard */,
 				302E2F161D78A79B009CACD5 /* Info.plist */,
-				302E2F221D78EC58009CACD5 /* Bank.swift */,
 				302E2F241D78ECDC009CACD5 /* SampleData.swift */,
-				302E2F261D791914009CACD5 /* BankCell.swift */,
-				302E2F281D7998FD009CACD5 /* BankViewController.swift */,
+				309F09081D7A706500F301A6 /* Bank */,
 				302E2F2A1D79A638009CACD5 /* MapViewController.swift */,
 				302E2F2C1D79AFD0009CACD5 /* LocationSearch.swift */,
 			);
 			path = iPayWhere;
+			sourceTree = "<group>";
+		};
+		309F09081D7A706500F301A6 /* Bank */ = {
+			isa = PBXGroup;
+			children = (
+				302E2F261D791914009CACD5 /* BankCell.swift */,
+				302E2F221D78EC58009CACD5 /* Bank.swift */,
+				302E2F281D7998FD009CACD5 /* BankViewController.swift */,
+				302E2F201D78EC29009CACD5 /* BanksViewController.swift */,
+			);
+			name = Bank;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -328,6 +336,7 @@
 				302E2F1B1D78A79B009CACD5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
