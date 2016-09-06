@@ -8,7 +8,6 @@
 
 import UIKit
 
-
 class BankCell: UITableViewCell {
     @IBOutlet weak var nameLabel: UILabel!
     
@@ -17,6 +16,5 @@ class BankCell: UITableViewCell {
             nameLabel.text = bank.name
         }
     }
-
 }
 

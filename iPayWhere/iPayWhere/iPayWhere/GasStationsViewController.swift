@@ -1,20 +1,20 @@
 //
-//  BanksViewController.swift
+//  GasStationsViewController.swift
 //  iPayWhere
 //
-//  Created by Riley Rodenburg on 9/1/16.
+//  Created by Riley Rodenburg on 9/5/16.
 //  Copyright © 2016 buddhabuddha. All rights reserved.
 //
 
 import UIKit
 import CloudKit
 
-class BanksViewController: UITableViewController, UISearchDisplayDelegate, UISearchBarDelegate {
-
+class GasStationsViewController: UITableViewController, UISearchDisplayDelegate, UISearchBarDelegate {
+    
     weak var activityIndicatorView: UIActivityIndicatorView! //https://dzone.com/articles/displaying-an-activity-indicator-while-loading-tab
     
-    var banksArray = [Bank]()
-    var filteredBanks = [Bank]()
+    var gasStationsArray = [GasStation]()
+    var filteredGasStations = [GasStation]()
     var data = [CKRecord]()
     
     let container = CKContainer.defaultContainer()
@@ -50,7 +50,7 @@ class BanksViewController: UITableViewController, UISearchDisplayDelegate, UISea
         refreshControl = UIRefreshControl()
         refreshControl?.backgroundColor = UIColor.candyGreen()
         refreshControl!.addTarget(self, action: #selector(BanksViewController.refresh(_:)), forControlEvents: UIControlEvents.ValueChanged)
-
+        
     }
     
     func refresh(sender:AnyObject) {
@@ -63,7 +63,7 @@ class BanksViewController: UITableViewController, UISearchDisplayDelegate, UISea
         var predicate = NSPredicate(value: true)
         
         // query
-        let cloudKitQuery = CKQuery(recordType: "Banks", predicate: predicate)
+        let cloudKitQuery = CKQuery(recordType: "Gas", predicate: predicate)
         
         // records to store
         var records = [CKRecord]()
@@ -152,13 +152,13 @@ class BanksViewController: UITableViewController, UISearchDisplayDelegate, UISea
     }
     
     func retrieveData() {
-        self.banksArray = [Bank]()
+        self.gasStationsArray = [GasStation]()
         for data in self.data {
-            let bankName = data.objectForKey("Name") as! String
-            let bank = Bank(name: bankName)
+            let gasStationName = data.objectForKey("Name") as! String
+            let food = GasStation(name: gasStationName)
             self.activityIndicatorView.stopAnimating()
             self.tableView.separatorStyle = UITableViewCellSeparatorStyle.SingleLine
-            self.banksArray.append(bank)
+            self.gasStationsArray.append(food)
         }
         self.tableView.reloadData()
         refreshControl!.endRefreshing()
@@ -168,77 +168,76 @@ class BanksViewController: UITableViewController, UISearchDisplayDelegate, UISea
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
+    
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1;
     }
-
+    
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if searchController.active && searchController.searchBar.text != "" {
-            return filteredBanks.count
+            return gasStationsArray.count
         }
-        print(banksArray.count)
-        return banksArray.count
+        print(gasStationsArray.count)
+        return gasStationsArray.count
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath)
         -> UITableViewCell {
-            let cell = tableView.dequeueReusableCellWithIdentifier("BankCell", forIndexPath: indexPath) as! BankCell
+            let cell = tableView.dequeueReusableCellWithIdentifier("GasStationCell", forIndexPath: indexPath) as! GasStationCell
             
-            let bank: Bank
+            let gasStation: GasStation
             if searchController.active && searchController.searchBar.text != "" {
-                bank = filteredBanks[indexPath.row]
+                gasStation = filteredGasStations[indexPath.row]
             } else {
-                bank = banksArray[indexPath.row]
+                gasStation = gasStationsArray[indexPath.row]
             }
             
-            cell.bank = bank
+            cell.gasStation = gasStation
             return cell
     }
-
+    
     func filterContentForSearchText(searchText: String, scope: String = "Text") {
-        filteredBanks = banksArray.filter({ (bank) -> Bool in
-            return (bank.name?.lowercaseString.containsString(searchText.lowercaseString))!
+        filteredGasStations = gasStationsArray.filter({ (shop) -> Bool in
+            return (shop.name?.lowercaseString.containsString(searchText.lowercaseString))!
         })
         tableView.reloadData()
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         if searchController.active && searchController.searchBar.text != "" {
-            selectedCell = filteredBanks[indexPath.row].name!
+            selectedCell = filteredGasStations[indexPath.row].name!
         } else {
-            selectedCell = banksArray[indexPath.row].name!
+            selectedCell = gasStationsArray[indexPath.row].name!
         }
         
-        performSegueWithIdentifier("toSelectedBankMap", sender: self)
-    }
-
-    @IBAction func allBanksMapButton(sender: AnyObject) {
-        performSegueWithIdentifier("toAllBanksMap", sender: self)
+        performSegueWithIdentifier("toSelectedGasStationMap", sender: self)
     }
     
-    @IBAction func unwindToBankTable(segue: UIStoryboardSegue) {
+    @IBAction func allGasStationssMapButton(sender: AnyObject) {
+        performSegueWithIdentifier("toAllGasStationsMap", sender: self)
+    }
+    
+    @IBAction func unwindToGasStationTable(segue: UIStoryboardSegue) {
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "toSelectedBankMap"{
+        if segue.identifier == "toSelectedGasStationMap"{
             let DestViewController = segue.destinationViewController as! UINavigationController
-            let targetController = DestViewController.topViewController as! BankViewController
-            targetController.bankSelected = selectedCell
+            let targetController = DestViewController.topViewController as! GasStationViewController
+            targetController.gasStationSelected = selectedCell
         }
         
-        if segue.identifier == "toAllBanksMap"{
+        if segue.identifier == "toAllGasStationsMap"{
             let DestViewController = segue.destinationViewController as! UINavigationController
-            let targetController = DestViewController.topViewController as! AllBanksViewController
-            targetController.allBanksArray = banksArray
+            let targetController = DestViewController.topViewController as! AllGasStationsViewController
+            targetController.allGasStationsArray = gasStationsArray
         }
     }
-
+    
 }
 
-extension BanksViewController: UISearchResultsUpdating {
+extension GasStationsViewController: UISearchResultsUpdating {
     func updateSearchResultsForSearchController(searchController: UISearchController) {
         filterContentForSearchText(searchController.searchBar.text!)
     }
 }
-

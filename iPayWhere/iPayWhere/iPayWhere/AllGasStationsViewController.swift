@@ -1,19 +1,18 @@
 //
-//  AllBanksViewController.swift
+//  AllGasStationsViewController.swift
 //  iPayWhere
 //
-//  Created by Riley Rodenburg on 9/4/16.
+//  Created by Riley Rodenburg on 9/5/16.
 //  Copyright © 2016 buddhabuddha. All rights reserved.
 //
 
 import UIKit
 import MapKit
 
-
 // Displays the location of all the Apple Pay Banks on a Map
-class AllBanksViewController: UIViewController {
+class AllGasStationsViewController: UIViewController {
     
-    var allBanksArray = [Bank]()
+    var allGasStationsArray = [GasStation]()
     
     var selectedPin: MKPlacemark?
     
@@ -25,7 +24,7 @@ class AllBanksViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        print(allBanksArray)
+        print(allGasStationsArray)
         
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
@@ -43,7 +42,7 @@ class AllBanksViewController: UIViewController {
 /*
  Customizing the pins and their annotations to include name and address
  */
-extension AllBanksViewController : CLLocationManagerDelegate {
+extension AllGasStationsViewController : CLLocationManagerDelegate {
     
     func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
         if status == .AuthorizedWhenInUse {
@@ -64,15 +63,15 @@ extension AllBanksViewController : CLLocationManagerDelegate {
     }
     
     func getLocations() {
-        for bank in allBanksArray {
-            addPinToMap(bank.name)
+        for shop in allGasStationsArray {
+            addPinToMap(shop.name)
         }
         
     }
     
-    func addPinToMap(bankName: String) {
+    func addPinToMap(gasStationName: String) {
         let request = MKLocalSearchRequest()
-        request.naturalLanguageQuery = bankName
+        request.naturalLanguageQuery = gasStationName
         request.region = mapView.region
         let search = MKLocalSearch(request: request)
         
@@ -109,7 +108,7 @@ extension AllBanksViewController : CLLocationManagerDelegate {
 /*
  For the directions button to annotations (clicked pin) on map
  */
-extension AllBanksViewController : MKMapViewDelegate {
+extension AllGasStationsViewController : MKMapViewDelegate {
     
     func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView?{
         
@@ -129,9 +128,8 @@ extension AllBanksViewController : MKMapViewDelegate {
         let smallSquare = CGSize(width: 30, height: 30)
         let button = UIButton(frame: CGRect(origin: CGPointZero, size: smallSquare))
         button.setBackgroundImage(UIImage(named: "car"), forState: .Normal)
-        button.addTarget(self, action: #selector(AllBanksViewController.getDirections), forControlEvents: .TouchUpInside)
+        button.addTarget(self, action: #selector(AllGasStationsViewController.getDirections), forControlEvents: .TouchUpInside)
         pinView?.leftCalloutAccessoryView = button
         return pinView
     }
 }
-

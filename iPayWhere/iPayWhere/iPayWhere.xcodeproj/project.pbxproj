@@ -8,38 +8,64 @@
 
 /* Begin PBXBuildFile section */
 		302E2F0B1D78A79A009CACD5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302E2F0A1D78A79A009CACD5 /* AppDelegate.swift */; };
-		302E2F0D1D78A79A009CACD5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302E2F0C1D78A79A009CACD5 /* ViewController.swift */; };
 		302E2F101D78A79A009CACD5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 302E2F0E1D78A79A009CACD5 /* Main.storyboard */; };
 		302E2F121D78A79A009CACD5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 302E2F111D78A79A009CACD5 /* Assets.xcassets */; };
 		302E2F151D78A79A009CACD5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 302E2F131D78A79A009CACD5 /* LaunchScreen.storyboard */; };
 		302E2F211D78EC29009CACD5 /* BanksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302E2F201D78EC29009CACD5 /* BanksViewController.swift */; };
 		302E2F231D78EC58009CACD5 /* Bank.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302E2F221D78EC58009CACD5 /* Bank.swift */; };
-		302E2F251D78ECDC009CACD5 /* SampleData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302E2F241D78ECDC009CACD5 /* SampleData.swift */; };
 		302E2F271D791914009CACD5 /* BankCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302E2F261D791914009CACD5 /* BankCell.swift */; };
 		302E2F291D7998FD009CACD5 /* BankViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302E2F281D7998FD009CACD5 /* BankViewController.swift */; };
-		302E2F2B1D79A638009CACD5 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302E2F2A1D79A638009CACD5 /* MapViewController.swift */; };
 		302E2F2D1D79AFD0009CACD5 /* LocationSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302E2F2C1D79AFD0009CACD5 /* LocationSearch.swift */; };
 		302E2F301D7A0C5B009CACD5 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 302E2F2F1D7A0C5B009CACD5 /* CloudKit.framework */; };
+		303B46EB1D7CDF1D005B0338 /* GlobalFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 303B46EA1D7CDF1D005B0338 /* GlobalFunctions.swift */; };
+		303B46EE1D7CEA21005B0338 /* ShopCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 303B46ED1D7CEA21005B0338 /* ShopCell.swift */; };
+		303B46F01D7CEA59005B0338 /* Shop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 303B46EF1D7CEA59005B0338 /* Shop.swift */; };
+		303B46F21D7CEC80005B0338 /* ShopsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 303B46F11D7CEC80005B0338 /* ShopsViewController.swift */; };
+		303B46F41D7CEECC005B0338 /* ShopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 303B46F31D7CEECC005B0338 /* ShopViewController.swift */; };
+		303B46F61D7CF047005B0338 /* AllShopsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 303B46F51D7CF047005B0338 /* AllShopsViewController.swift */; };
+		303B46F91D7CFF32005B0338 /* Food.swift in Sources */ = {isa = PBXBuildFile; fileRef = 303B46F81D7CFF32005B0338 /* Food.swift */; };
+		303B46FB1D7CFF51005B0338 /* FoodCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 303B46FA1D7CFF51005B0338 /* FoodCell.swift */; };
+		303B46FD1D7CFF91005B0338 /* FoodsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 303B46FC1D7CFF91005B0338 /* FoodsViewController.swift */; };
+		303B46FF1D7D0269005B0338 /* FoodViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 303B46FE1D7D0269005B0338 /* FoodViewController.swift */; };
+		303B47011D7D02DE005B0338 /* AllFoodsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 303B47001D7D02DE005B0338 /* AllFoodsViewController.swift */; };
+		303B47041D7E64E8005B0338 /* GasStation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 303B47031D7E64E8005B0338 /* GasStation.swift */; };
+		303B47061D7E64F5005B0338 /* GasStationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 303B47051D7E64F5005B0338 /* GasStationCell.swift */; };
+		303B47081D7E654B005B0338 /* GasStationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 303B47071D7E654B005B0338 /* GasStationsViewController.swift */; };
+		303B470A1D7E6723005B0338 /* GasStationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 303B47091D7E6723005B0338 /* GasStationViewController.swift */; };
+		303B470C1D7E6795005B0338 /* AllGasStationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 303B470B1D7E6795005B0338 /* AllGasStationsViewController.swift */; };
 		30BC85551D7CA8F20025EE44 /* AllBanksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BC85541D7CA8F20025EE44 /* AllBanksViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		302E2F071D78A799009CACD5 /* iPayWhere.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iPayWhere.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		302E2F0A1D78A79A009CACD5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		302E2F0C1D78A79A009CACD5 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		302E2F0F1D78A79A009CACD5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		302E2F111D78A79A009CACD5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		302E2F141D78A79A009CACD5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		302E2F161D78A79B009CACD5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		302E2F201D78EC29009CACD5 /* BanksViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BanksViewController.swift; path = ../BanksViewController.swift; sourceTree = "<group>"; };
 		302E2F221D78EC58009CACD5 /* Bank.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Bank.swift; sourceTree = "<group>"; };
-		302E2F241D78ECDC009CACD5 /* SampleData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SampleData.swift; sourceTree = "<group>"; };
 		302E2F261D791914009CACD5 /* BankCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BankCell.swift; sourceTree = "<group>"; };
 		302E2F281D7998FD009CACD5 /* BankViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BankViewController.swift; sourceTree = "<group>"; };
-		302E2F2A1D79A638009CACD5 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		302E2F2C1D79AFD0009CACD5 /* LocationSearch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationSearch.swift; sourceTree = "<group>"; };
 		302E2F2E1D7A0C2C009CACD5 /* iPayWhere.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = iPayWhere.entitlements; sourceTree = "<group>"; };
 		302E2F2F1D7A0C5B009CACD5 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
+		303B46EA1D7CDF1D005B0338 /* GlobalFunctions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlobalFunctions.swift; sourceTree = "<group>"; };
+		303B46ED1D7CEA21005B0338 /* ShopCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShopCell.swift; sourceTree = "<group>"; };
+		303B46EF1D7CEA59005B0338 /* Shop.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Shop.swift; sourceTree = "<group>"; };
+		303B46F11D7CEC80005B0338 /* ShopsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShopsViewController.swift; sourceTree = "<group>"; };
+		303B46F31D7CEECC005B0338 /* ShopViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShopViewController.swift; sourceTree = "<group>"; };
+		303B46F51D7CF047005B0338 /* AllShopsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllShopsViewController.swift; sourceTree = "<group>"; };
+		303B46F81D7CFF32005B0338 /* Food.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Food.swift; sourceTree = "<group>"; };
+		303B46FA1D7CFF51005B0338 /* FoodCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoodCell.swift; sourceTree = "<group>"; };
+		303B46FC1D7CFF91005B0338 /* FoodsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoodsViewController.swift; sourceTree = "<group>"; };
+		303B46FE1D7D0269005B0338 /* FoodViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoodViewController.swift; sourceTree = "<group>"; };
+		303B47001D7D02DE005B0338 /* AllFoodsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllFoodsViewController.swift; sourceTree = "<group>"; };
+		303B47031D7E64E8005B0338 /* GasStation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GasStation.swift; sourceTree = "<group>"; };
+		303B47051D7E64F5005B0338 /* GasStationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GasStationCell.swift; sourceTree = "<group>"; };
+		303B47071D7E654B005B0338 /* GasStationsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GasStationsViewController.swift; sourceTree = "<group>"; };
+		303B47091D7E6723005B0338 /* GasStationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GasStationViewController.swift; sourceTree = "<group>"; };
+		303B470B1D7E6795005B0338 /* AllGasStationsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllGasStationsViewController.swift; sourceTree = "<group>"; };
 		30BC85541D7CA8F20025EE44 /* AllBanksViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllBanksViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -75,19 +101,56 @@
 		302E2F091D78A79A009CACD5 /* iPayWhere */ = {
 			isa = PBXGroup;
 			children = (
+				309F09081D7A706500F301A6 /* Bank */,
+				303B46EC1D7CE9FC005B0338 /* Shop */,
+				303B46F71D7CFF22005B0338 /* Food */,
+				303B47021D7E64CB005B0338 /* Gas */,
 				302E2F2E1D7A0C2C009CACD5 /* iPayWhere.entitlements */,
 				302E2F0A1D78A79A009CACD5 /* AppDelegate.swift */,
-				302E2F0C1D78A79A009CACD5 /* ViewController.swift */,
 				302E2F0E1D78A79A009CACD5 /* Main.storyboard */,
 				302E2F111D78A79A009CACD5 /* Assets.xcassets */,
 				302E2F131D78A79A009CACD5 /* LaunchScreen.storyboard */,
 				302E2F161D78A79B009CACD5 /* Info.plist */,
-				302E2F241D78ECDC009CACD5 /* SampleData.swift */,
-				309F09081D7A706500F301A6 /* Bank */,
-				302E2F2A1D79A638009CACD5 /* MapViewController.swift */,
 				302E2F2C1D79AFD0009CACD5 /* LocationSearch.swift */,
+				303B46EA1D7CDF1D005B0338 /* GlobalFunctions.swift */,
 			);
 			path = iPayWhere;
+			sourceTree = "<group>";
+		};
+		303B46EC1D7CE9FC005B0338 /* Shop */ = {
+			isa = PBXGroup;
+			children = (
+				303B46ED1D7CEA21005B0338 /* ShopCell.swift */,
+				303B46EF1D7CEA59005B0338 /* Shop.swift */,
+				303B46F11D7CEC80005B0338 /* ShopsViewController.swift */,
+				303B46F31D7CEECC005B0338 /* ShopViewController.swift */,
+				303B46F51D7CF047005B0338 /* AllShopsViewController.swift */,
+			);
+			name = Shop;
+			sourceTree = "<group>";
+		};
+		303B46F71D7CFF22005B0338 /* Food */ = {
+			isa = PBXGroup;
+			children = (
+				303B46F81D7CFF32005B0338 /* Food.swift */,
+				303B46FA1D7CFF51005B0338 /* FoodCell.swift */,
+				303B46FC1D7CFF91005B0338 /* FoodsViewController.swift */,
+				303B46FE1D7D0269005B0338 /* FoodViewController.swift */,
+				303B47001D7D02DE005B0338 /* AllFoodsViewController.swift */,
+			);
+			name = Food;
+			sourceTree = "<group>";
+		};
+		303B47021D7E64CB005B0338 /* Gas */ = {
+			isa = PBXGroup;
+			children = (
+				303B47031D7E64E8005B0338 /* GasStation.swift */,
+				303B47051D7E64F5005B0338 /* GasStationCell.swift */,
+				303B47071D7E654B005B0338 /* GasStationsViewController.swift */,
+				303B47091D7E6723005B0338 /* GasStationViewController.swift */,
+				303B470B1D7E6795005B0338 /* AllGasStationsViewController.swift */,
+			);
+			name = Gas;
 			sourceTree = "<group>";
 		};
 		309F09081D7A706500F301A6 /* Bank */ = {
@@ -179,16 +242,29 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				303B46F21D7CEC80005B0338 /* ShopsViewController.swift in Sources */,
 				302E2F291D7998FD009CACD5 /* BankViewController.swift in Sources */,
+				303B46FF1D7D0269005B0338 /* FoodViewController.swift in Sources */,
+				303B470C1D7E6795005B0338 /* AllGasStationsViewController.swift in Sources */,
+				303B46EE1D7CEA21005B0338 /* ShopCell.swift in Sources */,
 				302E2F2D1D79AFD0009CACD5 /* LocationSearch.swift in Sources */,
-				302E2F0D1D78A79A009CACD5 /* ViewController.swift in Sources */,
+				303B470A1D7E6723005B0338 /* GasStationViewController.swift in Sources */,
+				303B46F01D7CEA59005B0338 /* Shop.swift in Sources */,
+				303B47041D7E64E8005B0338 /* GasStation.swift in Sources */,
+				303B47061D7E64F5005B0338 /* GasStationCell.swift in Sources */,
+				303B46EB1D7CDF1D005B0338 /* GlobalFunctions.swift in Sources */,
 				302E2F271D791914009CACD5 /* BankCell.swift in Sources */,
+				303B46FB1D7CFF51005B0338 /* FoodCell.swift in Sources */,
+				303B46F91D7CFF32005B0338 /* Food.swift in Sources */,
+				303B46F61D7CF047005B0338 /* AllShopsViewController.swift in Sources */,
 				30BC85551D7CA8F20025EE44 /* AllBanksViewController.swift in Sources */,
+				303B47081D7E654B005B0338 /* GasStationsViewController.swift in Sources */,
+				303B46F41D7CEECC005B0338 /* ShopViewController.swift in Sources */,
 				302E2F231D78EC58009CACD5 /* Bank.swift in Sources */,
 				302E2F211D78EC29009CACD5 /* BanksViewController.swift in Sources */,
-				302E2F251D78ECDC009CACD5 /* SampleData.swift in Sources */,
+				303B46FD1D7CFF91005B0338 /* FoodsViewController.swift in Sources */,
+				303B47011D7D02DE005B0338 /* AllFoodsViewController.swift in Sources */,
 				302E2F0B1D78A79A009CACD5 /* AppDelegate.swift in Sources */,
-				302E2F2B1D79A638009CACD5 /* MapViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

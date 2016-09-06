@@ -22,19 +22,18 @@
                                     <rect key="frame" x="0.0" y="0.0" width="342" height="32.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Name" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="100" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TZj-JX-ujc">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="100" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TZj-JX-ujc">
                                             <rect key="frame" x="53" y="6" width="269" height="21"/>
-                                            <constraints>
-                                                <constraint firstAttribute="width" constant="269" id="zc8-HK-WcF"/>
-                                            </constraints>
                                             <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="13"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstAttribute="trailingMargin" secondItem="TZj-JX-ujc" secondAttribute="trailing" constant="45" id="M0z-sa-Bqy"/>
-                                        <constraint firstItem="TZj-JX-ujc" firstAttribute="centerY" secondItem="Xdw-hu-yJO" secondAttribute="centerY" id="c9K-mX-CcC"/>
+                                        <constraint firstItem="TZj-JX-ujc" firstAttribute="leading" secondItem="Xdw-hu-yJO" secondAttribute="leadingMargin" constant="45" id="4wh-ZE-VuG"/>
+                                        <constraint firstItem="TZj-JX-ujc" firstAttribute="centerY" secondItem="Xdw-hu-yJO" secondAttribute="centerY" id="FdD-Cp-pQq"/>
+                                        <constraint firstItem="TZj-JX-ujc" firstAttribute="top" secondItem="Xdw-hu-yJO" secondAttribute="topMargin" constant="-2" id="PA7-rv-ne8"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="TZj-JX-ujc" secondAttribute="trailing" constant="12" id="jPa-rC-oTs"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
@@ -49,6 +48,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Banks" id="XaS-2d-qzQ">
                         <barButtonItem key="rightBarButtonItem" systemItem="trash" id="bIq-Bb-iTy">
+                            <color key="tintColor" red="0.99215686270000003" green="0.1450980392" blue="0.1960784314" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <action selector="allBanksMapButton:" destination="hXG-pi-QRb" id="Nc3-Dl-vN6"/>
                             </connections>
@@ -94,6 +94,7 @@
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Bank" id="veG-h6-nLq">
                         <barButtonItem key="leftBarButtonItem" systemItem="done" id="aPj-5V-thO">
+                            <color key="tintColor" red="0.99215686270000003" green="0.1450980392" blue="0.1960784314" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <segue destination="3hM-gh-6KP" kind="unwind" unwindAction="unwindToBankTable:" id="I8z-ey-D8h"/>
                             </connections>
@@ -124,28 +125,47 @@
                     <connections>
                         <segue destination="an8-DZ-bOH" kind="relationship" relationship="viewControllers" id="dLH-xP-7E2"/>
                         <segue destination="Dm8-ep-Aaq" kind="relationship" relationship="viewControllers" id="KFy-Hn-Nu5"/>
+                        <segue destination="sI9-ru-39r" kind="relationship" relationship="viewControllers" id="4eX-Gi-IyP"/>
+                        <segue destination="toE-9O-QDc" kind="relationship" relationship="viewControllers" id="DFL-lp-h4s"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ysH-Lf-prg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-395.5" y="322.5"/>
+            <point key="canvasLocation" x="-373.5" y="340.5"/>
         </scene>
-        <!--Stores-->
+        <!--Shops-->
         <scene sceneID="P45-c0-I6i">
             <objects>
-                <tableViewController id="xXi-p0-d3s" sceneMemberID="viewController">
+                <tableViewController id="xXi-p0-d3s" customClass="ShopsViewController" customModule="iPayWhere" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="omJ-if-lk8">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="0F9-Ju-R0P">
-                                <rect key="frame" x="0.0" y="92" width="375" height="44"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="ShopCell" rowHeight="33" id="Fmh-ut-2ys" customClass="ShopCell" customModule="iPayWhere" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="92" width="375" height="33"/>
                                 <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="0F9-Ju-R0P" id="ESC-RD-2Zc">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Fmh-ut-2ys" id="Ntv-Xa-XVv">
+                                    <rect key="frame" x="0.0" y="0.0" width="342" height="33"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="100" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gXy-2e-naN">
+                                            <rect key="frame" x="53" y="6" width="269" height="21"/>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="13"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="gXy-2e-naN" firstAttribute="leading" secondItem="Ntv-Xa-XVv" secondAttribute="leadingMargin" constant="45" id="CBj-AW-cWs"/>
+                                        <constraint firstItem="gXy-2e-naN" firstAttribute="top" secondItem="Ntv-Xa-XVv" secondAttribute="topMargin" constant="-2" id="NGL-eU-MT8"/>
+                                        <constraint firstItem="gXy-2e-naN" firstAttribute="centerY" secondItem="Ntv-Xa-XVv" secondAttribute="centerY" id="cu7-9O-RnM"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="gXy-2e-naN" secondAttribute="trailing" constant="12" id="sh8-KP-zLD"/>
+                                    </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="nameLabel" destination="gXy-2e-naN" id="Eza-hl-WNm"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -153,13 +173,22 @@
                             <outlet property="delegate" destination="xXi-p0-d3s" id="KJQ-Xw-qdA"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Stores" id="csJ-XG-SOy">
-                        <barButtonItem key="rightBarButtonItem" title="Map" id="J2I-61-bPn"/>
+                    <navigationItem key="navigationItem" title="Shops" id="csJ-XG-SOy">
+                        <barButtonItem key="rightBarButtonItem" title="Map" id="J2I-61-bPn">
+                            <color key="tintColor" red="0.99215686274509807" green="0.14509803921568629" blue="0.19607843137254902" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <action selector="allShopsMapButton:" destination="xXi-p0-d3s" id="2nU-6L-MkF"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <segue destination="74Y-JX-K71" kind="show" identifier="toAllShopsMap" id="tCi-eG-As0"/>
+                        <segue destination="Mf4-o5-rqL" kind="show" identifier="toSelectedShopMap" id="KwO-nO-Kws"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UUR-Pm-I5k" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="950.5" y="407.5"/>
+            <point key="canvasLocation" x="950.5" y="1135.5"/>
         </scene>
         <!--All Banks-->
         <scene sceneID="dds-su-OQZ">
@@ -173,8 +202,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="E0k-9M-UkV">
-                                <rect key="frame" x="0.0" y="64" width="375" height="536"/>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="E0k-9M-UkV">
+                                <rect key="frame" x="0.0" y="64" width="375" height="554"/>
                                 <connections>
                                     <outlet property="delegate" destination="0Pk-oG-gtE" id="tEF-AC-yJb"/>
                                 </connections>
@@ -182,14 +211,15 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="E0k-9M-UkV" firstAttribute="bottom" secondItem="z7S-bo-aE9" secondAttribute="top" id="2Ez-FP-I2V"/>
-                            <constraint firstAttribute="trailing" secondItem="E0k-9M-UkV" secondAttribute="trailing" id="ZyX-cc-L1Y"/>
-                            <constraint firstItem="E0k-9M-UkV" firstAttribute="leading" secondItem="XgK-2Z-Kd5" secondAttribute="leading" id="aJO-DH-Yig"/>
-                            <constraint firstItem="E0k-9M-UkV" firstAttribute="top" secondItem="ds4-Tm-319" secondAttribute="bottom" id="wem-Sf-7aQ"/>
+                            <constraint firstItem="E0k-9M-UkV" firstAttribute="top" secondItem="ds4-Tm-319" secondAttribute="bottom" id="3hc-b8-ONP"/>
+                            <constraint firstAttribute="trailing" secondItem="E0k-9M-UkV" secondAttribute="trailing" id="9B2-oV-A1w"/>
+                            <constraint firstItem="E0k-9M-UkV" firstAttribute="leading" secondItem="XgK-2Z-Kd5" secondAttribute="leading" id="Vnm-6V-Khx"/>
+                            <constraint firstItem="E0k-9M-UkV" firstAttribute="bottom" secondItem="z7S-bo-aE9" secondAttribute="top" id="bFB-Ms-BvK"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="All Banks" id="mgo-Y2-PSA">
                         <barButtonItem key="leftBarButtonItem" systemItem="done" id="ASA-lE-3Ur">
+                            <color key="tintColor" red="0.99215686270000003" green="0.1450980392" blue="0.1960784314" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <segue destination="UPg-AP-yXn" kind="unwind" unwindAction="unwindToBankTable:" id="c34-W1-Upm"/>
                             </connections>
@@ -251,24 +281,41 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="z1J-j0-y3J" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="345.5" y="407.5"/>
+            <point key="canvasLocation" x="345.5" y="1135.5"/>
         </scene>
-        <!--Apps-->
+        <!--Food-->
         <scene sceneID="e36-AQ-Cgv">
             <objects>
-                <tableViewController id="JDc-85-gmh" sceneMemberID="viewController">
+                <tableViewController id="JDc-85-gmh" customClass="FoodsViewController" customModule="iPayWhere" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="WSv-v4-Gdz">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="3qX-po-Ajc">
-                                <rect key="frame" x="0.0" y="92" width="600" height="44"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="FoodCell" rowHeight="33" id="2oD-J6-1M9" customClass="FoodCell" customModule="iPayWhere" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="92" width="375" height="33"/>
                                 <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="3qX-po-Ajc" id="gvf-FL-9tv">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="2oD-J6-1M9" id="ocx-jv-CLe">
+                                    <rect key="frame" x="0.0" y="0.0" width="342" height="32.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="100" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cl9-7C-M3E">
+                                            <rect key="frame" x="53" y="6" width="269" height="21"/>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="13"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="Cl9-7C-M3E" firstAttribute="leading" secondItem="ocx-jv-CLe" secondAttribute="leadingMargin" constant="45" id="8K1-Li-Bnf"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="Cl9-7C-M3E" secondAttribute="trailing" constant="12" id="ONi-By-Y8I"/>
+                                        <constraint firstItem="Cl9-7C-M3E" firstAttribute="centerY" secondItem="ocx-jv-CLe" secondAttribute="centerY" id="gUF-Ee-ZOC"/>
+                                        <constraint firstItem="Cl9-7C-M3E" firstAttribute="top" secondItem="ocx-jv-CLe" secondAttribute="topMargin" constant="-2" id="m0p-td-45K"/>
+                                    </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="nameLabel" destination="Cl9-7C-M3E" id="9Bc-3X-dhD"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -276,11 +323,22 @@
                             <outlet property="delegate" destination="JDc-85-gmh" id="2LX-JL-pOa"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Apps" id="eF0-2Y-oxX"/>
+                    <navigationItem key="navigationItem" title="Food" id="eF0-2Y-oxX">
+                        <barButtonItem key="rightBarButtonItem" title="Map" id="liq-67-OKk">
+                            <color key="tintColor" red="0.99215686274509807" green="0.14509803921568629" blue="0.19607843137254902" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <action selector="allFoodsMapButton:" destination="JDc-85-gmh" id="fqV-ac-sQP"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <segue destination="l6h-kb-i67" kind="show" identifier="toAllFoodsMap" id="xuy-Pp-3fD"/>
+                        <segue destination="UEd-PT-QOM" kind="show" identifier="toSelectedFoodMap" id="hWJ-4w-S7j"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BNc-yt-ITt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="936.5" y="1243.5"/>
+            <point key="canvasLocation" x="950.5" y="2646.5"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="tpj-VM-Nnr">
@@ -303,7 +361,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="M9p-bL-BS5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="276.5" y="1243.5"/>
+            <point key="canvasLocation" x="345.5" y="2646.5"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="WXg-v6-j7g">
@@ -340,6 +398,465 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Exx-c5-Hem" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1444.5" y="-1150.5"/>
+        </scene>
+        <!--All Shops-->
+        <scene sceneID="9dI-68-yWr">
+            <objects>
+                <viewController id="2vh-Vt-Xm2" customClass="AllShopsViewController" customModule="iPayWhere" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="hsX-Tk-VMi"/>
+                        <viewControllerLayoutGuide type="bottom" id="l9n-Ws-ggm"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="0Dl-ZM-nxL">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9K6-gP-pZX">
+                                <rect key="frame" x="0.0" y="64" width="375" height="554"/>
+                                <connections>
+                                    <outlet property="delegate" destination="2vh-Vt-Xm2" id="JvL-Q5-Ijr"/>
+                                </connections>
+                            </mapView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="9K6-gP-pZX" secondAttribute="trailing" id="4qg-sJ-zU0"/>
+                            <constraint firstItem="9K6-gP-pZX" firstAttribute="leading" secondItem="0Dl-ZM-nxL" secondAttribute="leading" id="ZBl-TT-18p"/>
+                            <constraint firstItem="9K6-gP-pZX" firstAttribute="top" secondItem="hsX-Tk-VMi" secondAttribute="bottom" id="Zxg-pk-aNu"/>
+                            <constraint firstItem="9K6-gP-pZX" firstAttribute="bottom" secondItem="l9n-Ws-ggm" secondAttribute="top" id="hdr-7e-cON"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="All Shops" id="11B-nc-u5T">
+                        <barButtonItem key="leftBarButtonItem" systemItem="done" id="O6i-iM-8Pi">
+                            <color key="tintColor" red="0.99215686270000003" green="0.1450980392" blue="0.1960784314" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <segue destination="Bwi-78-HL5" kind="unwind" unwindAction="unwindToShopTable:" id="Cck-M8-cK5"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="mapView" destination="9K6-gP-pZX" id="Dcf-15-nM7"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ap0-Dx-jJ0" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="Bwi-78-HL5" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="1932.5" y="346.5"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="FsR-pj-ChR">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="74Y-JX-K71" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="kxu-LB-6v2">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="2vh-Vt-Xm2" kind="relationship" relationship="rootViewController" id="iCk-QY-HSx"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Nih-nf-62I" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1444.5" y="346.5"/>
+        </scene>
+        <!--Shop-->
+        <scene sceneID="pJ4-g7-OcM">
+            <objects>
+                <viewController id="b98-B2-8io" customClass="ShopViewController" customModule="iPayWhere" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="rri-o6-mHH"/>
+                        <viewControllerLayoutGuide type="bottom" id="UPs-TB-14L"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Z9I-Ao-ahO">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ycG-CF-2jB">
+                                <rect key="frame" x="0.0" y="64" width="375" height="559"/>
+                                <connections>
+                                    <outlet property="delegate" destination="b98-B2-8io" id="joy-Z7-Blx"/>
+                                </connections>
+                            </mapView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="ycG-CF-2jB" firstAttribute="bottom" secondItem="UPs-TB-14L" secondAttribute="top" id="OS3-Ac-jIc"/>
+                            <constraint firstAttribute="trailing" secondItem="ycG-CF-2jB" secondAttribute="trailing" id="QTG-QY-zvC"/>
+                            <constraint firstItem="ycG-CF-2jB" firstAttribute="leading" secondItem="Z9I-Ao-ahO" secondAttribute="leading" id="gfu-HV-b7k"/>
+                            <constraint firstItem="ycG-CF-2jB" firstAttribute="top" secondItem="rri-o6-mHH" secondAttribute="bottom" id="uoK-Xw-tka"/>
+                        </constraints>
+                    </view>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" title="Shop" id="ToV-Ls-lvC">
+                        <barButtonItem key="leftBarButtonItem" systemItem="done" id="VxA-lD-AM5">
+                            <color key="tintColor" red="0.99215686270000003" green="0.1450980392" blue="0.1960784314" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <segue destination="bYI-d5-eUL" kind="unwind" unwindAction="unwindToShopTable:" id="QaO-bi-NPI"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="mapView" destination="ycG-CF-2jB" id="10F-yE-vfE"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zko-jh-w6t" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="bYI-d5-eUL" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="1932.5" y="1135.5"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Y67-4m-CMU">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Mf4-o5-rqL" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="UzR-cL-SGR">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="b98-B2-8io" kind="relationship" relationship="rootViewController" id="HhY-xn-7Re"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cRF-df-5Dr" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1444.5" y="1135.5"/>
+        </scene>
+        <!--All Food Places-->
+        <scene sceneID="Ar0-U9-cj8">
+            <objects>
+                <viewController id="HgA-BS-dxb" customClass="AllFoodsViewController" customModule="iPayWhere" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="RPv-pa-D04"/>
+                        <viewControllerLayoutGuide type="bottom" id="Wdc-VF-oMI"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Ixq-Cw-CKr">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="E13-Qt-NU6">
+                                <rect key="frame" x="0.0" y="64" width="375" height="554"/>
+                                <connections>
+                                    <outlet property="delegate" destination="HgA-BS-dxb" id="CO3-b5-zj9"/>
+                                </connections>
+                            </mapView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="E13-Qt-NU6" firstAttribute="leading" secondItem="Ixq-Cw-CKr" secondAttribute="leading" id="Src-df-YMp"/>
+                            <constraint firstItem="E13-Qt-NU6" firstAttribute="bottom" secondItem="Wdc-VF-oMI" secondAttribute="top" id="bFP-40-14r"/>
+                            <constraint firstItem="E13-Qt-NU6" firstAttribute="top" secondItem="RPv-pa-D04" secondAttribute="bottom" id="sjM-TO-klh"/>
+                            <constraint firstAttribute="trailing" secondItem="E13-Qt-NU6" secondAttribute="trailing" id="yVB-Ay-fRQ"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="All Food Places" id="P2l-kf-MY4">
+                        <barButtonItem key="leftBarButtonItem" systemItem="done" id="IgI-7y-Kkg">
+                            <color key="tintColor" red="0.99215686270000003" green="0.1450980392" blue="0.1960784314" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <segue destination="Zci-f3-1qC" kind="unwind" unwindAction="unwindToFoodTable:" id="wSW-D6-612"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="mapView" destination="E13-Qt-NU6" id="xf8-AU-R0B"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Yii-A8-HRy" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="Zci-f3-1qC" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="1932.5" y="1899.5"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="c5p-j1-nDt">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="l6h-kb-i67" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Mb0-CV-g11">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="HgA-BS-dxb" kind="relationship" relationship="rootViewController" id="ylW-R2-kP2"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="e1Z-F7-V4O" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1444.5" y="1899.5"/>
+        </scene>
+        <!--Food-->
+        <scene sceneID="L3f-5d-RRG">
+            <objects>
+                <viewController id="ep3-ch-mF1" customClass="FoodViewController" customModule="iPayWhere" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="V3J-95-1dg"/>
+                        <viewControllerLayoutGuide type="bottom" id="XAG-3O-h3l"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="f7U-EP-1DJ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mPr-f0-o18">
+                                <rect key="frame" x="0.0" y="64" width="375" height="559"/>
+                                <connections>
+                                    <outlet property="delegate" destination="ep3-ch-mF1" id="zDO-vw-fuP"/>
+                                </connections>
+                            </mapView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="mPr-f0-o18" firstAttribute="bottom" secondItem="XAG-3O-h3l" secondAttribute="top" id="EXO-Tg-K7Z"/>
+                            <constraint firstAttribute="trailing" secondItem="mPr-f0-o18" secondAttribute="trailing" id="G6c-Ey-Mmu"/>
+                            <constraint firstItem="mPr-f0-o18" firstAttribute="top" secondItem="V3J-95-1dg" secondAttribute="bottom" id="Nqr-A1-zeS"/>
+                            <constraint firstItem="mPr-f0-o18" firstAttribute="leading" secondItem="f7U-EP-1DJ" secondAttribute="leading" id="tD3-5k-rGU"/>
+                        </constraints>
+                    </view>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" title="Food" id="4J5-yn-SQ9">
+                        <barButtonItem key="leftBarButtonItem" systemItem="done" id="CO3-vZ-yyU">
+                            <connections>
+                                <segue destination="ax5-qx-Rq0" kind="unwind" unwindAction="unwindToFoodTable:" id="6C3-Iw-gK9"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="mapView" destination="mPr-f0-o18" id="M5k-N9-Nr8"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="kg0-r2-lxc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="ax5-qx-Rq0" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="1932.5" y="2646.5"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="hZ6-fW-s4y">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="UEd-PT-QOM" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="3pn-8n-0g7">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="ep3-ch-mF1" kind="relationship" relationship="rootViewController" id="PTw-vf-f5G"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="AA2-eD-xlp" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1444.5" y="2646.5"/>
+        </scene>
+        <!--Gas Stations-->
+        <scene sceneID="v9u-zH-UA3">
+            <objects>
+                <tableViewController id="fm9-XU-2lK" customClass="GasStationsViewController" customModule="iPayWhere" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="Vna-vJ-7vk">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="GasStationCell" rowHeight="33" id="4Yr-Yx-9dj" customClass="GasStationCell" customModule="iPayWhere" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="92" width="375" height="33"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="4Yr-Yx-9dj" id="H5e-jx-s5s">
+                                    <rect key="frame" x="0.0" y="0.0" width="342" height="32.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="100" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VI9-u9-rR6">
+                                            <rect key="frame" x="53" y="6" width="269" height="21"/>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="13"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="VI9-u9-rR6" firstAttribute="top" secondItem="H5e-jx-s5s" secondAttribute="topMargin" constant="-2" id="YCs-R4-fBg"/>
+                                        <constraint firstItem="VI9-u9-rR6" firstAttribute="leading" secondItem="H5e-jx-s5s" secondAttribute="leadingMargin" constant="45" id="ZfI-wy-lxb"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="VI9-u9-rR6" secondAttribute="trailing" constant="12" id="ecW-pF-cDG"/>
+                                        <constraint firstItem="VI9-u9-rR6" firstAttribute="centerY" secondItem="H5e-jx-s5s" secondAttribute="centerY" id="ik4-iU-hMQ"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="nameLabel" destination="VI9-u9-rR6" id="vwz-0v-np7"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="fm9-XU-2lK" id="nRq-gX-Ac6"/>
+                            <outlet property="delegate" destination="fm9-XU-2lK" id="FJr-GM-F65"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Gas Stations" id="UlT-cM-6ha">
+                        <barButtonItem key="rightBarButtonItem" title="Map" id="or8-jS-sB1">
+                            <color key="tintColor" red="0.99215686274509807" green="0.14509803921568629" blue="0.19607843137254902" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <action selector="allGasStationssMapButton:" destination="fm9-XU-2lK" id="of6-C9-5b5"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <segue destination="qmW-pH-CAH" kind="show" identifier="toAllGasStationsMap" id="Di1-gG-Jqj">
+                            <nil key="action"/>
+                        </segue>
+                        <segue destination="A7m-r5-uFK" kind="show" identifier="toSelectedGasStationMap" id="cow-xv-R6Q">
+                            <nil key="action"/>
+                        </segue>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="QCb-cf-NTq" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="950.5" y="4197.5"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="qFG-dp-6Pr">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="toE-9O-QDc" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="" image="Smartphone Tablet-30" id="kla-dE-nzQ">
+                        <inset key="imageInsets" minX="0.0" minY="5" maxX="0.0" maxY="-5"/>
+                        <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="100"/>
+                    </tabBarItem>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="8bw-w3-khL">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="fm9-XU-2lK" kind="relationship" relationship="rootViewController" id="aoY-E3-vJQ"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8jM-fb-CG1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="345.5" y="4197.5"/>
+        </scene>
+        <!--All Shops-->
+        <scene sceneID="ea7-Jx-j7r">
+            <objects>
+                <viewController id="a52-bI-d4g" customClass="AllGasStationsViewController" customModule="iPayWhere" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="wOj-Oy-MAw"/>
+                        <viewControllerLayoutGuide type="bottom" id="Uwa-Qt-w8Y"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="BfS-YE-Hgq">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Jnq-oj-JQz">
+                                <rect key="frame" x="0.0" y="64" width="375" height="554"/>
+                                <connections>
+                                    <outlet property="delegate" destination="a52-bI-d4g" id="aMN-Jt-uL8"/>
+                                </connections>
+                            </mapView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="Jnq-oj-JQz" secondAttribute="trailing" id="9uL-jc-sX0"/>
+                            <constraint firstItem="Jnq-oj-JQz" firstAttribute="leading" secondItem="BfS-YE-Hgq" secondAttribute="leading" id="Trd-ud-amM"/>
+                            <constraint firstItem="Jnq-oj-JQz" firstAttribute="top" secondItem="wOj-Oy-MAw" secondAttribute="bottom" id="b9r-4e-bGg"/>
+                            <constraint firstItem="Jnq-oj-JQz" firstAttribute="bottom" secondItem="Uwa-Qt-w8Y" secondAttribute="top" id="fBs-ux-z2e"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="All Shops" id="IWq-6q-pDh">
+                        <barButtonItem key="leftBarButtonItem" systemItem="done" id="Z63-oU-qKl">
+                            <connections>
+                                <segue destination="NNH-rz-bTm" kind="unwind" unwindAction="unwindToGasStationTable:" id="5Ns-oW-vDC"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="mapView" destination="Jnq-oj-JQz" id="MZs-5W-PVw"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="c3z-Qb-z5J" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="NNH-rz-bTm" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="1932.5" y="3450.5"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="7AU-mZ-gF5">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="qmW-pH-CAH" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="LWh-NZ-sSe">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="a52-bI-d4g" kind="relationship" relationship="rootViewController" id="LdK-aY-cQK"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fih-pO-feM" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1444.5" y="3450.5"/>
+        </scene>
+        <!--Shop-->
+        <scene sceneID="bSe-5R-ygF">
+            <objects>
+                <viewController id="gQZ-Eb-v2o" customClass="GasStationViewController" customModule="iPayWhere" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="k9y-hN-pGT"/>
+                        <viewControllerLayoutGuide type="bottom" id="Wb9-ZV-BKi"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="xo2-eL-zKj">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GUC-Hl-WdS">
+                                <rect key="frame" x="0.0" y="64" width="375" height="559"/>
+                                <connections>
+                                    <outlet property="delegate" destination="gQZ-Eb-v2o" id="ZTy-7l-31k"/>
+                                </connections>
+                            </mapView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="GUC-Hl-WdS" firstAttribute="bottom" secondItem="Wb9-ZV-BKi" secondAttribute="top" id="49G-iF-S4i"/>
+                            <constraint firstItem="GUC-Hl-WdS" firstAttribute="top" secondItem="k9y-hN-pGT" secondAttribute="bottom" id="X3n-Rx-Bt1"/>
+                            <constraint firstItem="GUC-Hl-WdS" firstAttribute="leading" secondItem="xo2-eL-zKj" secondAttribute="leading" id="ogn-fd-hIZ"/>
+                            <constraint firstAttribute="trailing" secondItem="GUC-Hl-WdS" secondAttribute="trailing" id="pgX-So-Iat"/>
+                        </constraints>
+                    </view>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" title="Shop" id="f16-JN-NvO">
+                        <barButtonItem key="leftBarButtonItem" systemItem="done" id="1g1-I5-Zmy">
+                            <connections>
+                                <segue destination="LfA-6I-Ijg" kind="unwind" unwindAction="unwindToGasStationTable:" id="4HO-4k-qgf"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="mapView" destination="GUC-Hl-WdS" id="EpJ-0Y-j7F"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="eCd-Wk-hrr" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="LfA-6I-Ijg" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="1932.5" y="4197.5"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="ytY-Pa-d2p">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="A7m-r5-uFK" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="TBt-JP-vgx">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="gQZ-Eb-v2o" kind="relationship" relationship="rootViewController" id="g9R-8r-aOd"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nTX-js-00A" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1444.5" y="4197.5"/>
         </scene>
     </scenes>
     <resources>

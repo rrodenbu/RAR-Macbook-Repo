@@ -9,13 +9,14 @@
 import UIKit
 import MapKit
 
+
 var selectedBank : String = ""
 
 class BankViewController: UIViewController {
 
-    var bankSelected : String = ""
-    var selectedPin: MKPlacemark?
     
+    var bankSelected : String = "" // Passed from BanksViewController table
+    var selectedPin: MKPlacemark?
     let locationManager = CLLocationManager()
     var matchingItems: [MKMapItem] = []
     var annotations = [MKPointAnnotation]()
@@ -23,7 +24,6 @@ class BankViewController: UIViewController {
     @IBOutlet var mapView: MKMapView!
     
     override func viewDidLoad() {
-        print("data from ReceiveViewController is \(bankSelected)")
         
         selectedBank = bankSelected
         
@@ -36,53 +36,16 @@ class BankViewController: UIViewController {
         locationManager.requestLocation()
     }
     
-    func parseAddress(selectedItem:MKPlacemark) -> String {
-        
-        // put a space between "4" and "Melrose Place"
-        let firstSpace = (selectedItem.subThoroughfare != nil &&
-            selectedItem.thoroughfare != nil) ? " " : ""
-        
-        // put a comma between street and city/state
-        let comma = (selectedItem.subThoroughfare != nil || selectedItem.thoroughfare != nil) &&
-            (selectedItem.subAdministrativeArea != nil || selectedItem.administrativeArea != nil) ? ", " : ""
-        
-        // put a space between "Washington" and "DC"
-        let secondSpace = (selectedItem.subAdministrativeArea != nil &&
-            selectedItem.administrativeArea != nil) ? " " : ""
-        
-        let addressLine = String(
-            format:"%@%@%@%@%@%@%@",
-            // street number
-            selectedItem.subThoroughfare ?? "",
-            firstSpace,
-            // street name
-            selectedItem.thoroughfare ?? "",
-            comma,
-            // city
-            selectedItem.locality ?? "",
-            secondSpace,
-            // state
-            selectedItem.administrativeArea ?? ""
-        )
-        
-        return addressLine
-    }
-    
     func getDirections(){
             let mapItem = MKMapItem(placemark: selectedPin!)
             let launchOptions = [MKLaunchOptionsDirectionsModeKey : MKLaunchOptionsDirectionsModeDriving]
             mapItem.openInMapsWithLaunchOptions(launchOptions)
     }
-    
-//    func getDirections(){
-//        if let selectedPin = selectedPin {
-//            let mapItem = MKMapItem(placemark: selectedPin)
-//            let launchOptions = [MKLaunchOptionsDirectionsModeKey : MKLaunchOptionsDirectionsModeDriving]
-//            mapItem.openInMapsWithLaunchOptions(launchOptions)
-//        }
-//    }
 }
 
+/*
+ Customizing the pins and their annotations to include name and address
+ */
 extension BankViewController : CLLocationManagerDelegate {
     
     func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
@@ -100,13 +63,12 @@ extension BankViewController : CLLocationManagerDelegate {
         
     }
     
-    func mapViewDidFinishRenderingMap(mapView: MKMapView!, fullyRendered: Bool) {
+    func mapViewDidFinishRenderingMap(mapView: MKMapView, fullyRendered: Bool) {
         getLocations()
     }
     
     func getLocations() {
         let request = MKLocalSearchRequest()
-        //print(selectedBank)
         request.naturalLanguageQuery = selectedBank
         request.region = mapView.region
         let search = MKLocalSearch(request: request)
@@ -132,7 +94,6 @@ extension BankViewController : CLLocationManagerDelegate {
         selectedPin = item.placemark
         annotation.coordinate = coordinate
         annotation.title = "\(name)"
-        
         annotation.subtitle = parseAddress(selectedPin!)
         annotations.append(annotation)
     }
@@ -143,23 +104,34 @@ extension BankViewController : CLLocationManagerDelegate {
     
 }
 
+/*
+ For the directions button to annotations (clicked pin) on map
+ */
 extension BankViewController : MKMapViewDelegate {
+    
     func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView?{
+        
         if annotation is MKUserLocation {
+            
             //return nil so map view draws "blue dot" for standard user location
             return nil
+            
         }
+        
         let reuseId = "pin"
         var pinView = mapView.dequeueReusableAnnotationViewWithIdentifier(reuseId) as? MKPinAnnotationView
         pinView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
         
-        // Directions button
-        pinView?.canShowCallout = true
+        // Add direction button to annotation when a pin is clicked
+        pinView?.canShowCallout = true //Allows the annotation to have button
         let smallSquare = CGSize(width: 30, height: 30)
         let button = UIButton(frame: CGRect(origin: CGPointZero, size: smallSquare))
         button.setBackgroundImage(UIImage(named: "car"), forState: .Normal)
-        button.addTarget(self, action: "getDirections", forControlEvents: .TouchUpInside)
+        button.addTarget(self, action: #selector(BankViewController.getDirections), forControlEvents: .TouchUpInside)
         pinView?.leftCalloutAccessoryView = button
         return pinView
     }
 }
+
+
+

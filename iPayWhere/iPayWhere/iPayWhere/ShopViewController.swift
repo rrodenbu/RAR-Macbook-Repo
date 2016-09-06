@@ -1,5 +1,5 @@
 //
-//  AllBanksViewController.swift
+//  ShopViewController.swift
 //  iPayWhere
 //
 //  Created by Riley Rodenburg on 9/4/16.
@@ -9,23 +9,24 @@
 import UIKit
 import MapKit
 
+var selectedShop : String = ""
 
-// Displays the location of all the Apple Pay Banks on a Map
-class AllBanksViewController: UIViewController {
+class ShopViewController: UIViewController {
     
-    var allBanksArray = [Bank]()
-    
+    var shopSelected : String = "" // Passed from ShopsViewController table
     var selectedPin: MKPlacemark?
-    
     let locationManager = CLLocationManager()
     var matchingItems: [MKMapItem] = []
     var annotations = [MKPointAnnotation]()
+    
     @IBOutlet var mapView: MKMapView!
     
     override func viewDidLoad() {
-        super.viewDidLoad()
         
-        print(allBanksArray)
+        selectedShop = shopSelected
+        
+        self.title = "\(shopSelected) Locations";
+        self.navigationController!.navigationBar.titleTextAttributes = [NSFontAttributeName: UIFont(name: "Arial", size: 12.0)!];
         
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
@@ -43,7 +44,7 @@ class AllBanksViewController: UIViewController {
 /*
  Customizing the pins and their annotations to include name and address
  */
-extension AllBanksViewController : CLLocationManagerDelegate {
+extension ShopViewController : CLLocationManagerDelegate {
     
     func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
         if status == .AuthorizedWhenInUse {
@@ -55,6 +56,7 @@ extension AllBanksViewController : CLLocationManagerDelegate {
         guard let location = locations.first else { return }
         let span = MKCoordinateSpanMake(0.05, 0.05)
         let region = MKCoordinateRegion(center: location.coordinate, span: span)
+        print(region)
         mapView.setRegion(region, animated: true)
         
     }
@@ -64,19 +66,13 @@ extension AllBanksViewController : CLLocationManagerDelegate {
     }
     
     func getLocations() {
-        for bank in allBanksArray {
-            addPinToMap(bank.name)
-        }
-        
-    }
-    
-    func addPinToMap(bankName: String) {
         let request = MKLocalSearchRequest()
-        request.naturalLanguageQuery = bankName
+        request.naturalLanguageQuery = selectedShop
         request.region = mapView.region
         let search = MKLocalSearch(request: request)
         
         search.startWithCompletionHandler { response, _ in
+            print(response)
             guard let response = response else {
                 return
             }
@@ -93,8 +89,8 @@ extension AllBanksViewController : CLLocationManagerDelegate {
         let longitude = item.placemark.coordinate.longitude
         let coordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
         let name = item.name!
-        selectedPin = item.placemark
         let annotation = MKPointAnnotation()
+        selectedPin = item.placemark
         annotation.coordinate = coordinate
         annotation.title = "\(name)"
         annotation.subtitle = parseAddress(selectedPin!)
@@ -104,12 +100,13 @@ extension AllBanksViewController : CLLocationManagerDelegate {
     func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
         print("error:: \(error)")
     }
+    
 }
 
 /*
  For the directions button to annotations (clicked pin) on map
  */
-extension AllBanksViewController : MKMapViewDelegate {
+extension ShopViewController : MKMapViewDelegate {
     
     func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView?{
         
@@ -129,9 +126,8 @@ extension AllBanksViewController : MKMapViewDelegate {
         let smallSquare = CGSize(width: 30, height: 30)
         let button = UIButton(frame: CGRect(origin: CGPointZero, size: smallSquare))
         button.setBackgroundImage(UIImage(named: "car"), forState: .Normal)
-        button.addTarget(self, action: #selector(AllBanksViewController.getDirections), forControlEvents: .TouchUpInside)
+        button.addTarget(self, action: #selector(ShopViewController.getDirections), forControlEvents: .TouchUpInside)
         pinView?.leftCalloutAccessoryView = button
         return pinView
     }
 }
-
