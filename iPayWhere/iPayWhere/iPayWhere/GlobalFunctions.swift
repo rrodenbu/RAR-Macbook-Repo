@@ -44,4 +44,3 @@ func parseAddress(selectedItem:MKPlacemark) -> String {
     return addressLine
 }
 
-

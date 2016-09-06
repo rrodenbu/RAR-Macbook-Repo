@@ -28,7 +28,11 @@ class ShopsViewController: UITableViewController, UISearchDisplayDelegate, UISea
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //Loading icon
+        // Rate my app
+        print("rateme call")
+        rateMe()
+        
+        // Loading icon
         let activityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.Gray)
         tableView.backgroundView = activityIndicatorView
         tableView.separatorStyle = UITableViewCellSeparatorStyle.None
@@ -177,7 +181,7 @@ class ShopsViewController: UITableViewController, UISearchDisplayDelegate, UISea
         if searchController.active && searchController.searchBar.text != "" {
             return filteredShops.count
         }
-        print(shopsArray.count)
+        //print(shopsArray.count)
         return shopsArray.count
     }
     
@@ -232,6 +236,44 @@ class ShopsViewController: UITableViewController, UISearchDisplayDelegate, UISea
             let targetController = DestViewController.topViewController as! AllShopsViewController
             targetController.allShopsArray = shopsArray
         }
+    }
+    
+    /*
+     Functions for rating the app alert
+     */
+    
+    var iMinSessions = 3
+    var iTryAgainSessions = 6
+    
+    func rateMe() {
+        print("rateme")
+        let neverRate = NSUserDefaults.standardUserDefaults().boolForKey("neverRate")
+        var numLaunches = NSUserDefaults.standardUserDefaults().integerForKey("numLaunches") + 1
+        print(numLaunches)
+        
+        if (!neverRate && (numLaunches == iMinSessions || numLaunches >= (iMinSessions + iTryAgainSessions + 1)))
+        {
+            showRateMe()
+            numLaunches = iMinSessions + 1
+        }
+        NSUserDefaults.standardUserDefaults().setInteger(numLaunches, forKey: "numLaunches")
+    }
+    
+    func showRateMe() {
+        print("showrateme")
+        let alert = UIAlertController(title: "Rate Us", message: "I am a one-man developer team, all reviews help. I do my best to implement your suggestions.", preferredStyle: UIAlertControllerStyle.Alert)
+        alert.addAction(UIAlertAction(title: "Rate iPay Where", style: UIAlertActionStyle.Default, handler: { alertAction in
+            UIApplication.sharedApplication().openURL(NSURL(string : "itms-apps://ax.itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?type=Purple+Software&id=<iTUNES CONNECT APP ID>")!)
+            alert.dismissViewControllerAnimated(true, completion: nil)
+        }))
+        alert.addAction(UIAlertAction(title: "No Thanks", style: UIAlertActionStyle.Default, handler: { alertAction in
+            NSUserDefaults.standardUserDefaults().setBool(true, forKey: "neverRate")
+            alert.dismissViewControllerAnimated(true, completion: nil)
+        }))
+        alert.addAction(UIAlertAction(title: "Maybe Later", style: UIAlertActionStyle.Default, handler: { alertAction in
+            alert.dismissViewControllerAnimated(true, completion: nil)
+        }))
+        self.presentViewController(alert, animated: true, completion: nil)
     }
     
 }
