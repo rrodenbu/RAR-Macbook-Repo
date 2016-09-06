@@ -2,15 +2,17 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "Smartphone Tablet-30-2.png",
+      "filename" : "bdc3c7_none-38.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
+      "filename" : "bdc3c7_none-37.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
+      "filename" : "bdc3c7_none-39.png",
       "scale" : "3x"
     }
   ],

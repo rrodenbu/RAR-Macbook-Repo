@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CloudKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -16,11 +17,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
-        //UISearchBar.appearance().backgroundColor = UIColor.candyGreen()
-        //UISearchBar.appearance().tintColor = UIColor.candyGreen()
-        //UITextField.appearanceWhenContainedInInstancesOfClasses([UISearchBar.self]).tintColor = UIColor.candyGreen()
+        UINavigationBar.appearance().titleTextAttributes = [
+            NSFontAttributeName: UIFont(name: "HelveticaNeue-Medium", size: 17)!
+        ]
+        
+        UISearchBar.appearance().backgroundColor = UIColor.corelRed()
+        UISearchBar.appearance().tintColor = UIColor.blackColor()
+        
+        //UITextField.appearanceWhenContainedInInstancesOfClasses([UISearchBar.self]).tintColor = UIColor.corelRed()
+    
         return true
     }
+    
     func applicationWillResignActive(application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
@@ -46,7 +54,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 }
 extension UIColor {
-    static func candyGreen() -> UIColor {
-        return UIColor(red: 67.0/255.0, green: 205.0/255.0, blue: 135.0/255.0, alpha: 1.0)
+    static func corelRed() -> UIColor {
+        return UIColor(red: 253.0/255.0, green: 37.0/255.0, blue: 50.0/255.0, alpha: 1.0)
     }
 }

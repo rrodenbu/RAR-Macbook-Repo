@@ -2,15 +2,17 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "Museum-30-2.png",
+      "filename" : "bdc3c7_none-26.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
+      "filename" : "bdc3c7_none-30.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
+      "filename" : "bdc3c7_none-34.png",
       "scale" : "3x"
     }
   ],

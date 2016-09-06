@@ -10,21 +10,21 @@
         <scene sceneID="3NO-ey-vaU">
             <objects>
                 <tableViewController extendedLayoutIncludesOpaqueBars="YES" id="hXG-pi-QRb" customClass="BanksViewController" customModule="iPayWhere" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="33" sectionHeaderHeight="28" sectionFooterHeight="28" id="kES-lR-CDM">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="32" sectionHeaderHeight="28" sectionFooterHeight="28" id="kES-lR-CDM">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="BankCell" rowHeight="33" id="3bv-DC-Mrk" customClass="BankCell" customModule="iPayWhere" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="92" width="375" height="33"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="BankCell" rowHeight="32" id="3bv-DC-Mrk" customClass="BankCell" customModule="iPayWhere" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="92" width="375" height="32"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="3bv-DC-Mrk" id="Xdw-hu-yJO">
-                                    <rect key="frame" x="0.0" y="0.0" width="342" height="32.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="342" height="31.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="100" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TZj-JX-ujc">
-                                            <rect key="frame" x="53" y="6" width="269" height="21"/>
-                                            <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="13"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Name" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="100" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TZj-JX-ujc">
+                                            <rect key="frame" x="49" y="5" width="269" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" weight="ultraLight" pointSize="14"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
@@ -47,8 +47,8 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Banks" id="XaS-2d-qzQ">
-                        <barButtonItem key="rightBarButtonItem" systemItem="trash" id="bIq-Bb-iTy">
-                            <color key="tintColor" red="0.99215686270000003" green="0.1450980392" blue="0.1960784314" alpha="1" colorSpace="calibratedRGB"/>
+                        <barButtonItem key="rightBarButtonItem" image="Map" id="bIq-Bb-iTy">
+                            <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <action selector="allBanksMapButton:" destination="hXG-pi-QRb" id="Nc3-Dl-vN6"/>
                             </connections>
@@ -93,8 +93,8 @@
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Bank" id="veG-h6-nLq">
-                        <barButtonItem key="leftBarButtonItem" systemItem="done" id="aPj-5V-thO">
-                            <color key="tintColor" red="0.99215686270000003" green="0.1450980392" blue="0.1960784314" alpha="1" colorSpace="calibratedRGB"/>
+                        <barButtonItem key="rightBarButtonItem" image="exit" id="aPj-5V-thO">
+                            <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <segue destination="3hM-gh-6KP" kind="unwind" unwindAction="unwindToBankTable:" id="I8z-ey-D8h"/>
                             </connections>
@@ -121,12 +121,17 @@
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="barTintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="color" keyPath="tintColor">
+                                <color key="value" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
                     </tabBar>
                     <connections>
-                        <segue destination="an8-DZ-bOH" kind="relationship" relationship="viewControllers" id="dLH-xP-7E2"/>
                         <segue destination="Dm8-ep-Aaq" kind="relationship" relationship="viewControllers" id="KFy-Hn-Nu5"/>
                         <segue destination="sI9-ru-39r" kind="relationship" relationship="viewControllers" id="4eX-Gi-IyP"/>
                         <segue destination="toE-9O-QDc" kind="relationship" relationship="viewControllers" id="DFL-lp-h4s"/>
+                        <segue destination="an8-DZ-bOH" kind="relationship" relationship="viewControllers" id="dLH-xP-7E2"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ysH-Lf-prg" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -137,21 +142,21 @@
         <scene sceneID="P45-c0-I6i">
             <objects>
                 <tableViewController id="xXi-p0-d3s" customClass="ShopsViewController" customModule="iPayWhere" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="omJ-if-lk8">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="32" sectionHeaderHeight="28" sectionFooterHeight="28" id="omJ-if-lk8">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="ShopCell" rowHeight="33" id="Fmh-ut-2ys" customClass="ShopCell" customModule="iPayWhere" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="92" width="375" height="33"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="ShopCell" rowHeight="32" id="Fmh-ut-2ys" customClass="ShopCell" customModule="iPayWhere" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="92" width="375" height="32"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Fmh-ut-2ys" id="Ntv-Xa-XVv">
-                                    <rect key="frame" x="0.0" y="0.0" width="342" height="33"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="342" height="31.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="100" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gXy-2e-naN">
-                                            <rect key="frame" x="53" y="6" width="269" height="21"/>
-                                            <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="13"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Name" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="100" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gXy-2e-naN">
+                                            <rect key="frame" x="50" y="5" width="269" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" weight="ultraLight" pointSize="14"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
@@ -174,8 +179,8 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Shops" id="csJ-XG-SOy">
-                        <barButtonItem key="rightBarButtonItem" title="Map" id="J2I-61-bPn">
-                            <color key="tintColor" red="0.99215686274509807" green="0.14509803921568629" blue="0.19607843137254902" alpha="1" colorSpace="calibratedRGB"/>
+                        <barButtonItem key="rightBarButtonItem" image="Map" id="J2I-61-bPn">
+                            <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <action selector="allShopsMapButton:" destination="xXi-p0-d3s" id="2nU-6L-MkF"/>
                             </connections>
@@ -218,8 +223,8 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="All Banks" id="mgo-Y2-PSA">
-                        <barButtonItem key="leftBarButtonItem" systemItem="done" id="ASA-lE-3Ur">
-                            <color key="tintColor" red="0.99215686270000003" green="0.1450980392" blue="0.1960784314" alpha="1" colorSpace="calibratedRGB"/>
+                        <barButtonItem key="rightBarButtonItem" image="exit" id="ASA-lE-3Ur">
+                            <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <segue destination="UPg-AP-yXn" kind="unwind" unwindAction="unwindToBankTable:" id="c34-W1-Upm"/>
                             </connections>
@@ -238,7 +243,7 @@
         <scene sceneID="W73-C3-tBo">
             <objects>
                 <navigationController title="Banks" automaticallyAdjustsScrollViewInsets="NO" id="an8-DZ-bOH" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="" image="Museum-30-2" selectedImage="Museum-30" id="F20-Ri-6UX">
+                    <tabBarItem key="tabBarItem" title="" image="Bank" id="F20-Ri-6UX">
                         <inset key="imageInsets" minX="0.0" minY="5" maxX="0.0" maxY="-5"/>
                         <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="100"/>
                     </tabBarItem>
@@ -246,12 +251,16 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Wuh-l8-MuE">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="barTintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="barTintColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
                         <textAttributes key="titleTextAttributes">
                             <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="16"/>
                         </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="Paq-Gp-spa">
+                        <rect key="frame" x="0.0" y="623" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </toolbar>
                     <connections>
                         <segue destination="hXG-pi-QRb" kind="relationship" relationship="rootViewController" id="e0q-oh-EjI"/>
                     </connections>
@@ -264,7 +273,7 @@
         <scene sceneID="VNW-kG-6DP">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Dm8-ep-Aaq" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="" image="Shop-30" id="2Ge-nv-1DQ">
+                    <tabBarItem key="tabBarItem" title="" image="Shops" id="2Ge-nv-1DQ">
                         <inset key="imageInsets" minX="0.0" minY="5" maxX="0.0" maxY="-5"/>
                         <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="100"/>
                     </tabBarItem>
@@ -272,7 +281,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="bfg-4o-VEf">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="barTintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="barTintColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -287,21 +296,21 @@
         <scene sceneID="e36-AQ-Cgv">
             <objects>
                 <tableViewController id="JDc-85-gmh" customClass="FoodsViewController" customModule="iPayWhere" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="WSv-v4-Gdz">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="32" sectionHeaderHeight="28" sectionFooterHeight="28" id="WSv-v4-Gdz">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="FoodCell" rowHeight="33" id="2oD-J6-1M9" customClass="FoodCell" customModule="iPayWhere" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="92" width="375" height="33"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="FoodCell" rowHeight="32" id="2oD-J6-1M9" customClass="FoodCell" customModule="iPayWhere" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="92" width="375" height="32"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="2oD-J6-1M9" id="ocx-jv-CLe">
-                                    <rect key="frame" x="0.0" y="0.0" width="342" height="32.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="342" height="31.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="100" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cl9-7C-M3E">
-                                            <rect key="frame" x="53" y="6" width="269" height="21"/>
-                                            <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="13"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Name" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="100" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cl9-7C-M3E">
+                                            <rect key="frame" x="53" y="5" width="269" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" weight="ultraLight" pointSize="14"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
@@ -324,8 +333,8 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Food" id="eF0-2Y-oxX">
-                        <barButtonItem key="rightBarButtonItem" title="Map" id="liq-67-OKk">
-                            <color key="tintColor" red="0.99215686274509807" green="0.14509803921568629" blue="0.19607843137254902" alpha="1" colorSpace="calibratedRGB"/>
+                        <barButtonItem key="rightBarButtonItem" image="Map" id="liq-67-OKk">
+                            <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <action selector="allFoodsMapButton:" destination="JDc-85-gmh" id="fqV-ac-sQP"/>
                             </connections>
@@ -344,7 +353,7 @@
         <scene sceneID="tpj-VM-Nnr">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="sI9-ru-39r" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="" image="Smartphone Tablet-30" id="GHa-ps-dgk">
+                    <tabBarItem key="tabBarItem" title="" image="Food" id="GHa-ps-dgk">
                         <inset key="imageInsets" minX="0.0" minY="5" maxX="0.0" maxY="-5"/>
                         <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="100"/>
                     </tabBarItem>
@@ -352,7 +361,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="4Cg-uH-apF">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="barTintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="barTintColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -427,8 +436,8 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="All Shops" id="11B-nc-u5T">
-                        <barButtonItem key="leftBarButtonItem" systemItem="done" id="O6i-iM-8Pi">
-                            <color key="tintColor" red="0.99215686270000003" green="0.1450980392" blue="0.1960784314" alpha="1" colorSpace="calibratedRGB"/>
+                        <barButtonItem key="rightBarButtonItem" image="exit" id="O6i-iM-8Pi">
+                            <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <segue destination="Bwi-78-HL5" kind="unwind" unwindAction="unwindToShopTable:" id="Cck-M8-cK5"/>
                             </connections>
@@ -490,8 +499,8 @@
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Shop" id="ToV-Ls-lvC">
-                        <barButtonItem key="leftBarButtonItem" systemItem="done" id="VxA-lD-AM5">
-                            <color key="tintColor" red="0.99215686270000003" green="0.1450980392" blue="0.1960784314" alpha="1" colorSpace="calibratedRGB"/>
+                        <barButtonItem key="rightBarButtonItem" image="exit" id="VxA-lD-AM5">
+                            <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <segue destination="bYI-d5-eUL" kind="unwind" unwindAction="unwindToShopTable:" id="QaO-bi-NPI"/>
                             </connections>
@@ -553,8 +562,8 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="All Food Places" id="P2l-kf-MY4">
-                        <barButtonItem key="leftBarButtonItem" systemItem="done" id="IgI-7y-Kkg">
-                            <color key="tintColor" red="0.99215686270000003" green="0.1450980392" blue="0.1960784314" alpha="1" colorSpace="calibratedRGB"/>
+                        <barButtonItem key="rightBarButtonItem" image="exit" id="IgI-7y-Kkg">
+                            <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <segue destination="Zci-f3-1qC" kind="unwind" unwindAction="unwindToFoodTable:" id="wSW-D6-612"/>
                             </connections>
@@ -616,7 +625,8 @@
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Food" id="4J5-yn-SQ9">
-                        <barButtonItem key="leftBarButtonItem" systemItem="done" id="CO3-vZ-yyU">
+                        <barButtonItem key="rightBarButtonItem" image="exit" id="CO3-vZ-yyU">
+                            <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <segue destination="ax5-qx-Rq0" kind="unwind" unwindAction="unwindToFoodTable:" id="6C3-Iw-gK9"/>
                             </connections>
@@ -654,21 +664,21 @@
         <scene sceneID="v9u-zH-UA3">
             <objects>
                 <tableViewController id="fm9-XU-2lK" customClass="GasStationsViewController" customModule="iPayWhere" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="Vna-vJ-7vk">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="32" sectionHeaderHeight="28" sectionFooterHeight="28" id="Vna-vJ-7vk">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="GasStationCell" rowHeight="33" id="4Yr-Yx-9dj" customClass="GasStationCell" customModule="iPayWhere" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="92" width="375" height="33"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="GasStationCell" rowHeight="32" id="4Yr-Yx-9dj" customClass="GasStationCell" customModule="iPayWhere" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="92" width="375" height="32"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="4Yr-Yx-9dj" id="H5e-jx-s5s">
-                                    <rect key="frame" x="0.0" y="0.0" width="342" height="32.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="342" height="31.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="100" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VI9-u9-rR6">
-                                            <rect key="frame" x="53" y="6" width="269" height="21"/>
-                                            <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="13"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Name" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="100" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VI9-u9-rR6">
+                                            <rect key="frame" x="52" y="5" width="269" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" weight="ultraLight" pointSize="14"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
@@ -691,8 +701,8 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Gas Stations" id="UlT-cM-6ha">
-                        <barButtonItem key="rightBarButtonItem" title="Map" id="or8-jS-sB1">
-                            <color key="tintColor" red="0.99215686274509807" green="0.14509803921568629" blue="0.19607843137254902" alpha="1" colorSpace="calibratedRGB"/>
+                        <barButtonItem key="rightBarButtonItem" image="Map" id="or8-jS-sB1">
+                            <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <action selector="allGasStationssMapButton:" destination="fm9-XU-2lK" id="of6-C9-5b5"/>
                             </connections>
@@ -715,7 +725,7 @@
         <scene sceneID="qFG-dp-6Pr">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="toE-9O-QDc" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="" image="Smartphone Tablet-30" id="kla-dE-nzQ">
+                    <tabBarItem key="tabBarItem" title="" image="Gas" id="kla-dE-nzQ">
                         <inset key="imageInsets" minX="0.0" minY="5" maxX="0.0" maxY="-5"/>
                         <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="100"/>
                     </tabBarItem>
@@ -723,7 +733,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="8bw-w3-khL">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="barTintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="barTintColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -734,7 +744,7 @@
             </objects>
             <point key="canvasLocation" x="345.5" y="4197.5"/>
         </scene>
-        <!--All Shops-->
+        <!--All Gas Stations-->
         <scene sceneID="ea7-Jx-j7r">
             <objects>
                 <viewController id="a52-bI-d4g" customClass="AllGasStationsViewController" customModule="iPayWhere" customModuleProvider="target" sceneMemberID="viewController">
@@ -761,8 +771,9 @@
                             <constraint firstItem="Jnq-oj-JQz" firstAttribute="bottom" secondItem="Uwa-Qt-w8Y" secondAttribute="top" id="fBs-ux-z2e"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="All Shops" id="IWq-6q-pDh">
-                        <barButtonItem key="leftBarButtonItem" systemItem="done" id="Z63-oU-qKl">
+                    <navigationItem key="navigationItem" title="All Gas Stations" id="IWq-6q-pDh">
+                        <barButtonItem key="rightBarButtonItem" image="exit" id="Z63-oU-qKl">
+                            <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <segue destination="NNH-rz-bTm" kind="unwind" unwindAction="unwindToGasStationTable:" id="5Ns-oW-vDC"/>
                             </connections>
@@ -824,7 +835,8 @@
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Shop" id="f16-JN-NvO">
-                        <barButtonItem key="leftBarButtonItem" systemItem="done" id="1g1-I5-Zmy">
+                        <barButtonItem key="rightBarButtonItem" image="exit" id="1g1-I5-Zmy">
+                            <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <segue destination="LfA-6I-Ijg" kind="unwind" unwindAction="unwindToGasStationTable:" id="4HO-4k-qgf"/>
                             </connections>
@@ -860,9 +872,11 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Museum-30" width="30" height="30"/>
-        <image name="Museum-30-2" width="30" height="30"/>
-        <image name="Shop-30" width="30" height="30"/>
-        <image name="Smartphone Tablet-30" width="30" height="30"/>
+        <image name="Bank" width="30" height="30"/>
+        <image name="Food" width="60" height="60"/>
+        <image name="Gas" width="30" height="30"/>
+        <image name="Map" width="30" height="30"/>
+        <image name="Shops" width="30" height="30"/>
+        <image name="exit" width="30" height="30"/>
     </resources>
 </document>
