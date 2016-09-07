@@ -24,8 +24,6 @@ class AllShopsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        print(allShopsArray)
-        
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.requestWhenInUseAuthorization()

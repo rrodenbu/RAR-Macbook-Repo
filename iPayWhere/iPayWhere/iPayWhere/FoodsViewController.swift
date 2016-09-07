@@ -48,7 +48,7 @@ class FoodsViewController: UITableViewController, UISearchDisplayDelegate, UISea
         
         // Initialize the pull to refresh control.
         refreshControl = UIRefreshControl()
-        refreshControl?.backgroundColor = UIColor.corelRed()
+        refreshControl?.backgroundColor = UIColor.whiteColor()
         refreshControl!.addTarget(self, action: #selector(BanksViewController.refresh(_:)), forControlEvents: UIControlEvents.ValueChanged)
         
     }

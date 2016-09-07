@@ -32,6 +32,10 @@ class ShopsViewController: UITableViewController, UISearchDisplayDelegate, UISea
         print("rateme call")
         rateMe()
         
+        //Logo
+        //let image = UIImage(named: "Icon-App-29x29")
+        //navigationItem.titleView = UIImageView(image: image)
+        
         // Loading icon
         let activityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.Gray)
         tableView.backgroundView = activityIndicatorView
@@ -52,7 +56,7 @@ class ShopsViewController: UITableViewController, UISearchDisplayDelegate, UISea
         
         // Initialize the pull to refresh control.
         refreshControl = UIRefreshControl()
-        refreshControl?.backgroundColor = UIColor.corelRed()
+        refreshControl?.backgroundColor = UIColor.whiteColor()
         refreshControl!.addTarget(self, action: #selector(BanksViewController.refresh(_:)), forControlEvents: UIControlEvents.ValueChanged)
         
     }

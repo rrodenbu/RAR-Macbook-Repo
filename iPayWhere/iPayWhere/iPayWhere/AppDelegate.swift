@@ -21,8 +21,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             NSFontAttributeName: UIFont(name: "HelveticaNeue-Medium", size: 17)!
         ]
         
-        UISearchBar.appearance().backgroundColor = UIColor.corelRed()
-        UISearchBar.appearance().tintColor = UIColor.blackColor()
+        UISearchBar.appearance().barTintColor = UIColor.lightGrayColor()
+        
+        UISearchBar.appearance().tintColor = UIColor.grayColor()
+        //UISearchBar.appearance().backgroundColor = UIColor.corelRed()
         
         //UITextField.appearanceWhenContainedInInstancesOfClasses([UISearchBar.self]).tintColor = UIColor.corelRed()
     

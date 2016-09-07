@@ -128,7 +128,7 @@ extension AllBanksViewController : MKMapViewDelegate {
         pinView?.canShowCallout = true //Allows the annotation to have button
         let smallSquare = CGSize(width: 30, height: 30)
         let button = UIButton(frame: CGRect(origin: CGPointZero, size: smallSquare))
-        button.setBackgroundImage(UIImage(named: "car"), forState: .Normal)
+        button.setBackgroundImage(UIImage(named: "cars"), forState: .Normal)
         button.addTarget(self, action: #selector(AllBanksViewController.getDirections), forControlEvents: .TouchUpInside)
         pinView?.leftCalloutAccessoryView = button
         return pinView
