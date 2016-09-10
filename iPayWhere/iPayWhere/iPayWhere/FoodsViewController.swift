@@ -8,10 +8,13 @@
 
 import UIKit
 import CloudKit
+import GoogleMobileAds
 
-class FoodsViewController: UITableViewController, UISearchDisplayDelegate, UISearchBarDelegate {
+class FoodsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchDisplayDelegate, UISearchBarDelegate {
     
     weak var activityIndicatorView: UIActivityIndicatorView! //https://dzone.com/articles/displaying-an-activity-indicator-while-loading-tab
+    
+    @IBOutlet var tableView: UITableView!
     
     var foodsArray = [Food]()
     var filteredFoods = [Food]()
@@ -25,6 +28,8 @@ class FoodsViewController: UITableViewController, UISearchDisplayDelegate, UISea
     
     var selectedCell = ""
     
+    @IBOutlet var bannerView: GADBannerView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -35,9 +40,22 @@ class FoodsViewController: UITableViewController, UISearchDisplayDelegate, UISea
         self.activityIndicatorView = activityIndicatorView
         activityIndicatorView.startAnimating()
         
+        //Loading advertisement
+        self.bannerView.adUnitID = "ca-app-pub-3940256099942544/2934735716"
+        self.bannerView.rootViewController = self
+        var request: GADRequest = GADRequest()
+        self.bannerView.loadRequest(request)
+        tableView.addSubview(bannerView)
+        
         // Retrieve Data
         publicDatabase = container.publicCloudDatabase
         getData()
+        
+        // Initialize the pull to refresh control.
+        refreshControl = UIRefreshControl()
+        refreshControl?.backgroundColor = UIColor.whiteColor()
+        refreshControl!.addTarget(self, action: #selector(BanksViewController.refresh(_:)), forControlEvents: UIControlEvents.ValueChanged)
+        tableView.addSubview(refreshControl)
         
         // Search
         searchController.searchResultsUpdater = self
@@ -45,11 +63,6 @@ class FoodsViewController: UITableViewController, UISearchDisplayDelegate, UISea
         definesPresentationContext = true
         tableView.tableHeaderView = searchController.searchBar
         self.tableView.contentOffset = CGPointMake(0, CGRectGetHeight(searchController.searchBar.frame));
-        
-        // Initialize the pull to refresh control.
-        refreshControl = UIRefreshControl()
-        refreshControl?.backgroundColor = UIColor.whiteColor()
-        refreshControl!.addTarget(self, action: #selector(BanksViewController.refresh(_:)), forControlEvents: UIControlEvents.ValueChanged)
         
     }
     
@@ -169,11 +182,15 @@ class FoodsViewController: UITableViewController, UISearchDisplayDelegate, UISea
         // Dispose of any resources that can be recreated.
     }
     
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return 32
+    }
+    
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1;
     }
     
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if searchController.active && searchController.searchBar.text != "" {
             return filteredFoods.count
         }
@@ -181,7 +198,7 @@ class FoodsViewController: UITableViewController, UISearchDisplayDelegate, UISea
         return foodsArray.count
     }
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath)
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath)
         -> UITableViewCell {
             let cell = tableView.dequeueReusableCellWithIdentifier("FoodCell", forIndexPath: indexPath) as! FoodCell
             
@@ -203,7 +220,7 @@ class FoodsViewController: UITableViewController, UISearchDisplayDelegate, UISea
         tableView.reloadData()
     }
     
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         if searchController.active && searchController.searchBar.text != "" {
             selectedCell = filteredFoods[indexPath.row].name!
         } else {

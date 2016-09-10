@@ -8,10 +8,13 @@
 
 import UIKit
 import CloudKit
+import GoogleMobileAds
 
-class GasStationsViewController: UITableViewController, UISearchDisplayDelegate, UISearchBarDelegate {
+class GasStationsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchDisplayDelegate, UISearchBarDelegate {
     
     weak var activityIndicatorView: UIActivityIndicatorView! //https://dzone.com/articles/displaying-an-activity-indicator-while-loading-tab
+    
+    @IBOutlet var tableView: UITableView!
     
     var gasStationsArray = [GasStation]()
     var filteredGasStations = [GasStation]()
@@ -25,6 +28,8 @@ class GasStationsViewController: UITableViewController, UISearchDisplayDelegate,
     
     var selectedCell = ""
     
+    @IBOutlet var bannerView: GADBannerView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -35,9 +40,22 @@ class GasStationsViewController: UITableViewController, UISearchDisplayDelegate,
         self.activityIndicatorView = activityIndicatorView
         activityIndicatorView.startAnimating()
         
+        //Loading advertisement
+        self.bannerView.adUnitID = "ca-app-pub-3940256099942544/2934735716"
+        self.bannerView.rootViewController = self
+        var request: GADRequest = GADRequest()
+        self.bannerView.loadRequest(request)
+        tableView.addSubview(bannerView)
+        
         // Retrieve Data
         publicDatabase = container.publicCloudDatabase
         getData()
+        
+        // Initialize the pull to refresh control.
+        refreshControl = UIRefreshControl()
+        refreshControl?.backgroundColor = UIColor.whiteColor()
+        refreshControl!.addTarget(self, action: #selector(BanksViewController.refresh(_:)), forControlEvents: UIControlEvents.ValueChanged)
+        tableView.addSubview(refreshControl)
         
         // Search
         searchController.searchResultsUpdater = self
@@ -45,11 +63,6 @@ class GasStationsViewController: UITableViewController, UISearchDisplayDelegate,
         definesPresentationContext = true
         tableView.tableHeaderView = searchController.searchBar
         self.tableView.contentOffset = CGPointMake(0, CGRectGetHeight(searchController.searchBar.frame));
-        
-        // Initialize the pull to refresh control.
-        refreshControl = UIRefreshControl()
-        refreshControl?.backgroundColor = UIColor.whiteColor()
-        refreshControl!.addTarget(self, action: #selector(BanksViewController.refresh(_:)), forControlEvents: UIControlEvents.ValueChanged)
         
     }
     
@@ -169,11 +182,15 @@ class GasStationsViewController: UITableViewController, UISearchDisplayDelegate,
         // Dispose of any resources that can be recreated.
     }
     
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return 32
+    }
+    
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1;
     }
     
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if searchController.active && searchController.searchBar.text != "" {
             return gasStationsArray.count
         }
@@ -181,7 +198,7 @@ class GasStationsViewController: UITableViewController, UISearchDisplayDelegate,
         return gasStationsArray.count
     }
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath)
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath)
         -> UITableViewCell {
             let cell = tableView.dequeueReusableCellWithIdentifier("GasStationCell", forIndexPath: indexPath) as! GasStationCell
             
@@ -203,7 +220,7 @@ class GasStationsViewController: UITableViewController, UISearchDisplayDelegate,
         tableView.reloadData()
     }
     
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         if searchController.active && searchController.searchBar.text != "" {
             selectedCell = filteredGasStations[indexPath.row].name!
         } else {

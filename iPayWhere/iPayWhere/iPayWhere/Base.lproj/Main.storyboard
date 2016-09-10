@@ -10,16 +10,21 @@
         <scene sceneID="3NO-ey-vaU">
             <objects>
                 <tableViewController extendedLayoutIncludesOpaqueBars="YES" id="hXG-pi-QRb" customClass="BanksViewController" customModule="iPayWhere" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="32" sectionHeaderHeight="28" sectionFooterHeight="28" id="kES-lR-CDM">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="32" sectionHeaderHeight="28" sectionFooterHeight="25" id="kES-lR-CDM">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <view key="tableFooterView" contentMode="scaleToFill" id="hq9-qm-Y62" customClass="GADBannerView">
+                            <rect key="frame" x="0.0" y="124" width="600" height="50"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </view>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="BankCell" rowHeight="32" id="3bv-DC-Mrk" customClass="BankCell" customModule="iPayWhere" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="92" width="375" height="32"/>
+                                <rect key="frame" x="0.0" y="92" width="600" height="32"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="3bv-DC-Mrk" id="Xdw-hu-yJO">
-                                    <rect key="frame" x="0.0" y="0.0" width="342" height="31.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="567" height="31.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Name" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="100" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TZj-JX-ujc">
@@ -30,10 +35,13 @@
                                         </label>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="TZj-JX-ujc" firstAttribute="leading" secondItem="Xdw-hu-yJO" secondAttribute="leadingMargin" constant="45" id="4wh-ZE-VuG"/>
+                                        <constraint firstItem="TZj-JX-ujc" firstAttribute="leading" secondItem="Xdw-hu-yJO" secondAttribute="leadingMargin" constant="41" id="4wh-ZE-VuG"/>
                                         <constraint firstItem="TZj-JX-ujc" firstAttribute="centerY" secondItem="Xdw-hu-yJO" secondAttribute="centerY" id="FdD-Cp-pQq"/>
-                                        <constraint firstItem="TZj-JX-ujc" firstAttribute="top" secondItem="Xdw-hu-yJO" secondAttribute="topMargin" constant="-2" id="PA7-rv-ne8"/>
-                                        <constraint firstAttribute="trailingMargin" secondItem="TZj-JX-ujc" secondAttribute="trailing" constant="12" id="jPa-rC-oTs"/>
+                                        <constraint firstItem="TZj-JX-ujc" firstAttribute="top" secondItem="Xdw-hu-yJO" secondAttribute="topMargin" constant="-3" id="PA7-rv-ne8"/>
+                                        <constraint firstItem="TZj-JX-ujc" firstAttribute="leading" secondItem="Xdw-hu-yJO" secondAttribute="leadingMargin" constant="41" id="YWl-qr-qov"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="TZj-JX-ujc" secondAttribute="trailing" constant="16" id="aeQ-49-uF1"/>
+                                        <constraint firstItem="TZj-JX-ujc" firstAttribute="top" secondItem="Xdw-hu-yJO" secondAttribute="topMargin" constant="-3" id="gaa-AW-kH4"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="TZj-JX-ujc" secondAttribute="trailing" constant="16" id="jPa-rC-oTs"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
@@ -47,7 +55,6 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Banks" id="XaS-2d-qzQ">
-                        <barButtonItem key="leftBarButtonItem" title="Item" image="EE59B5D0-1EAE-43A4-A34F-E6F292BBBE26" id="4hR-kW-wnO"/>
                         <barButtonItem key="rightBarButtonItem" image="Map" id="bIq-Bb-iTy">
                             <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
@@ -56,14 +63,13 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="bannerView" destination="hq9-qm-Y62" id="5Bd-IV-9SG"/>
                         <outlet property="tableView" destination="kES-lR-CDM" id="IMX-9c-bT5"/>
-                        <segue destination="wC9-9O-89C" kind="show" identifier="toSelectedBankMap" id="shw-0x-mrY"/>
-                        <segue destination="6gr-NY-DLv" kind="show" identifier="toAllBanksMap" id="ehO-Xx-MwQ"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Sn5-mJ-6gB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="950.5" y="-405.5"/>
+            <point key="canvasLocation" x="809.5" y="-1890.5"/>
         </scene>
         <!--Bank-->
         <scene sceneID="I4p-yQ-sNL">
@@ -129,72 +135,15 @@
                         </userDefinedRuntimeAttributes>
                     </tabBar>
                     <connections>
-                        <segue destination="Dm8-ep-Aaq" kind="relationship" relationship="viewControllers" id="KFy-Hn-Nu5"/>
-                        <segue destination="sI9-ru-39r" kind="relationship" relationship="viewControllers" id="4eX-Gi-IyP"/>
-                        <segue destination="toE-9O-QDc" kind="relationship" relationship="viewControllers" id="DFL-lp-h4s"/>
-                        <segue destination="an8-DZ-bOH" kind="relationship" relationship="viewControllers" id="dLH-xP-7E2"/>
+                        <segue destination="RhB-Lu-2pE" kind="relationship" relationship="viewControllers" id="yOP-38-6cE"/>
+                        <segue destination="vwx-kO-Urf" kind="relationship" relationship="viewControllers" id="ZQ6-S2-sze"/>
+                        <segue destination="faG-Lw-AaJ" kind="relationship" relationship="viewControllers" id="bXt-AT-eUW"/>
+                        <segue destination="Jpq-Ch-dlJ" kind="relationship" relationship="viewControllers" id="86s-hj-m7u"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ysH-Lf-prg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-405.5" y="288.5"/>
-        </scene>
-        <!--Shops-->
-        <scene sceneID="P45-c0-I6i">
-            <objects>
-                <tableViewController id="xXi-p0-d3s" customClass="ShopsViewController" customModule="iPayWhere" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="32" sectionHeaderHeight="28" sectionFooterHeight="28" id="omJ-if-lk8">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="ShopCell" rowHeight="32" id="Fmh-ut-2ys" customClass="ShopCell" customModule="iPayWhere" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="92" width="375" height="32"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Fmh-ut-2ys" id="Ntv-Xa-XVv">
-                                    <rect key="frame" x="0.0" y="0.0" width="342" height="31.5"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Name" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="100" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gXy-2e-naN">
-                                            <rect key="frame" x="50" y="5" width="269" height="21"/>
-                                            <fontDescription key="fontDescription" type="system" weight="ultraLight" pointSize="14"/>
-                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                    </subviews>
-                                    <constraints>
-                                        <constraint firstItem="gXy-2e-naN" firstAttribute="leading" secondItem="Ntv-Xa-XVv" secondAttribute="leadingMargin" constant="45" id="CBj-AW-cWs"/>
-                                        <constraint firstItem="gXy-2e-naN" firstAttribute="top" secondItem="Ntv-Xa-XVv" secondAttribute="topMargin" constant="-2" id="NGL-eU-MT8"/>
-                                        <constraint firstItem="gXy-2e-naN" firstAttribute="centerY" secondItem="Ntv-Xa-XVv" secondAttribute="centerY" id="cu7-9O-RnM"/>
-                                        <constraint firstAttribute="trailingMargin" secondItem="gXy-2e-naN" secondAttribute="trailing" constant="12" id="sh8-KP-zLD"/>
-                                    </constraints>
-                                </tableViewCellContentView>
-                                <connections>
-                                    <outlet property="nameLabel" destination="gXy-2e-naN" id="Eza-hl-WNm"/>
-                                </connections>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="xXi-p0-d3s" id="A9Q-So-ceh"/>
-                            <outlet property="delegate" destination="xXi-p0-d3s" id="KJQ-Xw-qdA"/>
-                        </connections>
-                    </tableView>
-                    <navigationItem key="navigationItem" title="Shops" id="csJ-XG-SOy">
-                        <barButtonItem key="rightBarButtonItem" image="Map" id="J2I-61-bPn">
-                            <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                            <connections>
-                                <action selector="allShopsMapButton:" destination="xXi-p0-d3s" id="2nU-6L-MkF"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
-                    <connections>
-                        <segue destination="74Y-JX-K71" kind="show" identifier="toAllShopsMap" id="tCi-eG-As0"/>
-                        <segue destination="Mf4-o5-rqL" kind="show" identifier="toSelectedShopMap" id="KwO-nO-Kws"/>
-                    </connections>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="UUR-Pm-I5k" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="950.5" y="1135.5"/>
         </scene>
         <!--All Banks-->
         <scene sceneID="dds-su-OQZ">
@@ -208,7 +157,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="E0k-9M-UkV">
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="E0k-9M-UkV">
                                 <rect key="frame" x="0.0" y="64" width="375" height="554"/>
                                 <connections>
                                     <outlet property="delegate" destination="0Pk-oG-gtE" id="tEF-AC-yJb"/>
@@ -238,7 +187,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oiy-Bt-dnh" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="UPg-AP-yXn" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1932.5" y="-1150.5"/>
+            <point key="canvasLocation" x="1932.5" y="-1167.5"/>
         </scene>
         <!--Banks-->
         <scene sceneID="W73-C3-tBo">
@@ -268,45 +217,22 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yLx-Kl-VZB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="345.5" y="-405.5"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="VNW-kG-6DP">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Dm8-ep-Aaq" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="" image="Shops" id="2Ge-nv-1DQ">
-                        <inset key="imageInsets" minX="0.0" minY="5" maxX="0.0" maxY="-5"/>
-                        <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="100"/>
-                    </tabBarItem>
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="bfg-4o-VEf">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <color key="barTintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="xXi-p0-d3s" kind="relationship" relationship="rootViewController" id="keV-pl-bZh"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="z1J-j0-y3J" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="345.5" y="1135.5"/>
+            <point key="canvasLocation" x="241" y="-1890"/>
         </scene>
         <!--Food-->
         <scene sceneID="e36-AQ-Cgv">
             <objects>
                 <tableViewController id="JDc-85-gmh" customClass="FoodsViewController" customModule="iPayWhere" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="32" sectionHeaderHeight="28" sectionFooterHeight="28" id="WSv-v4-Gdz">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="FoodCell" rowHeight="32" id="2oD-J6-1M9" customClass="FoodCell" customModule="iPayWhere" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="92" width="375" height="32"/>
+                                <rect key="frame" x="0.0" y="92" width="600" height="32"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="2oD-J6-1M9" id="ocx-jv-CLe">
-                                    <rect key="frame" x="0.0" y="0.0" width="342" height="31.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="567" height="31.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Name" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="100" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cl9-7C-M3E">
@@ -341,14 +267,10 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
-                    <connections>
-                        <segue destination="l6h-kb-i67" kind="show" identifier="toAllFoodsMap" id="xuy-Pp-3fD"/>
-                        <segue destination="UEd-PT-QOM" kind="show" identifier="toSelectedFoodMap" id="hWJ-4w-S7j"/>
-                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BNc-yt-ITt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="950.5" y="2646.5"/>
+            <point key="canvasLocation" x="-548" y="2522"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="tpj-VM-Nnr">
@@ -371,7 +293,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="M9p-bL-BS5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="345.5" y="2646.5"/>
+            <point key="canvasLocation" x="-1153" y="2522"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="WXg-v6-j7g">
@@ -407,7 +329,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Exx-c5-Hem" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1444.5" y="-1150.5"/>
+            <point key="canvasLocation" x="1444.5" y="-1167.5"/>
         </scene>
         <!--All Shops-->
         <scene sceneID="9dI-68-yWr">
@@ -421,7 +343,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9K6-gP-pZX">
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9K6-gP-pZX">
                                 <rect key="frame" x="0.0" y="64" width="375" height="554"/>
                                 <connections>
                                     <outlet property="delegate" destination="2vh-Vt-Xm2" id="JvL-Q5-Ijr"/>
@@ -451,7 +373,82 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ap0-Dx-jJ0" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="Bwi-78-HL5" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1932.5" y="346.5"/>
+            <point key="canvasLocation" x="1932.5" y="374.5"/>
+        </scene>
+        <!--Banks-->
+        <scene sceneID="agd-b9-bUS">
+            <objects>
+                <viewController id="H23-fE-i2Y" customClass="BanksViewController" customModule="iPayWhere" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="WoA-2r-R4Z"/>
+                        <viewControllerLayoutGuide type="bottom" id="2VF-Hd-phz"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="jJl-T6-swv">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lSm-d6-RUH" customClass="GADBannerView">
+                                <rect key="frame" x="28" y="568" width="320" height="50"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="50" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="IqC-0S-aGE">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="624"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="BankCell" rowHeight="32" id="aXs-2F-wbs" customClass="BankCell" customModule="iPayWhere" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="92" width="375" height="32"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="aXs-2F-wbs" id="YnA-57-xqJ">
+                                            <rect key="frame" x="0.0" y="0.0" width="342" height="31.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="100" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pn8-5X-80y">
+                                                    <rect key="frame" x="49" y="5" width="269" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="ultraLight" pointSize="14"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="Pn8-5X-80y" firstAttribute="centerY" secondItem="YnA-57-xqJ" secondAttribute="centerY" id="C4T-gz-0qg"/>
+                                                <constraint firstItem="Pn8-5X-80y" firstAttribute="leading" secondItem="YnA-57-xqJ" secondAttribute="leadingMargin" constant="41" id="DlZ-0s-NI3"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="Pn8-5X-80y" secondAttribute="trailing" constant="16" id="Hr8-Rc-0yH"/>
+                                                <constraint firstItem="Pn8-5X-80y" firstAttribute="top" secondItem="YnA-57-xqJ" secondAttribute="topMargin" constant="-3" id="WcM-dA-hr1"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="nameLabel" destination="Pn8-5X-80y" id="2Z2-9U-DOe"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="H23-fE-i2Y" id="2KS-MT-wsL"/>
+                                    <outlet property="delegate" destination="H23-fE-i2Y" id="WYP-cR-fzd"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" title="Banks" id="FSk-Aa-Rxq">
+                        <barButtonItem key="rightBarButtonItem" image="Map" id="bKR-tK-8jU">
+                            <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <action selector="allBanksMapButton:" destination="H23-fE-i2Y" id="NmZ-ry-uXZ"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="bannerView" destination="lSm-d6-RUH" id="xtH-gp-4zJ"/>
+                        <outlet property="tableView" destination="IqC-0S-aGE" id="yaA-0Q-J0q"/>
+                        <segue destination="wC9-9O-89C" kind="show" identifier="toSelectedBankMap" id="G8d-bq-M3Z"/>
+                        <segue destination="6gr-NY-DLv" kind="show" identifier="toAllBanksMap" id="8lI-mf-WwG"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="EsP-x4-vk2" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="950.5" y="-405.5"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="FsR-pj-ChR">
@@ -469,7 +466,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Nih-nf-62I" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1444.5" y="346.5"/>
+            <point key="canvasLocation" x="1444.5" y="374.5"/>
         </scene>
         <!--Shop-->
         <scene sceneID="pJ4-g7-OcM">
@@ -547,7 +544,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="E13-Qt-NU6">
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="E13-Qt-NU6">
                                 <rect key="frame" x="0.0" y="64" width="375" height="554"/>
                                 <connections>
                                     <outlet property="delegate" destination="HgA-BS-dxb" id="CO3-b5-zj9"/>
@@ -666,15 +663,15 @@
             <objects>
                 <tableViewController id="fm9-XU-2lK" customClass="GasStationsViewController" customModule="iPayWhere" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="32" sectionHeaderHeight="28" sectionFooterHeight="28" id="Vna-vJ-7vk">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="GasStationCell" rowHeight="32" id="4Yr-Yx-9dj" customClass="GasStationCell" customModule="iPayWhere" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="92" width="375" height="32"/>
+                                <rect key="frame" x="0.0" y="92" width="600" height="32"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="4Yr-Yx-9dj" id="H5e-jx-s5s">
-                                    <rect key="frame" x="0.0" y="0.0" width="342" height="31.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="567" height="31.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Name" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="100" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VI9-u9-rR6">
@@ -709,18 +706,10 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
-                    <connections>
-                        <segue destination="qmW-pH-CAH" kind="show" identifier="toAllGasStationsMap" id="Di1-gG-Jqj">
-                            <nil key="action"/>
-                        </segue>
-                        <segue destination="A7m-r5-uFK" kind="show" identifier="toSelectedGasStationMap" id="cow-xv-R6Q">
-                            <nil key="action"/>
-                        </segue>
-                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QCb-cf-NTq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="950.5" y="4197.5"/>
+            <point key="canvasLocation" x="666" y="4197"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="qFG-dp-6Pr">
@@ -757,7 +746,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Jnq-oj-JQz">
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Jnq-oj-JQz">
                                 <rect key="frame" x="0.0" y="64" width="375" height="554"/>
                                 <connections>
                                     <outlet property="delegate" destination="a52-bI-d4g" id="aMN-Jt-uL8"/>
@@ -871,198 +860,322 @@
             </objects>
             <point key="canvasLocation" x="1444.5" y="4197.5"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="vMV-SX-DvW">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="RhB-Lu-2pE" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="" image="Bank" id="BX4-rb-sal">
+                        <inset key="imageInsets" minX="0.0" minY="5" maxX="0.0" maxY="-5"/>
+                        <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="2"/>
+                    </tabBarItem>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="gFi-Zi-0dX">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="H23-fE-i2Y" kind="relationship" relationship="rootViewController" id="gkw-FS-JYT"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="DqN-yu-tNm" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="345.5" y="-405.5"/>
+        </scene>
+        <!--Shops-->
+        <scene sceneID="yjU-PF-NRO">
+            <objects>
+                <viewController id="vkw-zz-uXC" customClass="ShopsViewController" customModule="iPayWhere" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="e3Z-Wd-ldI"/>
+                        <viewControllerLayoutGuide type="bottom" id="cG0-Qo-IeN"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="5oQ-ro-ypN">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oJA-tZ-grp" customClass="GADBannerView">
+                                <rect key="frame" x="28" y="568" width="320" height="50"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="50" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="d4e-CW-6Ip">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="624"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="ShopCell" rowHeight="32" id="meU-UP-Up9" customClass="ShopCell" customModule="iPayWhere" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="92" width="375" height="32"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="meU-UP-Up9" id="Wn6-EC-TgU">
+                                            <rect key="frame" x="0.0" y="0.0" width="342" height="31.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="100" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hus-VB-TfQ">
+                                                    <rect key="frame" x="49" y="5" width="269" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="ultraLight" pointSize="14"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="Hus-VB-TfQ" firstAttribute="top" secondItem="Wn6-EC-TgU" secondAttribute="topMargin" constant="-3" id="0Gn-FW-7ON"/>
+                                                <constraint firstItem="Hus-VB-TfQ" firstAttribute="leading" secondItem="Wn6-EC-TgU" secondAttribute="leadingMargin" constant="41" id="QlG-MQ-445"/>
+                                                <constraint firstItem="Hus-VB-TfQ" firstAttribute="centerY" secondItem="Wn6-EC-TgU" secondAttribute="centerY" id="UvR-q3-HcH"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="Hus-VB-TfQ" secondAttribute="trailing" constant="16" id="Xai-YN-9tW"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="nameLabel" destination="Hus-VB-TfQ" id="G0B-dC-vkS"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="vkw-zz-uXC" id="jMV-ER-j36"/>
+                                    <outlet property="delegate" destination="vkw-zz-uXC" id="vki-EC-Ajp"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" title="Shops" id="oGX-5w-qe1">
+                        <barButtonItem key="rightBarButtonItem" image="Map" id="VKx-4E-VUX">
+                            <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <action selector="allShopsMapButton:" destination="vkw-zz-uXC" id="f04-C3-j43"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="bannerView" destination="oJA-tZ-grp" id="CXR-Gq-IAN"/>
+                        <outlet property="tableView" destination="d4e-CW-6Ip" id="fJ4-yC-opn"/>
+                        <segue destination="74Y-JX-K71" kind="show" identifier="toAllShopsMap" id="ejq-FA-CTO"/>
+                        <segue destination="Mf4-o5-rqL" kind="show" identifier="toSelectedShopMap" id="GPH-HV-xKu"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="oM4-Cp-R5c" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="950.5" y="1135.5"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="AHG-S1-hMS">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="vwx-kO-Urf" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="" image="Shops" id="TVl-xl-TfK">
+                        <inset key="imageInsets" minX="0.0" minY="5" maxX="0.0" maxY="-5"/>
+                        <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="2"/>
+                    </tabBarItem>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="yiq-JL-MOS">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="vkw-zz-uXC" kind="relationship" relationship="rootViewController" id="T0G-Pd-Zxv"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="38a-8T-p8M" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="345.5" y="1135.5"/>
+        </scene>
+        <!--Food -->
+        <scene sceneID="3km-2w-lK9">
+            <objects>
+                <viewController id="ltx-NB-itM" customClass="FoodsViewController" customModule="iPayWhere" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="DFP-jb-fOR"/>
+                        <viewControllerLayoutGuide type="bottom" id="NJt-L5-rb0"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="3bj-yp-3TC">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Lld-lz-sNr" customClass="GADBannerView">
+                                <rect key="frame" x="28" y="568" width="320" height="50"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="50" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="HPO-Bu-vZP">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="624"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="FoodCell" rowHeight="32" id="nqd-qt-Wdd" customClass="FoodCell" customModule="iPayWhere" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="92" width="375" height="32"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="nqd-qt-Wdd" id="24O-ey-pjb">
+                                            <rect key="frame" x="0.0" y="0.0" width="342" height="31.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="100" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="siS-o7-Kz0">
+                                                    <rect key="frame" x="49" y="5" width="269" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="ultraLight" pointSize="14"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="siS-o7-Kz0" firstAttribute="top" secondItem="24O-ey-pjb" secondAttribute="topMargin" constant="-3" id="B7v-Fx-cS6"/>
+                                                <constraint firstItem="siS-o7-Kz0" firstAttribute="leading" secondItem="24O-ey-pjb" secondAttribute="leadingMargin" constant="41" id="Cpk-fm-fNy"/>
+                                                <constraint firstItem="siS-o7-Kz0" firstAttribute="centerY" secondItem="24O-ey-pjb" secondAttribute="centerY" id="aWR-Da-yVt"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="siS-o7-Kz0" secondAttribute="trailing" constant="16" id="sZ1-Hu-rtq"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="nameLabel" destination="siS-o7-Kz0" id="3YB-zv-y3y"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="ltx-NB-itM" id="wNA-Xe-SsJ"/>
+                                    <outlet property="delegate" destination="ltx-NB-itM" id="ecg-Ei-NqG"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" title="Food " id="rGx-ye-tY0">
+                        <barButtonItem key="rightBarButtonItem" image="Map" id="knK-VS-BSB">
+                            <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <action selector="allFoodsMapButton:" destination="ltx-NB-itM" id="Cb0-si-ZsD"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="bannerView" destination="Lld-lz-sNr" id="NJm-nh-dQD"/>
+                        <outlet property="tableView" destination="HPO-Bu-vZP" id="9gY-Gk-SiC"/>
+                        <segue destination="l6h-kb-i67" kind="show" identifier="toAllFoodsMap" id="hUk-Z9-WvD"/>
+                        <segue destination="UEd-PT-QOM" kind="show" identifier="toSelectedFoodMap" id="ITE-y6-Tbu"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wBh-2J-Rwm" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="950.5" y="2646.5"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="d2r-0t-DKX">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="faG-Lw-AaJ" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="" image="Food" id="TOd-hP-J90">
+                        <inset key="imageInsets" minX="0.0" minY="5" maxX="0.0" maxY="-5"/>
+                        <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="2"/>
+                    </tabBarItem>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="SMX-rk-sDM">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="ltx-NB-itM" kind="relationship" relationship="rootViewController" id="S58-oc-6E4"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9qS-wO-1Cp" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="345.5" y="2646.5"/>
+        </scene>
+        <!--Gas Stations -->
+        <scene sceneID="pZN-VO-tZJ">
+            <objects>
+                <viewController id="lzb-Sf-ZG8" customClass="GasStationsViewController" customModule="iPayWhere" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="JcR-if-2wT"/>
+                        <viewControllerLayoutGuide type="bottom" id="PUs-lG-0Y3"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="jBV-Zk-p7Y">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xfv-Mv-thc" customClass="GADBannerView">
+                                <rect key="frame" x="28" y="568" width="320" height="50"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="50" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="enB-HX-nie">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="624"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="GasStationCell" rowHeight="32" id="dJY-Lr-oCr" customClass="GasStationCell" customModule="iPayWhere" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="92" width="375" height="32"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="dJY-Lr-oCr" id="G2k-Tn-4gE">
+                                            <rect key="frame" x="0.0" y="0.0" width="342" height="31.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="100" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tjE-je-pzd">
+                                                    <rect key="frame" x="49" y="5" width="269" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="ultraLight" pointSize="14"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="tjE-je-pzd" firstAttribute="top" secondItem="G2k-Tn-4gE" secondAttribute="topMargin" constant="-3" id="6CI-cp-4B8"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="tjE-je-pzd" secondAttribute="trailing" constant="16" id="EBg-XY-50Z"/>
+                                                <constraint firstItem="tjE-je-pzd" firstAttribute="leading" secondItem="G2k-Tn-4gE" secondAttribute="leadingMargin" constant="41" id="FKz-Je-xh3"/>
+                                                <constraint firstItem="tjE-je-pzd" firstAttribute="centerY" secondItem="G2k-Tn-4gE" secondAttribute="centerY" id="Gnl-B4-Bkr"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="nameLabel" destination="tjE-je-pzd" id="MBT-cW-7pq"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="lzb-Sf-ZG8" id="zai-fJ-qRl"/>
+                                    <outlet property="delegate" destination="lzb-Sf-ZG8" id="7hE-B6-O20"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" title="Gas Stations " id="l4p-io-TH1">
+                        <barButtonItem key="rightBarButtonItem" image="Map" id="i8L-GH-vwj">
+                            <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <action selector="allGasStationssMapButton:" destination="lzb-Sf-ZG8" id="lGJ-At-YN3"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="bannerView" destination="xfv-Mv-thc" id="1NU-gU-bz7"/>
+                        <outlet property="tableView" destination="enB-HX-nie" id="5SV-Cb-J0O"/>
+                        <segue destination="qmW-pH-CAH" kind="show" identifier="toAllGasStationsMap" id="RPy-y0-kiT"/>
+                        <segue destination="A7m-r5-uFK" kind="show" identifier="toSelectedGasStationMap" id="N2o-lu-YEi"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="BXG-BQ-OvB" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="950.5" y="3429.5"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="SgP-zg-FrI">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Jpq-Ch-dlJ" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="" image="Gas" id="w5D-P7-tpd">
+                        <inset key="imageInsets" minX="0.0" minY="5" maxX="0.0" maxY="-5"/>
+                        <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="2"/>
+                    </tabBarItem>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="LvE-nC-Teb">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="lzb-Sf-ZG8" kind="relationship" relationship="rootViewController" id="b7T-yg-bTX"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="844-kW-NCk" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="213" y="3374"/>
+        </scene>
     </scenes>
     <resources>
         <image name="Bank" width="30" height="30"/>
-        <image name="EE59B5D0-1EAE-43A4-A34F-E6F292BBBE26" width="40" height="40">
-            <mutableData key="keyedArchiveRepresentation">
-YnBsaXN0MDDUAQIDBAUGOjtYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK0HCBEW
-GxwgISgrLjQ3VSRudWxs1AkKCwwNDg8QViRjbGFzc1xOU0ltYWdlRmxhZ3NWTlNSZXBzV05TQ29sb3KA
-DBIAwAAAgAKACtISCRMVWk5TLm9iamVjdHOhFIADgAnSEgkXGqIYGYAEgAWACBAA0h0JHh9fEBROU1RJ
-RkZSZXByZXNlbnRhdGlvboAGgAdPESj6TU0AKgAAGQjl+TX/5fk1/+X5Nf/l+TX/5fk1/+X5Nf/l+Tf/
-5fk4/+X5NP/k+TD/5Pkt/+T5K//k+Sr/4/kq/+T5Kv/j+Sr/4/kq/+T5Kv/j+Sr/5Pkq/+P5Kv/j+Sr/
-5Pkq/+T5Kv/k+Sr/4/kq/+T5Kv/k+Sr/5Pkr/+T5LP/k+S//5fkz/+X3N//j/zn/6dI0//s9Lv/9Li3/
-/DEt//wwLf/8MC3/5fk1/+X5Nf/l+TX/5fk1/+X5Nv/l+Tf/5Pkr/+P5Kf/l+Tb/5/pI/+n6Vv/q+l//
-6/pj/+v6Zf/r+mX/6/pl/+v6Zf/r+mX/6/pl/+v6Zf/r+mX/6/pl/+v6Zf/r+mX/6/pl/+v6Zf/r+mX/
-6/pk/+r6YP/p+lj/6PpL/+b3Ov/j+yv/6r4n//s6Lv/9LC///DEt//wwLf/8MC3//DAt/+X5Nf/l+TX/
-5fk1/+X5N//k+TL/4/kr/+v6Z//1/bP/+/7g//7/9v//////////////////////////////////////
-//////////////////////////////////////////////////////////////////////7++f/8/eb/
-9/m///x8c//9JSn//Csm//wzMP/8MC3//DAt//wwLf/l+TX/5fk1/+X5N//k+TD/5fk7//b9tv//////
-/////////////////////////v////7////+/////f////3////9/////f////3////9/////f////3/
-///9/////f////3////9/////v////7////+///////////////////+/////////s/M//1KSP/8JiP/
-/DMx//wwLf/8MC3/5fk1/+X5Nv/k+TL/5vk8//f70//9/P//+/v5//39+v////3////+//z8+//7+/v/
-+/v7//v7+//8/Pz//v7+///////9/f3/+/v7//v7+//7+/v/+/v7//39/f/////////+//v7+//7+/v/
-/f39///////////////+//z8+//7+/n/+/n4//z////76ur/+UxK//snJP/8MjD//DAt/+X5Nf/l+Tf/
-4/gs//f9v//////////////////////////////////////////////////////////////////+/v7/
-/////////////////////////////////f39////////////////////////////////////////////
-///////////////////////w8P//NzX//C4r//wxLv/l+Tj/4/gq/+z7cf//////uLi1/6mpqf+oqKj/
-2tra///////7+/v/s7Oz/6mpqf+srKz/ra2t/7i4uP/09PT//////83Nzf+oqKj/q6ur/62trf+urq7/
-29vb///////z8/P/rKys/6ioqP/X19f///////39/f//////xMTE/6ioqP+qqqr/rKys/6ypqf+ttbX/
-8YyK//0kIv/7MzD/5fk4/+L3Kf/8/8r/7ez0/wMDAf8AAAD/AAAA/2FhYf//////8vLy/w8PD/8AAAD/
-AAAA/wAAAP8AAAD/KSkp/+3t7f9ubm7/AAAA/wAAAP8AAAD/AAAA/wgICP+pqan/6+vr/wAAAP8AAAD/
-gYGB///////4+Pj//////0RERP8AAAD/AAAA/wAAAP8AAAD/AAAA/9W+vv//Pjv/+iwq/+T5Mv/j9jz/
-///6/7y8wf8BAQH/DAwM/wMDA/8sLCz///////f39/8hISH/AwMD/zo6Ov9lZWX/BQUF/wAAAP+Ghob/
-hoaG/wMDA/8RERH/c3Nz/xwcHP8AAAD/ISEh/9ra2v8PDw//AwMD/4qKiv//////+Pj4//////9SUlL/
-AwMD/xEREf9CQkL/QUFB/0NCQv/k5ub//15c//slIv/k+S3/5fZS//7///+Dg4P/AAAA/0ZGRv8XFxf/
-AwMD/+Li4v/+/v7/Hx8f/wAAAP9wcHD//////xsbG/8CAgL/XFxc/39/f/8AAAD/FBQU//////98fHz/
-AQEB/xEREf+9vb3/EhIS/wAAAP+IiIj///////j4+P//////UVFR/wAAAP8zMzP/////////////////
-//////12df/8Ih//4/gq/+n4ZP//////SUlI/wAAAP+Hh4f/Ojo6/wAAAP+urq7//////xwcHP8AAAD/
-W1tb/8PDw/8QEBD/AQEB/2pqav+Dg4P/AAAA/xISEv/Q0ND/SEhI/wMDA/8TExP/ysrK/w8PD/8AAAD/
-iIiI///////4+Pj//////1BQUP8AAAD/FhYW/3BwcP9vb2//gX5+//z////+jIv/+x8d/+L3J//w/nT/
-8/L7/xcXFf8AAAD/ycnJ/2JiYv8AAAD/cnJy//////8YGBj/AAAA/wAAAP8AAAD/AAAA/wAAAP/Jycn/
-fn5+/wAAAP8EBAT/AAAA/wAAAP8AAAD/aWlp/+zs7P8HBwf/AAAA/4iIiP//////+Pj4//////9PT0//
-AAAA/wAAAP8AAAD/AAAA/wIAAP/6/////5iX//sfHP/g9SX/+f+C/8fG0/8AAAD/AgIC/729vf9nZ2f/
-AAAA/zg4OP/7+/v/HR0d/wAAAP8cHBz/SkpK/19fX/+3t7f//////29vb/8AAAD/CQkJ/0JCQv9SUlL/
-jY2N//v7+//i4uL/CQkJ/wAAAP+Ghob/+/v7//T09P/9/f3/UFBQ/wAAAP8cHBz/kpKS/5GRkf+fnJz/
-/P7+//6dnP/8IB3/3vQj////iv+Ni5j/AAAA/wEBAf8AAAD/AAAA/wAAAP8KCgr/29vb/ycnJ/8AAAD/
-aGho//////////////////7+/v9ycnL/AAAA/xcXF//5+fn/////////////////3t7e/woKCv8AAAD/
-kZGR/////////////////1BQUP8AAAD/NDQ0///////////////////////+nZz//CAd/9/1JP/8/4f/
-VVRh/wQEBP8UFBT/QkJC/zQ0NP8EBAT/AwMD/6ysrP80NDT/BAQE/2VlZf/8/Pz/+Pj4//j4+P//////
-dHR0/wQEBP8ZGRn/7Ozs//z8/P/4+Pj//v7+/+Dg4P8LCwv/BAQE/zg4OP9oaGj/Y2Nj/6qqqv9cXFz/
-BAQE/xcXF/9hYWH/YmJi/2FgYP/Z4+P//6em//oeG//m/Cv/4vBt/w4NG/8AAAD/T09P///////k5OT/
-AAAA/wAAAP9cXFz/IyMj/wAAAP9YWFj///////v7+//7+/v//////2dnZ/8AAAD/BQUF/+zs7P/9/f3/
-+fn5///////d3d3/AAAA/wAAAP8AAAD/AAAA/wAAAP9dXV3/VVVV/wAAAP8AAAD/AAAA/wAAAP8AAAD/
-uMrK//+urf/5HRr/5/ws/9zqZ/+LipD/iIiG/76+vv/9/f3/9vb2/5SUlP+IiIj/pKSk/5ycnP+IiIj/
-tra2///////9/f3//f39///////AwMD/i4uL/5aWlv/6+vr////////////+/v7/8PDw/46Ojv+Kior/
-jY2N/5KSkv+JiYn/wcHB/7e3t/+Li4v/iYmJ/5CQkP+Pj4//jYuL/+Do6P//paT/+x8c/+L4Jv/w/nv/
-/////////////////////////////////////////////////////////////////v7+///////e3t7/
-ODg4/0FBQf89PT3/MTEx/0VFRf+1tbX///////////+Hh4f/QUFB/0FBQf+BgYH/8fHx/zk5Of85OTn/
-oqKi//////90dHT/QEBA/1JPT//2/f3//qGg//sfHP/j+Cf/7fp4//v7+//7+/j//f39////////////
-+/v7//v7+//8/Pz//Pz8//v7+//8/Pz///////39/f//////1dXV/wAAAP8AAAD/AAAA/wAAAP8AAAD/
-AQEB/9PT0///////FxcX/wAAAP8AAAD/CgoK//Pz8/8xMTH/AAAA/zg4OP/t7e3/BgYG/wAAAP9YVVX/
-//////qcm//8IB3/4/gn/+37eP/////////8////////////////////////////////////////////
-///////////9/f3//////9fX1/8GBgb/AgIC/5SUlP+7u7v/BAQE/wAAAP+Pj4//6urq/wICAv8VFRX/
-Ghoa/wAAAP/Y2Nj/sLCw/wAAAP8aGhr/lZWV/wEBAf8EBAT/0c3N///////7nJv//CAd/+P4J//t+3j/
-/////////P///////////////////////////////////////////////////////f39///////X19f/
-BAQE/wAAAP+rq6v/9PT0/wICAv8DAwP/ioqK/7a2tv8AAAD/R0dH/1RUVP8AAAD/kJCQ//v7+/8TExP/
-AgIC/x0dHf8BAQH/Pz8////////9/////p+e//wgHf/j+Cf/7ft4//////////z/////////////////
-//////////////////////////////////////39/f//////19fX/wICAv8AAAD/Pz8//zk5Of8AAAD/
-AAAA/8DAwP93d3f/AAAA/3Jycv+Dg4P/AAAA/01NTf//////b29v/wAAAP8DAwP/AAAA/6mpqf//////
-+/////6fnv/8IB3/4/gn/+37eP/////////8////////////////////////////////////////////
-///////////9/f3//////9fX1/8AAAD/AAAA/wAAAP8AAAD/CAgI/2lpaf/+/v7/MDAw/wAAAP+pqan/
-vb29/wAAAP8bGxv/+fn5/9nZ2f8ICAj/AQEB/yMjI//29vb//v39//7////+n57//CAd/+P4J//t+3j/
-/////////P///////////////////////////////////////////////////////f39///////X19f/
-AwMD/wAAAP9zc3P/yMjI/9vb2///////4ODg/wcHB/8AAAD/Pj4+/0RERP8CAgL/AQEB/8zMzP//////
-JiYm/wAAAP9aWlr///////z4+P///////p+e//wgHf/j+Cf/7ft4//////////z/////////////////
-//////////////////////////////////////39/f//////19fX/wYGBv8BAQH/m5ub///////+/v7/
-/f39/6ysrP8BAQH/AwMD/wAAAP8AAAD/AwMD/wEBAf+Tk5P//v7+/yUlJf8BAQH/WVlZ//7+/v/8+Pj/
-//////6fnv/8IB3/4/gn/+37eP///////v77//39/f/+/v7//f39//39/f/+/v7//f39///////8/Pz/
-/f39///////9/f3//////9TU1P8AAAD/AAAA/42Njf/7+/v/8vLy//z8/P9ra2v/AAAA/w0NDf+3t7f/
-v7+//xgYGP8AAAD/T09P//39/f8fHx//AAAA/1FRUf/8/Pz//Pj4///////+n57//CAd/+P4J//t+3j/
-///////////////////////////////////////////////////////////+/v7//f39///////k5OT/
-Gxsb/yMjI/+kpKT/////////////////SkpK/xoaGv9RUVH///////////9cXFz/HR0d/zw8PP//////
-RUVF/x8fH/90dHT///////z39////////p+d//wgHf/j+Cf/6/l1///////Nzcr/Z2dn/3l5ef93d3f/
-d3d3/9PT0/+cnJz//////3Nzc//W1tb////////////y8vL/lJSU//Pz8/9vb2//cHBw/3h4eP96enr/
-v7+///r6+v/a2tr/X19f/3V1df91dXX/b29v/5GRkf/Ozs7/ZGRk/29vb/9tbW3/bW1t/7u7u///////
-/v////6dnP/8IB3/4/go/+n3cP//////oqKf/3l5ef/o6Oj/4+Pj/+jo6P/k5OT/V1dX//////8wMDD/
-RUVF//z8/P/9/f3/6enp/1hYWP/+/v7/U1NT/+Tk5P/p6en/zc3N/1VVVf/BwcH/3t7e/1tbW//o6Oj/
-5eXl/+bm5v/y8vL/tLS0/29vb//q6ur/5ubm/9fX1/9NTU3/2dfW//7////8mJb//CAd/+P4Kf/p9Wj/
-/////6ampP+ampr/////////////////6+vr/2RkZP/9/f3/dXV1/4KCgv+CgoL//////+bm5v9lZWX/
-+vr6/2BgYP/8/Pz////////////g4OD/aGho/9jY2P92dnb//////////////////////7CwsP+QkJD/
-////////////////bm5u/8K/v///////+46N//wgHf/j+iz/5v9a//////+ur67/R0dH/4SEhP99fX3/
-oaGh/+7u7v9hYWH//////11dXf/9/f3/VlZW/8jIyP/6+vr/X19f//v7+/9eXl7/9vb2//7+/v/9/f3/
-9/f3/2lpaf/Pz8//PT09/4GBgf+CgoL/fn5+/8TExP/Dw8P/UVFR/6Ojo/+ioqL/fX19/3x8fP/7+vr/
-/f////1/fv/8IR7/5Pgw//GKQP//////qa2r/3d2dv/Y2Nj/0tLS/+Hh4f/r6+v/YmJi//////9cXFz/
-+vr6/+Dg4P9MTEz/6urq/2ZmZv/6+vr/Xl5e//X19f/9/f3//Pz8//f39/9paWn/zMzM/15eXv/U1NT/
-0tLS/9HR0f/q6ur/vLy8/1hYWP+urq7/rq6u/4uLi/90dHT//Pz8//3////9ZGL//CQi//ZmMP/7GyX/
-/+vp/6evr/+UkpL/////////////////6urq/2RkZP//////YWFh/+/v7///////o6Oj/1paWv91dXX/
-+fn5/2NjY/////////////////+/v7//dHR0/97e3v93d3f//////////////////////7Kysv+NjY3/
-////////////////X15e/93f3////Pz/+0A9//wsKf/9LDH/+SAb//+ko/+gsLD/hYGB//7+/v/4+Pj/
-/v7+/+np6f9XV1f//////1NTU//y8vL//f39//////9WVlb/Ly8v//////9FRUX/tLS0/7m5uf+YmJj/
-T09P/9/f3//Y2Nj/RkZG/7m5uf+4uLj/t7e3/8vLy/+vr6//eHh4//z8/P/09PT//Pz8/29sbP/D0dH/
-/8rJ//oiH//8MzD//DMu//stKv/9Pjz/3MbF/9PU1P///Pz//f39///////39/f/wsLC///////AwMD/
-+vr6///////+/v7/7u7u/7Ozs///////ra2t/5eXl/+YmJj/qKio/+/v7///////8fHx/5ycnP+Wlpb/
-mJiY/5aWlv+wsLD/4+Pj/87Ozv///////Pz8///+/v/Nysr/3uDg//1aWP/7JyT//DIw//wwLf/8MzD/
-/CQi//9lY//////////////8/P///v7/////////////////////////////////////////////////
-/////////////////////////////////v7+////////////////////////////////////////////
-//7+///9/P///v7///////+Kif/8IR///DMx//wwLf/8MC3//DAt//w0Mf/7IiD/+2Vj///u7f//////
-///////9/f/9+fn///z8//z5+f///Pv///z8///8/P/++/v//Pn5///8/P/8+fn/+/j4//v4+P/8+fn/
-/vv7///8/P/++/v/+/j4//v4+P/7+Pj/+/j4//z5+f/++/v//fv7//////////////z8//uFg//7IyD/
-/DMw//wwLf/8MC3//DAt//wwLv/8MC3//DMx//wkIv/8Q0H//qqp///u7v//////////////////////
-////////////////////////////////////////////////////////////////////////////////
-////////////////////////////9vb//r28//1XVf/8IiD//DIw//wwLv/8MC3//DAt//wwLf/8MC3/
-/DAt//wwLf/8MzD//Cso//wjIf/8PTv//WNh//2Cgf/+lpX//qGg//6npv/+qaj//qmo//6pqP/+qaj/
-/qmo//6pqP/+qaj//qmo//6pqP/+qaj//qmo//6pqP/+qaj//qmo//6opv/+o6L//pmY//2Hhv/9a2n/
-/EVD//wmI//8KCX//DMx//wwLf/8MC3//DAt//wwLf/8MC3//DAu//wwLf/8MC3//DAt//wxL//8MzH/
-/Cwq//wkIv/8IR7//CAd//wgHf/8IR7//CEe//whHv/8IR7//CEe//whHv/8IR7//CEe//whHv/8IR7/
-/CEe//whHv/8IR7//CEe//whHv/8IR7//CAd//wgHf/8IB7//CMh//wqKP/8MjD//DIw//wwLf/8MC3/
-/DAt//wwLf/8MC3/AA4BAAADAAAAAQAoAAABAQADAAAAAQAoAAABAgADAAAABAAAGbYBAwADAAAAAQAB
-AAABBgADAAAAAQACAAABEQAEAAAAAQAAAAgBEgADAAAAAQABAAABFQADAAAAAQAEAAABFgADAAAAAQAo
-AAABFwAEAAAAAQAAGQABHAADAAAAAQABAAABUgADAAAAAQACAAABUwADAAAABAAAGb6HcwAHAAAPNAAA
-GcYAAAAAAAgACAAIAAgAAQABAAEAAQAADzRhcHBsAhAAAG1udHJSR0IgWFlaIAfgAAEABAALACkACGFj
-c3BBUFBMAAAAAEFQUEwAAAAAAAAAAAAAAAAAAAAAAAD21gABAAAAANMtYXBwbAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEWRlc2MAAAFQAAAAYmRzY20AAAG0AAAEGmNw
-cnQAAAXQAAAAI3d0cHQAAAX0AAAAFHJYWVoAAAYIAAAAFGdYWVoAAAYcAAAAFGJYWVoAAAYwAAAAFHJU
-UkMAAAZEAAAIDGFhcmcAAA5QAAAAIHZjZ3QAAA5wAAAAMG5kaW4AAA6gAAAAPmNoYWQAAA7gAAAALG1t
-b2QAAA8MAAAAKGJUUkMAAAZEAAAIDGdUUkMAAAZEAAAIDGFhYmcAAA5QAAAAIGFhZ2cAAA5QAAAAIGRl
-c2MAAAAAAAAACERpc3BsYXkAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABtbHVjAAAAAAAAACIAAAAMaHJIUgAA
-ABQAAAGoa29LUgAAAAwAAAG8bmJOTwAAABIAAAHIaWQAAAAAABIAAAHaaHVIVQAAABQAAAHsY3NDWgAA
-ABYAAAIAZGFESwAAABwAAAIWdWtVQQAAABwAAAIyYXIAAAAAABQAAAJOaXRJVAAAABQAAAJicm9STwAA
-ABIAAAJ2bmxOTAAAABYAAAKIaGVJTAAAABYAAAKeZXNFUwAAABIAAAJ2ZmlGSQAAABAAAAK0emhUVwAA
-AAwAAALEdmlWTgAAAA4AAALQc2tTSwAAABYAAALeemhDTgAAAAwAAALEcnVSVQAAACQAAAL0ZnJGUgAA
-ABYAAAMYbXMAAAAAABIAAAMuY2FFUwAAABgAAANAdGhUSAAAAAwAAANYZXNYTAAAABIAAAJ2ZGVERQAA
-ABAAAANkZW5VUwAAABIAAAN0cHRCUgAAABgAAAOGcGxQTAAAABIAAAOeZWxHUgAAACIAAAOwc3ZTRQAA
-ABAAAAPSdHJUUgAAABQAAAPiamFKUAAAAA4AAAP2cHRQVAAAABYAAAQEAEwAQwBEACAAdQAgAGIAbwBq
-AGnO7LfsACAATABDAEQARgBhAHIAZwBlAC0ATABDAEQATABDAEQAIABXAGEAcgBuAGEAUwB6AO0AbgBl
-AHMAIABMAEMARABCAGEAcgBlAHYAbgD9ACAATABDAEQATABDAEQALQBmAGEAcgB2AGUAcwBrAOYAcgBt
-BBoEPgQ7BEwEPgRABD4EMgQ4BDkAIABMAEMARCAPAEwAQwBEACAGRQZEBkgGRgYpAEwAQwBEACAAYwBv
-AGwAbwByAGkATABDAEQAIABjAG8AbABvAHIASwBsAGUAdQByAGUAbgAtAEwAQwBEIA8ATABDAEQAIAXm
-BdEF4gXVBeAF2QBWAOQAcgBpAC0ATABDAERfaYJyACAATABDAEQATABDAEQAIABNAOAAdQBGAGEAcgBl
-AGIAbgDpACAATABDAEQEJgQyBDUEQgQ9BD4EOQAgBBYEGgAtBDQEOARBBD8EOwQ1BDkATABDAEQAIABj
-AG8AdQBsAGUAdQByAFcAYQByAG4AYQAgAEwAQwBEAEwAQwBEACAAZQBuACAAYwBvAGwAbwByAEwAQwBE
-ACAOKg41AEYAYQByAGIALQBMAEMARABDAG8AbABvAHIAIABMAEMARABMAEMARAAgAEMAbwBsAG8AcgBp
-AGQAbwBLAG8AbABvAHIAIABMAEMARAOIA7MDxwPBA8kDvAO3ACADvwO4A8wDvQO3ACAATABDAEQARgDk
-AHIAZwAtAEwAQwBEAFIAZQBuAGsAbABpACAATABDAEQwqzDpMPwAIABMAEMARABMAEMARAAgAGEAIABD
-AG8AcgBlAHMAAHRleHQAAAAAQ29weXJpZ2h0IEFwcGxlIEluYy4sIDIwMTYAAFhZWiAAAAAAAADzFgAB
-AAAAARbKWFlaIAAAAAAAAHHAAAA5igAAAWdYWVogAAAAAAAAYSMAALnmAAAT9lhZWiAAAAAAAAAj8gAA
-DJAAAL3QY3VydgAAAAAAAAQAAAAABQAKAA8AFAAZAB4AIwAoAC0AMgA2ADsAQABFAEoATwBUAFkAXgBj
-AGgAbQByAHcAfACBAIYAiwCQAJUAmgCfAKMAqACtALIAtwC8AMEAxgDLANAA1QDbAOAA5QDrAPAA9gD7
-AQEBBwENARMBGQEfASUBKwEyATgBPgFFAUwBUgFZAWABZwFuAXUBfAGDAYsBkgGaAaEBqQGxAbkBwQHJ
-AdEB2QHhAekB8gH6AgMCDAIUAh0CJgIvAjgCQQJLAlQCXQJnAnECegKEAo4CmAKiAqwCtgLBAssC1QLg
-AusC9QMAAwsDFgMhAy0DOANDA08DWgNmA3IDfgOKA5YDogOuA7oDxwPTA+AD7AP5BAYEEwQgBC0EOwRI
-BFUEYwRxBH4EjASaBKgEtgTEBNME4QTwBP4FDQUcBSsFOgVJBVgFZwV3BYYFlgWmBbUFxQXVBeUF9gYG
-BhYGJwY3BkgGWQZqBnsGjAadBq8GwAbRBuMG9QcHBxkHKwc9B08HYQd0B4YHmQesB78H0gflB/gICwgf
-CDIIRghaCG4IggiWCKoIvgjSCOcI+wkQCSUJOglPCWQJeQmPCaQJugnPCeUJ+woRCicKPQpUCmoKgQqY
-Cq4KxQrcCvMLCwsiCzkLUQtpC4ALmAuwC8gL4Qv5DBIMKgxDDFwMdQyODKcMwAzZDPMNDQ0mDUANWg10
-DY4NqQ3DDd4N+A4TDi4OSQ5kDn8Omw62DtIO7g8JDyUPQQ9eD3oPlg+zD88P7BAJECYQQxBhEH4QmxC5
-ENcQ9RETETERTxFtEYwRqhHJEegSBxImEkUSZBKEEqMSwxLjEwMTIxNDE2MTgxOkE8UT5RQGFCcUSRRq
-FIsUrRTOFPAVEhU0FVYVeBWbFb0V4BYDFiYWSRZsFo8WshbWFvoXHRdBF2UXiReuF9IX9xgbGEAYZRiK
-GK8Y1Rj6GSAZRRlrGZEZtxndGgQaKhpRGncanhrFGuwbFBs7G2MbihuyG9ocAhwqHFIcexyjHMwc9R0e
-HUcdcB2ZHcMd7B4WHkAeah6UHr4e6R8THz4faR+UH78f6iAVIEEgbCCYIMQg8CEcIUghdSGhIc4h+yIn
-IlUigiKvIt0jCiM4I2YjlCPCI/AkHyRNJHwkqyTaJQklOCVoJZclxyX3JicmVyaHJrcm6CcYJ0kneier
-J9woDSg/KHEooijUKQYpOClrKZ0p0CoCKjUqaCqbKs8rAis2K2krnSvRLAUsOSxuLKIs1y0MLUEtdi2r
-LeEuFi5MLoIuty7uLyQvWi+RL8cv/jA1MGwwpDDbMRIxSjGCMbox8jIqMmMymzLUMw0zRjN/M7gz8TQr
-NGU0njTYNRM1TTWHNcI1/TY3NnI2rjbpNyQ3YDecN9c4FDhQOIw4yDkFOUI5fzm8Ofk6Njp0OrI67zst
-O2s7qjvoPCc8ZTykPOM9Ij1hPaE94D4gPmA+oD7gPyE/YT+iP+JAI0BkQKZA50EpQWpBrEHuQjBCckK1
-QvdDOkN9Q8BEA0RHRIpEzkUSRVVFmkXeRiJGZ0arRvBHNUd7R8BIBUhLSJFI10kdSWNJqUnwSjdKfUrE
-SwxLU0uaS+JMKkxyTLpNAk1KTZNN3E4lTm5Ot08AT0lPk0/dUCdQcVC7UQZRUFGbUeZSMVJ8UsdTE1Nf
-U6pT9lRCVI9U21UoVXVVwlYPVlxWqVb3V0RXklfgWC9YfVjLWRpZaVm4WgdaVlqmWvVbRVuVW+VcNVyG
-XNZdJ114XcleGl5sXr1fD19hX7NgBWBXYKpg/GFPYaJh9WJJYpxi8GNDY5dj62RAZJRk6WU9ZZJl52Y9
-ZpJm6Gc9Z5Nn6Wg/aJZo7GlDaZpp8WpIap9q92tPa6dr/2xXbK9tCG1gbbluEm5rbsRvHm94b9FwK3CG
-cOBxOnGVcfByS3KmcwFzXXO4dBR0cHTMdSh1hXXhdj52m3b4d1Z3s3gReG54zHkqeYl553pGeqV7BHtj
-e8J8IXyBfOF9QX2hfgF+Yn7CfyN/hH/lgEeAqIEKgWuBzYIwgpKC9INXg7qEHYSAhOOFR4Wrhg6GcobX
-hzuHn4gEiGmIzokziZmJ/opkisqLMIuWi/yMY4zKjTGNmI3/jmaOzo82j56QBpBukNaRP5GokhGSepLj
-k02TtpQglIqU9JVflcmWNJaflwqXdZfgmEyYuJkkmZCZ/JpomtWbQpuvnByciZz3nWSd0p5Anq6fHZ+L
-n/qgaaDYoUehtqImopajBqN2o+akVqTHpTilqaYapoum/adup+CoUqjEqTepqaocqo+rAqt1q+msXKzQ
-rUStuK4trqGvFq+LsACwdbDqsWCx1rJLssKzOLOutCW0nLUTtYq2AbZ5tvC3aLfguFm40blKucK6O7q1
-uy67p7whvJu9Fb2Pvgq+hL7/v3q/9cBwwOzBZ8Hjwl/C28NYw9TEUcTOxUvFyMZGxsPHQce/yD3IvMk6
-ybnKOMq3yzbLtsw1zLXNNc21zjbOts83z7jQOdC60TzRvtI/0sHTRNPG1EnUy9VO1dHWVdbY11zX4Nhk
-2OjZbNnx2nba+9uA3AXcit0Q3ZbeHN6i3ynfr+A24L3hROHM4lPi2+Nj4+vkc+T85YTmDeaW5x/nqegy
-6LzpRunQ6lvq5etw6/vshu0R7ZzuKO6070DvzPBY8OXxcvH/8ozzGfOn9DT0wvVQ9d72bfb794r4Gfio
-+Tj5x/pX+uf7d/wH/Jj9Kf26/kv+3P9t//9wYXJhAAAAAAADAAAAAmZmAADypwAADVkAABPQAAAKDnZj
-Z3QAAAAAAAAAAQABAAAAAAAAAAEAAAABAAAAAAAAAAEAAAABAAAAAAAAAAEAAG5kaW4AAAAAAAAANgAA
-p0AAAFWAAABMwAAAnsAAACWAAAAMwAAAUAAAAFRAAAIzMwACMzMAAjMzAAAAAAAAAABzZjMyAAAAAAAB
-DHIAAAX4///zHQAAB7oAAP1y///7nf///aQAAAPZAADAcW1tb2QAAAAAAAAGEAAAoBQAAAAAy3hhAAAA
-AAAAAAAAAAAAAAAAAADSIiMkJVokY2xhc3NuYW1lWCRjbGFzc2VzXxAQTlNCaXRtYXBJbWFnZVJlcKMk
-JidaTlNJbWFnZVJlcFhOU09iamVjdNIiIykqV05TQXJyYXmiKSfSIiMsLV5OU011dGFibGVBcnJheaMs
-KSfTLzAJMTIzV05TV2hpdGVcTlNDb2xvclNwYWNlRDAgMAAQA4AL0iIjNTZXTlNDb2xvcqI1J9IiIzg5
-V05TSW1hZ2WiOCdfEA9OU0tleWVkQXJjaGl2ZXLRPD1Ucm9vdIABAAgAEQAaACMALQAyADcARQBLAFQA
-WwBoAG8AdwB5AH4AgACCAIcAkgCUAJYAmACdAKAAogCkAKYAqACtAMQAxgDIKcYpyynWKd8p8in2KgEq
-CioPKhcqGiofKi4qMio5KkEqTipTKlUqVypcKmQqZypsKnQqdyqJKowqkQAAAAAAAAIBAAAAAAAAAD4A
-AAAAAAAAAAAAAAAAACqTA
-</mutableData>
-        </image>
         <image name="Food" width="60" height="60"/>
         <image name="Gas" width="30" height="30"/>
         <image name="Map" width="30" height="30"/>

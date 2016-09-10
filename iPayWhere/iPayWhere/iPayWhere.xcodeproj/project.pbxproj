@@ -36,6 +36,17 @@
 		303B470E1D7F5829005B0338 /* CustomSearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 303B470D1D7F5828005B0338 /* CustomSearchBar.swift */; };
 		303B47101D7F5999005B0338 /* CustomSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 303B470F1D7F5999005B0338 /* CustomSearchController.swift */; };
 		30BC85551D7CA8F20025EE44 /* AllBanksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BC85541D7CA8F20025EE44 /* AllBanksViewController.swift */; };
+		30D8EF941D836AB700C22836 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30D8EF931D836AB700C22836 /* AdSupport.framework */; };
+		30D8EF961D836ABD00C22836 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30D8EF951D836ABD00C22836 /* AudioToolbox.framework */; };
+		30D8EF981D836AC300C22836 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30D8EF971D836AC300C22836 /* AVFoundation.framework */; };
+		30D8EF9A1D836ACA00C22836 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30D8EF991D836ACA00C22836 /* CoreGraphics.framework */; };
+		30D8EF9C1D836AD000C22836 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30D8EF9B1D836AD000C22836 /* CoreTelephony.framework */; };
+		30D8EF9E1D836ADE00C22836 /* EventKitUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30D8EF9D1D836ADE00C22836 /* EventKitUI.framework */; };
+		30D8EFA01D836AE300C22836 /* EventKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30D8EF9F1D836AE300C22836 /* EventKit.framework */; };
+		30D8EFA21D836AE900C22836 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30D8EFA11D836AE900C22836 /* MessageUI.framework */; };
+		30D8EFA41D836AF400C22836 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30D8EFA31D836AF400C22836 /* StoreKit.framework */; };
+		30D8EFA61D836AFA00C22836 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30D8EFA51D836AFA00C22836 /* SystemConfiguration.framework */; };
+		30D8EFAB1D8386D300C22836 /* GoogleMobileAds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30D8EFAA1D8386D300C22836 /* GoogleMobileAds.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -71,6 +82,18 @@
 		303B470D1D7F5828005B0338 /* CustomSearchBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomSearchBar.swift; sourceTree = "<group>"; };
 		303B470F1D7F5999005B0338 /* CustomSearchController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomSearchController.swift; sourceTree = "<group>"; };
 		30BC85541D7CA8F20025EE44 /* AllBanksViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllBanksViewController.swift; sourceTree = "<group>"; };
+		30D8EF911D836A9F00C22836 /* GoogleMobileAds.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleMobileAds.framework; path = "../../../../../Users/RAR/Downloads/GoogleMobileAdsSdkiOS-7.10-2.1/GoogleMobileAds.framework"; sourceTree = "<group>"; };
+		30D8EF931D836AB700C22836 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
+		30D8EF951D836ABD00C22836 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		30D8EF971D836AC300C22836 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		30D8EF991D836ACA00C22836 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		30D8EF9B1D836AD000C22836 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		30D8EF9D1D836ADE00C22836 /* EventKitUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKitUI.framework; path = System/Library/Frameworks/EventKitUI.framework; sourceTree = SDKROOT; };
+		30D8EF9F1D836AE300C22836 /* EventKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKit.framework; path = System/Library/Frameworks/EventKit.framework; sourceTree = SDKROOT; };
+		30D8EFA11D836AE900C22836 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		30D8EFA31D836AF400C22836 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		30D8EFA51D836AFA00C22836 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		30D8EFAA1D8386D300C22836 /* GoogleMobileAds.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMobileAds.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,6 +101,17 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				30D8EFA61D836AFA00C22836 /* SystemConfiguration.framework in Frameworks */,
+				30D8EFA41D836AF400C22836 /* StoreKit.framework in Frameworks */,
+				30D8EFA21D836AE900C22836 /* MessageUI.framework in Frameworks */,
+				30D8EFA01D836AE300C22836 /* EventKit.framework in Frameworks */,
+				30D8EF9E1D836ADE00C22836 /* EventKitUI.framework in Frameworks */,
+				30D8EF9C1D836AD000C22836 /* CoreTelephony.framework in Frameworks */,
+				30D8EFAB1D8386D300C22836 /* GoogleMobileAds.framework in Frameworks */,
+				30D8EF9A1D836ACA00C22836 /* CoreGraphics.framework in Frameworks */,
+				30D8EF981D836AC300C22836 /* AVFoundation.framework in Frameworks */,
+				30D8EF961D836ABD00C22836 /* AudioToolbox.framework in Frameworks */,
+				30D8EF941D836AB700C22836 /* AdSupport.framework in Frameworks */,
 				302E2F301D7A0C5B009CACD5 /* CloudKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -88,6 +122,18 @@
 		302E2EFE1D78A799009CACD5 = {
 			isa = PBXGroup;
 			children = (
+				30D8EFAA1D8386D300C22836 /* GoogleMobileAds.framework */,
+				30D8EFA51D836AFA00C22836 /* SystemConfiguration.framework */,
+				30D8EFA31D836AF400C22836 /* StoreKit.framework */,
+				30D8EFA11D836AE900C22836 /* MessageUI.framework */,
+				30D8EF9F1D836AE300C22836 /* EventKit.framework */,
+				30D8EF9D1D836ADE00C22836 /* EventKitUI.framework */,
+				30D8EF9B1D836AD000C22836 /* CoreTelephony.framework */,
+				30D8EF991D836ACA00C22836 /* CoreGraphics.framework */,
+				30D8EF971D836AC300C22836 /* AVFoundation.framework */,
+				30D8EF951D836ABD00C22836 /* AudioToolbox.framework */,
+				30D8EF931D836AB700C22836 /* AdSupport.framework */,
+				30D8EF911D836A9F00C22836 /* GoogleMobileAds.framework */,
 				302E2F2F1D7A0C5B009CACD5 /* CloudKit.framework */,
 				302E2F091D78A79A009CACD5 /* iPayWhere */,
 				302E2F081D78A799009CACD5 /* Products */,
@@ -386,6 +432,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = iPayWhere/iPayWhere.entitlements;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = iPayWhere/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.buddhabuddha.iPayWhere;
@@ -398,6 +448,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = iPayWhere/iPayWhere.entitlements;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = iPayWhere/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.buddhabuddha.iPayWhere;
