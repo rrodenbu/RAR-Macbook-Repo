@@ -270,7 +270,6 @@ class ShopsViewController: UIViewController, UITableViewDataSource, UITableViewD
     var iTryAgainSessions = 6
     
     func rateMe() {
-        print("rateme")
         let neverRate = NSUserDefaults.standardUserDefaults().boolForKey("neverRate")
         var numLaunches = NSUserDefaults.standardUserDefaults().integerForKey("numLaunches") + 1
         print(numLaunches)
@@ -284,11 +283,10 @@ class ShopsViewController: UIViewController, UITableViewDataSource, UITableViewD
     }
     
     func showRateMe() {
-        print("showrateme")
-        let alert = UIAlertController(title: "Rate Us", message: "I am a one-man developer team, all reviews help. I do my best to implement your suggestions.", preferredStyle: UIAlertControllerStyle.Alert)
+        let alert = UIAlertController(title: "Rate Me", message: "I am a one-man-team developer, all reviews help. I'll do my best to implement your suggestions.", preferredStyle: UIAlertControllerStyle.Alert)
         
         alert.addAction(UIAlertAction(title: "Rate iPay Where", style: UIAlertActionStyle.Default, handler: { alertAction in
-            UIApplication.sharedApplication().openURL(NSURL(string : "itms-apps://ax.itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?type=Purple+Software&id=<iTUNES CONNECT APP ID>")!)
+            UIApplication.sharedApplication().openURL(NSURL(string : "itms-apps://ax.itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?type=Purple+Software&id=<1153347253>")!)
             alert.dismissViewControllerAnimated(true, completion: nil)
         }))
         
