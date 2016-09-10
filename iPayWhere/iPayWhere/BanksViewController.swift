@@ -174,6 +174,9 @@ class BanksViewController: UIViewController, UITableViewDataSource, UITableViewD
             self.activityIndicatorView.stopAnimating()
             self.tableView.separatorStyle = UITableViewCellSeparatorStyle.SingleLine
             self.banksArray.append(bank)
+            self.banksArray.sortInPlace{
+                $0.name.localizedCaseInsensitiveCompare($1.name) == NSComparisonResult.OrderedAscending
+            }
         }
         self.tableView.reloadData()
         refreshControl!.endRefreshing()

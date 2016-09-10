@@ -168,10 +168,13 @@ class GasStationsViewController: UIViewController, UITableViewDataSource, UITabl
         self.gasStationsArray = [GasStation]()
         for data in self.data {
             let gasStationName = data.objectForKey("Name") as! String
-            let food = GasStation(name: gasStationName)
+            let gasStations = GasStation(name: gasStationName)
             self.activityIndicatorView.stopAnimating()
             self.tableView.separatorStyle = UITableViewCellSeparatorStyle.SingleLine
-            self.gasStationsArray.append(food)
+            self.gasStationsArray.append(gasStations)
+            self.gasStationsArray.sortInPlace{
+                $0.name.localizedCaseInsensitiveCompare($1.name) == NSComparisonResult.OrderedAscending
+            }
         }
         self.tableView.reloadData()
         refreshControl!.endRefreshing()

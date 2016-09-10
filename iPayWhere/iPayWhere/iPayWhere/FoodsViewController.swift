@@ -172,6 +172,9 @@ class FoodsViewController: UIViewController, UITableViewDataSource, UITableViewD
             self.activityIndicatorView.stopAnimating()
             self.tableView.separatorStyle = UITableViewCellSeparatorStyle.SingleLine
             self.foodsArray.append(food)
+            self.foodsArray.sortInPlace{
+                $0.name.localizedCaseInsensitiveCompare($1.name) == NSComparisonResult.OrderedAscending
+            }
         }
         self.tableView.reloadData()
         refreshControl!.endRefreshing()

@@ -26,7 +26,7 @@ class FoodViewController: UIViewController {
         selectedFood = foodSelected
         
         self.title = "\(foodSelected) Locations";
-        self.navigationController!.navigationBar.titleTextAttributes = [NSFontAttributeName: UIFont(name: "Arial", size: 12.0)!];
+        self.navigationController!.navigationBar.titleTextAttributes = [NSFontAttributeName: UIFont(name: "HelveticaNeue-CondensedBlack", size: 15.0)!];
         
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest

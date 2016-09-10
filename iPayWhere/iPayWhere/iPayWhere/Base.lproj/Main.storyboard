@@ -135,10 +135,10 @@
                         </userDefinedRuntimeAttributes>
                     </tabBar>
                     <connections>
-                        <segue destination="RhB-Lu-2pE" kind="relationship" relationship="viewControllers" id="yOP-38-6cE"/>
                         <segue destination="vwx-kO-Urf" kind="relationship" relationship="viewControllers" id="ZQ6-S2-sze"/>
                         <segue destination="faG-Lw-AaJ" kind="relationship" relationship="viewControllers" id="bXt-AT-eUW"/>
                         <segue destination="Jpq-Ch-dlJ" kind="relationship" relationship="viewControllers" id="86s-hj-m7u"/>
+                        <segue destination="RhB-Lu-2pE" kind="relationship" relationship="viewControllers" id="yOP-38-6cE"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ysH-Lf-prg" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -218,82 +218,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yLx-Kl-VZB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="241" y="-1890"/>
-        </scene>
-        <!--Food-->
-        <scene sceneID="e36-AQ-Cgv">
-            <objects>
-                <tableViewController id="JDc-85-gmh" customClass="FoodsViewController" customModule="iPayWhere" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="32" sectionHeaderHeight="28" sectionFooterHeight="28" id="WSv-v4-Gdz">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="FoodCell" rowHeight="32" id="2oD-J6-1M9" customClass="FoodCell" customModule="iPayWhere" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="92" width="600" height="32"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="2oD-J6-1M9" id="ocx-jv-CLe">
-                                    <rect key="frame" x="0.0" y="0.0" width="567" height="31.5"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Name" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="100" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cl9-7C-M3E">
-                                            <rect key="frame" x="53" y="5" width="269" height="21"/>
-                                            <fontDescription key="fontDescription" type="system" weight="ultraLight" pointSize="14"/>
-                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                    </subviews>
-                                    <constraints>
-                                        <constraint firstItem="Cl9-7C-M3E" firstAttribute="leading" secondItem="ocx-jv-CLe" secondAttribute="leadingMargin" constant="45" id="8K1-Li-Bnf"/>
-                                        <constraint firstAttribute="trailingMargin" secondItem="Cl9-7C-M3E" secondAttribute="trailing" constant="12" id="ONi-By-Y8I"/>
-                                        <constraint firstItem="Cl9-7C-M3E" firstAttribute="centerY" secondItem="ocx-jv-CLe" secondAttribute="centerY" id="gUF-Ee-ZOC"/>
-                                        <constraint firstItem="Cl9-7C-M3E" firstAttribute="top" secondItem="ocx-jv-CLe" secondAttribute="topMargin" constant="-2" id="m0p-td-45K"/>
-                                    </constraints>
-                                </tableViewCellContentView>
-                                <connections>
-                                    <outlet property="nameLabel" destination="Cl9-7C-M3E" id="9Bc-3X-dhD"/>
-                                </connections>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="JDc-85-gmh" id="ZTW-tF-mFc"/>
-                            <outlet property="delegate" destination="JDc-85-gmh" id="2LX-JL-pOa"/>
-                        </connections>
-                    </tableView>
-                    <navigationItem key="navigationItem" title="Food" id="eF0-2Y-oxX">
-                        <barButtonItem key="rightBarButtonItem" image="Map" id="liq-67-OKk">
-                            <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                            <connections>
-                                <action selector="allFoodsMapButton:" destination="JDc-85-gmh" id="fqV-ac-sQP"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="BNc-yt-ITt" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-548" y="2522"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="tpj-VM-Nnr">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="sI9-ru-39r" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="" image="Food" id="GHa-ps-dgk">
-                        <inset key="imageInsets" minX="0.0" minY="5" maxX="0.0" maxY="-5"/>
-                        <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="100"/>
-                    </tabBarItem>
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="4Cg-uH-apF">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <color key="barTintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="JDc-85-gmh" kind="relationship" relationship="rootViewController" id="lOm-7O-agI"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="M9p-bL-BS5" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-1153" y="2522"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="WXg-v6-j7g">
@@ -375,7 +299,7 @@
             </objects>
             <point key="canvasLocation" x="1932.5" y="374.5"/>
         </scene>
-        <!--Banks-->
+        <!--BANKS-->
         <scene sceneID="agd-b9-bUS">
             <objects>
                 <viewController id="H23-fE-i2Y" customClass="BanksViewController" customModule="iPayWhere" customModuleProvider="target" sceneMemberID="viewController">
@@ -396,7 +320,7 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="BankCell" rowHeight="32" id="aXs-2F-wbs" customClass="BankCell" customModule="iPayWhere" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="92" width="375" height="32"/>
+                                        <rect key="frame" x="0.0" y="28" width="375" height="32"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="aXs-2F-wbs" id="YnA-57-xqJ">
                                             <rect key="frame" x="0.0" y="0.0" width="342" height="31.5"/>
@@ -430,9 +354,9 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" title="Banks" id="FSk-Aa-Rxq">
+                    <navigationItem key="navigationItem" title="BANKS" id="FSk-Aa-Rxq">
                         <barButtonItem key="rightBarButtonItem" image="Map" id="bKR-tK-8jU">
-                            <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="tintColor" red="0.93725490199999995" green="0.0" blue="0.1647058824" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <action selector="allBanksMapButton:" destination="H23-fE-i2Y" id="NmZ-ry-uXZ"/>
                             </connections>
@@ -658,82 +582,6 @@
             </objects>
             <point key="canvasLocation" x="1444.5" y="2646.5"/>
         </scene>
-        <!--Gas Stations-->
-        <scene sceneID="v9u-zH-UA3">
-            <objects>
-                <tableViewController id="fm9-XU-2lK" customClass="GasStationsViewController" customModule="iPayWhere" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="32" sectionHeaderHeight="28" sectionFooterHeight="28" id="Vna-vJ-7vk">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="GasStationCell" rowHeight="32" id="4Yr-Yx-9dj" customClass="GasStationCell" customModule="iPayWhere" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="92" width="600" height="32"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="4Yr-Yx-9dj" id="H5e-jx-s5s">
-                                    <rect key="frame" x="0.0" y="0.0" width="567" height="31.5"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Name" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="100" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VI9-u9-rR6">
-                                            <rect key="frame" x="52" y="5" width="269" height="21"/>
-                                            <fontDescription key="fontDescription" type="system" weight="ultraLight" pointSize="14"/>
-                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                    </subviews>
-                                    <constraints>
-                                        <constraint firstItem="VI9-u9-rR6" firstAttribute="top" secondItem="H5e-jx-s5s" secondAttribute="topMargin" constant="-2" id="YCs-R4-fBg"/>
-                                        <constraint firstItem="VI9-u9-rR6" firstAttribute="leading" secondItem="H5e-jx-s5s" secondAttribute="leadingMargin" constant="45" id="ZfI-wy-lxb"/>
-                                        <constraint firstAttribute="trailingMargin" secondItem="VI9-u9-rR6" secondAttribute="trailing" constant="12" id="ecW-pF-cDG"/>
-                                        <constraint firstItem="VI9-u9-rR6" firstAttribute="centerY" secondItem="H5e-jx-s5s" secondAttribute="centerY" id="ik4-iU-hMQ"/>
-                                    </constraints>
-                                </tableViewCellContentView>
-                                <connections>
-                                    <outlet property="nameLabel" destination="VI9-u9-rR6" id="vwz-0v-np7"/>
-                                </connections>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="fm9-XU-2lK" id="nRq-gX-Ac6"/>
-                            <outlet property="delegate" destination="fm9-XU-2lK" id="FJr-GM-F65"/>
-                        </connections>
-                    </tableView>
-                    <navigationItem key="navigationItem" title="Gas Stations" id="UlT-cM-6ha">
-                        <barButtonItem key="rightBarButtonItem" image="Map" id="or8-jS-sB1">
-                            <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                            <connections>
-                                <action selector="allGasStationssMapButton:" destination="fm9-XU-2lK" id="of6-C9-5b5"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="QCb-cf-NTq" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="666" y="4197"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="qFG-dp-6Pr">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="toE-9O-QDc" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="" image="Gas" id="kla-dE-nzQ">
-                        <inset key="imageInsets" minX="0.0" minY="5" maxX="0.0" maxY="-5"/>
-                        <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="100"/>
-                    </tabBarItem>
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="8bw-w3-khL">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <color key="barTintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="fm9-XU-2lK" kind="relationship" relationship="rootViewController" id="aoY-E3-vJQ"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="8jM-fb-CG1" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="345.5" y="4197.5"/>
-        </scene>
         <!--All Gas Stations-->
         <scene sceneID="ea7-Jx-j7r">
             <objects>
@@ -882,7 +730,7 @@
             </objects>
             <point key="canvasLocation" x="345.5" y="-405.5"/>
         </scene>
-        <!--Shops-->
+        <!--SHOPS-->
         <scene sceneID="yjU-PF-NRO">
             <objects>
                 <viewController id="vkw-zz-uXC" customClass="ShopsViewController" customModule="iPayWhere" customModuleProvider="target" sceneMemberID="viewController">
@@ -903,7 +751,7 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="ShopCell" rowHeight="32" id="meU-UP-Up9" customClass="ShopCell" customModule="iPayWhere" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="92" width="375" height="32"/>
+                                        <rect key="frame" x="0.0" y="28" width="375" height="32"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="meU-UP-Up9" id="Wn6-EC-TgU">
                                             <rect key="frame" x="0.0" y="0.0" width="342" height="31.5"/>
@@ -937,9 +785,9 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" title="Shops" id="oGX-5w-qe1">
+                    <navigationItem key="navigationItem" title="SHOPS" id="oGX-5w-qe1">
                         <barButtonItem key="rightBarButtonItem" image="Map" id="VKx-4E-VUX">
-                            <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="tintColor" red="0.93725490199999995" green="0.0" blue="0.1647058824" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <action selector="allShopsMapButton:" destination="vkw-zz-uXC" id="f04-C3-j43"/>
                             </connections>
@@ -979,7 +827,7 @@
             </objects>
             <point key="canvasLocation" x="345.5" y="1135.5"/>
         </scene>
-        <!--Food -->
+        <!--FOOD -->
         <scene sceneID="3km-2w-lK9">
             <objects>
                 <viewController id="ltx-NB-itM" customClass="FoodsViewController" customModule="iPayWhere" customModuleProvider="target" sceneMemberID="viewController">
@@ -1000,7 +848,7 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="FoodCell" rowHeight="32" id="nqd-qt-Wdd" customClass="FoodCell" customModule="iPayWhere" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="92" width="375" height="32"/>
+                                        <rect key="frame" x="0.0" y="28" width="375" height="32"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="nqd-qt-Wdd" id="24O-ey-pjb">
                                             <rect key="frame" x="0.0" y="0.0" width="342" height="31.5"/>
@@ -1034,9 +882,9 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" title="Food " id="rGx-ye-tY0">
+                    <navigationItem key="navigationItem" title="FOOD " id="rGx-ye-tY0">
                         <barButtonItem key="rightBarButtonItem" image="Map" id="knK-VS-BSB">
-                            <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="tintColor" red="0.93725490199999995" green="0.0" blue="0.1647058824" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <action selector="allFoodsMapButton:" destination="ltx-NB-itM" id="Cb0-si-ZsD"/>
                             </connections>
@@ -1066,6 +914,10 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="SMX-rk-sDM">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <textAttributes key="titleTextAttributes">
+                            <fontDescription key="fontDescription" type="system" pointSize="0.0"/>
+                            <offsetWrapper key="textShadowOffset" horizontal="0.0" vertical="0.0"/>
+                        </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -1076,7 +928,7 @@
             </objects>
             <point key="canvasLocation" x="345.5" y="2646.5"/>
         </scene>
-        <!--Gas Stations -->
+        <!--GAS STATIONS-->
         <scene sceneID="pZN-VO-tZJ">
             <objects>
                 <viewController id="lzb-Sf-ZG8" customClass="GasStationsViewController" customModule="iPayWhere" customModuleProvider="target" sceneMemberID="viewController">
@@ -1097,7 +949,7 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="GasStationCell" rowHeight="32" id="dJY-Lr-oCr" customClass="GasStationCell" customModule="iPayWhere" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="92" width="375" height="32"/>
+                                        <rect key="frame" x="0.0" y="28" width="375" height="32"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="dJY-Lr-oCr" id="G2k-Tn-4gE">
                                             <rect key="frame" x="0.0" y="0.0" width="342" height="31.5"/>
@@ -1131,9 +983,9 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" title="Gas Stations " id="l4p-io-TH1">
+                    <navigationItem key="navigationItem" title="GAS STATIONS" id="l4p-io-TH1">
                         <barButtonItem key="rightBarButtonItem" image="Map" id="i8L-GH-vwj">
-                            <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="tintColor" red="0.93725490199999995" green="0.0" blue="0.1647058824" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <action selector="allGasStationssMapButton:" destination="lzb-Sf-ZG8" id="lGJ-At-YN3"/>
                             </connections>
@@ -1149,7 +1001,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BXG-BQ-OvB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="950.5" y="3429.5"/>
+            <point key="canvasLocation" x="950.5" y="4197.5"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="SgP-zg-FrI">
@@ -1171,7 +1023,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="844-kW-NCk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="213" y="3374"/>
+            <point key="canvasLocation" x="345.5" y="4197.5"/>
         </scene>
     </scenes>
     <resources>

@@ -14,14 +14,31 @@
                         <viewControllerLayoutGuide type="bottom" id="xb3-aO-Qok"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="AppIconFinal" translatesAutoresizingMaskIntoConstraints="NO" id="CEV-MG-1vF">
+                                <rect key="frame" x="159" y="301" width="57" height="66"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="57" id="Qff-Sx-QQz"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="CEV-MG-1vF" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="Bxg-zW-J45"/>
+                            <constraint firstItem="CEV-MG-1vF" firstAttribute="top" secondItem="Llm-lL-Icb" secondAttribute="bottom" constant="281" id="TsA-lG-fGu"/>
+                            <constraint firstItem="CEV-MG-1vF" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="ttm-z0-fIe"/>
+                        </constraints>
                     </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="53" y="375"/>
+            <point key="canvasLocation" x="52.5" y="374.5"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="AppIconFinal" width="4323" height="4323"/>
+    </resources>
 </document>

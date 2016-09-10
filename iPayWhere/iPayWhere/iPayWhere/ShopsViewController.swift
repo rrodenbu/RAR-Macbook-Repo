@@ -180,6 +180,9 @@ class ShopsViewController: UIViewController, UITableViewDataSource, UITableViewD
             self.activityIndicatorView.stopAnimating()
             self.tableView.separatorStyle = UITableViewCellSeparatorStyle.SingleLine
             self.shopsArray.append(shop)
+            self.shopsArray.sortInPlace{
+                $0.name.localizedCaseInsensitiveCompare($1.name) == NSComparisonResult.OrderedAscending
+            }
         }
         self.tableView.reloadData()
         refreshControl!.endRefreshing()

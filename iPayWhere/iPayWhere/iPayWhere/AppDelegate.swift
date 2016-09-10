@@ -18,10 +18,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
         UINavigationBar.appearance().titleTextAttributes = [
-            NSFontAttributeName: UIFont(name: "HelveticaNeue-Medium", size: 17)!
+            NSFontAttributeName: UIFont(name: "HelveticaNeue-CondensedBlack", size: 15)!
+            
         ]
         
-        UISearchBar.appearance().barTintColor = UIColor.lightGrayColor()
+        UISearchBar.appearance().barTintColor = UIColor.lightLightGray()
         
         UISearchBar.appearance().tintColor = UIColor.grayColor()
         //UISearchBar.appearance().backgroundColor = UIColor.corelRed()
@@ -58,5 +59,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 extension UIColor {
     static func corelRed() -> UIColor {
         return UIColor(red: 253.0/255.0, green: 37.0/255.0, blue: 50.0/255.0, alpha: 1.0)
+    }
+    static func lightLightGray() -> UIColor {
+        return UIColor(red: 244.0/255.0, green: 244.0/255.0, blue: 244.0/255.0, alpha: 1.0)
+    }
+    static func neonYellow() -> UIColor {
+        return UIColor(red: 229.0/255.0, green: 255.0/255.0, blue: 0.0/255.0, alpha: 1.0)
     }
 }
