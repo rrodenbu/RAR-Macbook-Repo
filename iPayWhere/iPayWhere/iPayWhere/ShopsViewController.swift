@@ -9,6 +9,7 @@
 import UIKit
 import CloudKit
 import GoogleMobileAds
+import Social
 
 class ShopsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchDisplayDelegate, UISearchBarDelegate {
     
@@ -33,9 +34,14 @@ class ShopsViewController: UIViewController, UITableViewDataSource, UITableViewD
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //showRateMe() //DELETE!!!!
+        //showTweetMe()
+        
         // Rate my app
-        print("rateme call")
         rateMe()
+        
+        // Social Media Call Out
+        tweetMe()
         
         //Logo
         //let image = UIImage(named: "Icon-App-29x29")
@@ -49,7 +55,7 @@ class ShopsViewController: UIViewController, UITableViewDataSource, UITableViewD
         activityIndicatorView.startAnimating()
         
         //Loading advertisement
-        self.bannerView.adUnitID = "ca-app-pub-3940256099942544/2934735716"
+        self.bannerView.adUnitID = "ca-app-pub-6433292677244522/6849368295"
         self.bannerView.rootViewController = self
         var request: GADRequest = GADRequest()
         self.bannerView.loadRequest(request)
@@ -150,6 +156,8 @@ class ShopsViewController: UIViewController, UITableViewDataSource, UITableViewD
             dispatch_async(dispatch_get_main_queue()) {
                 if error != nil
                 {
+                    print("retrieving data error")
+                    print(error)
                     // handle error
                 }
                 else
@@ -159,11 +167,13 @@ class ShopsViewController: UIViewController, UITableViewDataSource, UITableViewD
                     
                     if queryObjects!.count == 0
                     {
+                        print("not objects to query")
                         // do nothing
                     }
                     else
                     {
                         // attach found objects to your object array
+                        print("found objects")
                         self.data = queryObjects!
                         self.retrieveData()
                     }
@@ -173,6 +183,7 @@ class ShopsViewController: UIViewController, UITableViewDataSource, UITableViewD
     }
     
     func retrieveData() {
+        print("retrieve date")
         self.shopsArray = [Shop]()
         for data in self.data {
             let shopName = data.objectForKey("Name") as! String
@@ -262,17 +273,19 @@ class ShopsViewController: UIViewController, UITableViewDataSource, UITableViewD
         }
     }
     
+
+    
+    
     /*
      Functions for rating the app alert
      */
     
-    var iMinSessions = 3
-    var iTryAgainSessions = 6
+    var iMinSessions = 1
+    var iTryAgainSessions = 3
     
     func rateMe() {
         let neverRate = NSUserDefaults.standardUserDefaults().boolForKey("neverRate")
         var numLaunches = NSUserDefaults.standardUserDefaults().integerForKey("numLaunches") + 1
-        print(numLaunches)
         
         if (!neverRate && (numLaunches == iMinSessions || numLaunches >= (iMinSessions + iTryAgainSessions + 1)))
         {
@@ -283,17 +296,27 @@ class ShopsViewController: UIViewController, UITableViewDataSource, UITableViewD
     }
     
     func showRateMe() {
-        let alert = UIAlertController(title: "Rate Me", message: "I am a one-man-team developer, all reviews help. I'll do my best to implement your suggestions.", preferredStyle: UIAlertControllerStyle.Alert)
+        let alert = UIAlertController(title: "Rate Me.", message: "I am a one-man-team, all reviews help. I'll do my best to respond to your suggestions.", preferredStyle: UIAlertControllerStyle.Alert)
         
-        alert.addAction(UIAlertAction(title: "Rate iPay Where", style: UIAlertActionStyle.Default, handler: { alertAction in
-            UIApplication.sharedApplication().openURL(NSURL(string : "itms-apps://ax.itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?type=Purple+Software&id=<1153347253>")!)
-            alert.dismissViewControllerAnimated(true, completion: nil)
-        }))
-        
-        alert.addAction(UIAlertAction(title: "No Thanks", style: UIAlertActionStyle.Default, handler: { alertAction in
+        alert.addAction(UIAlertAction(title: "Make Suggestions", style: UIAlertActionStyle.Default, handler: { alertAction in
             NSUserDefaults.standardUserDefaults().setBool(true, forKey: "neverRate")
+            //UIApplication.sharedApplication().openURL(NSURL(string : "itms-apps://itunes.apple.com/app/id959379869")!)
+            //UIApplication.sharedApplication().openURL(NSURL(string : "itms-apps://ax.itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?type=Purple+Software&id=<\(appID)>")!)
+            let appID = "959379869" // Your AppID
+            if let checkURL = NSURL(string: "itms-apps://ax.itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?type=Purple+Software&id=<\(appID)") {
+                if UIApplication.sharedApplication().openURL(checkURL) {
+                    print("url successfully opened")
+                }
+            } else {
+                print("invalid url")
+            }
             alert.dismissViewControllerAnimated(true, completion: nil)
         }))
+        
+        //alert.addAction(UIAlertAction(title: "No Thanks", style: UIAlertActionStyle.Default, handler: { alertAction in
+        //    NSUserDefaults.standardUserDefaults().setBool(true, forKey: "neverRate")
+        //    alert.dismissViewControllerAnimated(true, completion: nil)
+        //}))
         
         alert.addAction(UIAlertAction(title: "Maybe Later", style: UIAlertActionStyle.Default, handler: { alertAction in
             alert.dismissViewControllerAnimated(true, completion: nil)
@@ -302,6 +325,80 @@ class ShopsViewController: UIViewController, UITableViewDataSource, UITableViewD
         self.presentViewController(alert, animated: true, completion: nil)
     }
     
+    
+    /*
+     Functions for rating the app alert
+     */
+    
+    var minSessions = 4
+    var tryAgainSessions = 3
+    
+    func tweetMe() {
+        let neverRate = NSUserDefaults.standardUserDefaults().boolForKey("neverTweet")
+        var numLaunches = NSUserDefaults.standardUserDefaults().integerForKey("numLaunches") + 1
+        
+        if (!neverRate && (numLaunches == minSessions || numLaunches >= (minSessions + tryAgainSessions + 1)))
+        {
+            showTweetMe()
+            numLaunches = minSessions + 1
+        }
+        NSUserDefaults.standardUserDefaults().setInteger(numLaunches, forKey: "numLaunches")
+    }
+    
+    func showTweetMe() {
+        
+        let optionMenu = UIAlertController(title: "#iPayWhere?", message: "Help your friends start using Apple Pay.", preferredStyle: .ActionSheet)
+        
+        let tweetAction = UIAlertAction(title: "Tweet.", style: .Default, handler: {
+            (alert: UIAlertAction!) -> Void in
+            
+            if SLComposeViewController.isAvailableForServiceType(SLServiceTypeTwitter) {
+
+                let tweetSheet = SLComposeViewController(forServiceType: SLServiceTypeTwitter)
+
+                tweetSheet.setInitialText("Find places that accept Apple Pay @iPayWhere! 🤑 #ApplePay #iPayWhere")
+                
+                self.presentViewController(tweetSheet, animated: true, completion: nil)
+            } else {
+                let alert = UIAlertView()
+                alert.message = "Login to Twitter account in Settings."
+                alert.addButtonWithTitle("OK")
+                alert.show()
+            }
+            
+
+        })
+        let facebookAction = UIAlertAction(title: "Facebook.", style: .Default, handler: {
+            (alert: UIAlertAction!) -> Void in
+
+            if SLComposeViewController.isAvailableForServiceType(SLServiceTypeFacebook) {
+                
+                let facebookComposer = SLComposeViewController(forServiceType: SLServiceTypeFacebook)
+                
+                facebookComposer.setInitialText("Find places that accept Apple Pay with @iPayWere! 🤑 #ApplePay #iPayWhere")
+                
+                self.presentViewController(facebookComposer, animated: true, completion: nil)
+            }else {
+                let alert = UIAlertView()
+                alert.message = "Login to Facebook account in Settings."
+                alert.addButtonWithTitle("OK")
+                alert.show()
+            }
+            
+        })
+        
+        let cancelAction = UIAlertAction(title: "My Friends are ok w/o it.", style: .Cancel, handler: {
+            (alert: UIAlertAction!) -> Void in
+            print("Cancelled")
+        })
+        
+        optionMenu.addAction(tweetAction)
+        optionMenu.addAction(facebookAction)
+        optionMenu.addAction(cancelAction)
+        
+        self.presentViewController(optionMenu, animated: true, completion: nil)
+    }
+
 }
 
 extension ShopsViewController: UISearchResultsUpdating {

@@ -16,7 +16,7 @@
 		302E2F271D791914009CACD5 /* BankCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302E2F261D791914009CACD5 /* BankCell.swift */; };
 		302E2F291D7998FD009CACD5 /* BankViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302E2F281D7998FD009CACD5 /* BankViewController.swift */; };
 		302E2F2D1D79AFD0009CACD5 /* LocationSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302E2F2C1D79AFD0009CACD5 /* LocationSearch.swift */; };
-		302E2F301D7A0C5B009CACD5 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 302E2F2F1D7A0C5B009CACD5 /* CloudKit.framework */; };
+		30352B291D84C23600D18C1B /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30352B281D84C23600D18C1B /* Social.framework */; };
 		303B46EB1D7CDF1D005B0338 /* GlobalFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 303B46EA1D7CDF1D005B0338 /* GlobalFunctions.swift */; };
 		303B46EE1D7CEA21005B0338 /* ShopCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 303B46ED1D7CEA21005B0338 /* ShopCell.swift */; };
 		303B46F01D7CEA59005B0338 /* Shop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 303B46EF1D7CEA59005B0338 /* Shop.swift */; };
@@ -35,6 +35,7 @@
 		303B470C1D7E6795005B0338 /* AllGasStationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 303B470B1D7E6795005B0338 /* AllGasStationsViewController.swift */; };
 		303B470E1D7F5829005B0338 /* CustomSearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 303B470D1D7F5828005B0338 /* CustomSearchBar.swift */; };
 		303B47101D7F5999005B0338 /* CustomSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 303B470F1D7F5999005B0338 /* CustomSearchController.swift */; };
+		307352791D885AD7006FC27A /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 307352781D885AD7006FC27A /* CloudKit.framework */; };
 		30BC85551D7CA8F20025EE44 /* AllBanksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BC85541D7CA8F20025EE44 /* AllBanksViewController.swift */; };
 		30D8EF941D836AB700C22836 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30D8EF931D836AB700C22836 /* AdSupport.framework */; };
 		30D8EF961D836ABD00C22836 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30D8EF951D836ABD00C22836 /* AudioToolbox.framework */; };
@@ -44,7 +45,6 @@
 		30D8EF9E1D836ADE00C22836 /* EventKitUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30D8EF9D1D836ADE00C22836 /* EventKitUI.framework */; };
 		30D8EFA01D836AE300C22836 /* EventKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30D8EF9F1D836AE300C22836 /* EventKit.framework */; };
 		30D8EFA21D836AE900C22836 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30D8EFA11D836AE900C22836 /* MessageUI.framework */; };
-		30D8EFA41D836AF400C22836 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30D8EFA31D836AF400C22836 /* StoreKit.framework */; };
 		30D8EFA61D836AFA00C22836 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30D8EFA51D836AFA00C22836 /* SystemConfiguration.framework */; };
 		30D8EFAB1D8386D300C22836 /* GoogleMobileAds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30D8EFAA1D8386D300C22836 /* GoogleMobileAds.framework */; };
 /* End PBXBuildFile section */
@@ -62,7 +62,7 @@
 		302E2F281D7998FD009CACD5 /* BankViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BankViewController.swift; sourceTree = "<group>"; };
 		302E2F2C1D79AFD0009CACD5 /* LocationSearch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationSearch.swift; sourceTree = "<group>"; };
 		302E2F2E1D7A0C2C009CACD5 /* iPayWhere.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = iPayWhere.entitlements; sourceTree = "<group>"; };
-		302E2F2F1D7A0C5B009CACD5 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
+		30352B281D84C23600D18C1B /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		303B46EA1D7CDF1D005B0338 /* GlobalFunctions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlobalFunctions.swift; sourceTree = "<group>"; };
 		303B46ED1D7CEA21005B0338 /* ShopCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShopCell.swift; sourceTree = "<group>"; };
 		303B46EF1D7CEA59005B0338 /* Shop.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Shop.swift; sourceTree = "<group>"; };
@@ -81,6 +81,7 @@
 		303B470B1D7E6795005B0338 /* AllGasStationsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllGasStationsViewController.swift; sourceTree = "<group>"; };
 		303B470D1D7F5828005B0338 /* CustomSearchBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomSearchBar.swift; sourceTree = "<group>"; };
 		303B470F1D7F5999005B0338 /* CustomSearchController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomSearchController.swift; sourceTree = "<group>"; };
+		307352781D885AD7006FC27A /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		30BC85541D7CA8F20025EE44 /* AllBanksViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllBanksViewController.swift; sourceTree = "<group>"; };
 		30D8EF911D836A9F00C22836 /* GoogleMobileAds.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleMobileAds.framework; path = "../../../../../Users/RAR/Downloads/GoogleMobileAdsSdkiOS-7.10-2.1/GoogleMobileAds.framework"; sourceTree = "<group>"; };
 		30D8EF931D836AB700C22836 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
@@ -91,7 +92,6 @@
 		30D8EF9D1D836ADE00C22836 /* EventKitUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKitUI.framework; path = System/Library/Frameworks/EventKitUI.framework; sourceTree = SDKROOT; };
 		30D8EF9F1D836AE300C22836 /* EventKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKit.framework; path = System/Library/Frameworks/EventKit.framework; sourceTree = SDKROOT; };
 		30D8EFA11D836AE900C22836 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
-		30D8EFA31D836AF400C22836 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		30D8EFA51D836AFA00C22836 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		30D8EFAA1D8386D300C22836 /* GoogleMobileAds.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMobileAds.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -101,8 +101,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				30352B291D84C23600D18C1B /* Social.framework in Frameworks */,
 				30D8EFA61D836AFA00C22836 /* SystemConfiguration.framework in Frameworks */,
-				30D8EFA41D836AF400C22836 /* StoreKit.framework in Frameworks */,
 				30D8EFA21D836AE900C22836 /* MessageUI.framework in Frameworks */,
 				30D8EFA01D836AE300C22836 /* EventKit.framework in Frameworks */,
 				30D8EF9E1D836ADE00C22836 /* EventKitUI.framework in Frameworks */,
@@ -110,9 +110,9 @@
 				30D8EFAB1D8386D300C22836 /* GoogleMobileAds.framework in Frameworks */,
 				30D8EF9A1D836ACA00C22836 /* CoreGraphics.framework in Frameworks */,
 				30D8EF981D836AC300C22836 /* AVFoundation.framework in Frameworks */,
+				307352791D885AD7006FC27A /* CloudKit.framework in Frameworks */,
 				30D8EF961D836ABD00C22836 /* AudioToolbox.framework in Frameworks */,
 				30D8EF941D836AB700C22836 /* AdSupport.framework in Frameworks */,
-				302E2F301D7A0C5B009CACD5 /* CloudKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -122,9 +122,10 @@
 		302E2EFE1D78A799009CACD5 = {
 			isa = PBXGroup;
 			children = (
+				307352781D885AD7006FC27A /* CloudKit.framework */,
+				30352B281D84C23600D18C1B /* Social.framework */,
 				30D8EFAA1D8386D300C22836 /* GoogleMobileAds.framework */,
 				30D8EFA51D836AFA00C22836 /* SystemConfiguration.framework */,
-				30D8EFA31D836AF400C22836 /* StoreKit.framework */,
 				30D8EFA11D836AE900C22836 /* MessageUI.framework */,
 				30D8EF9F1D836AE300C22836 /* EventKit.framework */,
 				30D8EF9D1D836ADE00C22836 /* EventKitUI.framework */,
@@ -134,7 +135,6 @@
 				30D8EF951D836ABD00C22836 /* AudioToolbox.framework */,
 				30D8EF931D836AB700C22836 /* AdSupport.framework */,
 				30D8EF911D836A9F00C22836 /* GoogleMobileAds.framework */,
-				302E2F2F1D7A0C5B009CACD5 /* CloudKit.framework */,
 				302E2F091D78A79A009CACD5 /* iPayWhere */,
 				302E2F081D78A799009CACD5 /* Products */,
 			);
@@ -251,6 +251,12 @@
 						CreatedOnToolsVersion = 7.3.1;
 						DevelopmentTeam = QYDDDH8RL4;
 						SystemCapabilities = {
+							com.apple.InAppPurchase = {
+								enabled = 0;
+							};
+							com.apple.Maps.iOS = {
+								enabled = 0;
+							};
 							com.apple.iCloud = {
 								enabled = 1;
 							};
@@ -432,13 +438,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = iPayWhere/iPayWhere.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = iPayWhere/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.buddhabuddha.applepayfinder;
+				PRODUCT_BUNDLE_IDENTIFIER = com.buddhabuddha.iPayWhere;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -448,13 +455,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = iPayWhere/iPayWhere.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = iPayWhere/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.buddhabuddha.applepayfinder;
+				PRODUCT_BUNDLE_IDENTIFIER = com.buddhabuddha.iPayWhere;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
