@@ -41,7 +41,7 @@ class GasStationsViewController: UIViewController, UITableViewDataSource, UITabl
         activityIndicatorView.startAnimating()
         
         //Loading advertisement
-        self.bannerView.adUnitID = "ca-app-pub-6433292677244522/6849368295"
+        self.bannerView.adUnitID = "a-app-pub-6433292677244522/6849368295"
         self.bannerView.rootViewController = self
         var request: GADRequest = GADRequest()
         self.bannerView.loadRequest(request)
@@ -54,6 +54,7 @@ class GasStationsViewController: UIViewController, UITableViewDataSource, UITabl
         // Initialize the pull to refresh control.
         refreshControl = UIRefreshControl()
         refreshControl?.backgroundColor = UIColor.whiteColor()
+        refreshControl?.tintColor = UIColor.neonYellow()
         refreshControl!.addTarget(self, action: #selector(BanksViewController.refresh(_:)), forControlEvents: UIControlEvents.ValueChanged)
         tableView.addSubview(refreshControl)
         

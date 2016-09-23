@@ -16,6 +16,7 @@
 		302E2F271D791914009CACD5 /* BankCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302E2F261D791914009CACD5 /* BankCell.swift */; };
 		302E2F291D7998FD009CACD5 /* BankViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302E2F281D7998FD009CACD5 /* BankViewController.swift */; };
 		302E2F2D1D79AFD0009CACD5 /* LocationSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302E2F2C1D79AFD0009CACD5 /* LocationSearch.swift */; };
+		302EDF661D8EC28A005D6DAF /* Icon-App-76x76@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 302EDF651D8EC28A005D6DAF /* Icon-App-76x76@3x.png */; };
 		30352B291D84C23600D18C1B /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30352B281D84C23600D18C1B /* Social.framework */; };
 		303B46EB1D7CDF1D005B0338 /* GlobalFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 303B46EA1D7CDF1D005B0338 /* GlobalFunctions.swift */; };
 		303B46EE1D7CEA21005B0338 /* ShopCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 303B46ED1D7CEA21005B0338 /* ShopCell.swift */; };
@@ -62,6 +63,7 @@
 		302E2F281D7998FD009CACD5 /* BankViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BankViewController.swift; sourceTree = "<group>"; };
 		302E2F2C1D79AFD0009CACD5 /* LocationSearch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationSearch.swift; sourceTree = "<group>"; };
 		302E2F2E1D7A0C2C009CACD5 /* iPayWhere.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = iPayWhere.entitlements; sourceTree = "<group>"; };
+		302EDF651D8EC28A005D6DAF /* Icon-App-76x76@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-App-76x76@3x.png"; sourceTree = "<group>"; };
 		30352B281D84C23600D18C1B /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		303B46EA1D7CDF1D005B0338 /* GlobalFunctions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlobalFunctions.swift; sourceTree = "<group>"; };
 		303B46ED1D7CEA21005B0338 /* ShopCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShopCell.swift; sourceTree = "<group>"; };
@@ -158,6 +160,7 @@
 				302E2F2E1D7A0C2C009CACD5 /* iPayWhere.entitlements */,
 				302E2F0A1D78A79A009CACD5 /* AppDelegate.swift */,
 				302E2F0E1D78A79A009CACD5 /* Main.storyboard */,
+				302EDF651D8EC28A005D6DAF /* Icon-App-76x76@3x.png */,
 				302E2F111D78A79A009CACD5 /* Assets.xcassets */,
 				302E2F131D78A79A009CACD5 /* LaunchScreen.storyboard */,
 				302E2F161D78A79B009CACD5 /* Info.plist */,
@@ -289,6 +292,7 @@
 			files = (
 				302E2F151D78A79A009CACD5 /* LaunchScreen.storyboard in Resources */,
 				302E2F121D78A79A009CACD5 /* Assets.xcassets in Resources */,
+				302EDF661D8EC28A005D6DAF /* Icon-App-76x76@3x.png in Resources */,
 				302E2F101D78A79A009CACD5 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

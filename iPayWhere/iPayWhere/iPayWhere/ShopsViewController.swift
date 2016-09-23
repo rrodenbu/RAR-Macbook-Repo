@@ -34,9 +34,6 @@ class ShopsViewController: UIViewController, UITableViewDataSource, UITableViewD
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //showRateMe() //DELETE!!!!
-        //showTweetMe()
-        
         // Rate my app
         rateMe()
         
@@ -55,7 +52,7 @@ class ShopsViewController: UIViewController, UITableViewDataSource, UITableViewD
         activityIndicatorView.startAnimating()
         
         //Loading advertisement
-        self.bannerView.adUnitID = "ca-app-pub-6433292677244522/6849368295"
+        self.bannerView.adUnitID = "a-app-pub-6433292677244522/6849368295"
         self.bannerView.rootViewController = self
         var request: GADRequest = GADRequest()
         self.bannerView.loadRequest(request)
@@ -68,6 +65,7 @@ class ShopsViewController: UIViewController, UITableViewDataSource, UITableViewD
         // Initialize the pull to refresh control.
         refreshControl = UIRefreshControl()
         refreshControl?.backgroundColor = UIColor.whiteColor()
+        refreshControl?.tintColor = UIColor.neonYellow()
         refreshControl!.addTarget(self, action: #selector(BanksViewController.refresh(_:)), forControlEvents: UIControlEvents.ValueChanged)
         tableView.addSubview(refreshControl)
         
@@ -286,11 +284,15 @@ class ShopsViewController: UIViewController, UITableViewDataSource, UITableViewD
     func rateMe() {
         let neverRate = NSUserDefaults.standardUserDefaults().boolForKey("neverRate")
         var numLaunches = NSUserDefaults.standardUserDefaults().integerForKey("numLaunches") + 1
+        print("NUMBER OF LAUNCHES:")
+        print(numLaunches)
         
-        if (!neverRate && (numLaunches == iMinSessions || numLaunches >= (iMinSessions + iTryAgainSessions + 1)))
+        if (!neverRate && (numLaunches == 3 || numLaunches == 5 || numLaunches == 9))
         {
             showRateMe()
-            numLaunches = iMinSessions + 1
+        }
+        else if (numLaunches > 9) {
+            NSUserDefaults.standardUserDefaults().setBool(true, forKey: "neverRate")
         }
         NSUserDefaults.standardUserDefaults().setInteger(numLaunches, forKey: "numLaunches")
     }
@@ -298,7 +300,7 @@ class ShopsViewController: UIViewController, UITableViewDataSource, UITableViewD
     func showRateMe() {
         let alert = UIAlertController(title: "Rate Me.", message: "I am a one-man-team, all reviews help. I'll do my best to respond to your suggestions.", preferredStyle: UIAlertControllerStyle.Alert)
         
-        alert.addAction(UIAlertAction(title: "Make Suggestions", style: UIAlertActionStyle.Default, handler: { alertAction in
+        alert.addAction(UIAlertAction(title: "Rate", style: UIAlertActionStyle.Default, handler: { alertAction in
             NSUserDefaults.standardUserDefaults().setBool(true, forKey: "neverRate")
             //UIApplication.sharedApplication().openURL(NSURL(string : "itms-apps://itunes.apple.com/app/id959379869")!)
             //UIApplication.sharedApplication().openURL(NSURL(string : "itms-apps://ax.itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?type=Purple+Software&id=<\(appID)>")!)
@@ -327,27 +329,25 @@ class ShopsViewController: UIViewController, UITableViewDataSource, UITableViewD
     
     
     /*
-     Functions for rating the app alert
+     Functions for tweeting the apps
      */
     
-    var minSessions = 4
-    var tryAgainSessions = 3
-    
     func tweetMe() {
-        let neverRate = NSUserDefaults.standardUserDefaults().boolForKey("neverTweet")
-        var numLaunches = NSUserDefaults.standardUserDefaults().integerForKey("numLaunches") + 1
+        let neverTweet = NSUserDefaults.standardUserDefaults().boolForKey("neverTweet")
+        let numLaunches = NSUserDefaults.standardUserDefaults().integerForKey("numLaunches")
         
-        if (!neverRate && (numLaunches == minSessions || numLaunches >= (minSessions + tryAgainSessions + 1)))
+        if ((numLaunches == 4 || numLaunches == 6) && !neverTweet)
         {
             showTweetMe()
-            numLaunches = minSessions + 1
         }
-        NSUserDefaults.standardUserDefaults().setInteger(numLaunches, forKey: "numLaunches")
+        else if (numLaunches > 6) {
+            NSUserDefaults.standardUserDefaults().setBool(true, forKey: "neverTweet")
+        }
     }
     
     func showTweetMe() {
-        
-        let optionMenu = UIAlertController(title: "#iPayWhere?", message: "Help your friends start using Apple Pay.", preferredStyle: .ActionSheet)
+        NSUserDefaults.standardUserDefaults().setBool(true, forKey: "neverTweet")
+        let optionMenu = UIAlertController(title: "Socialize.", message: "Help your friends start using Apple Pay.", preferredStyle: .ActionSheet)
         
         let tweetAction = UIAlertAction(title: "Tweet.", style: .Default, handler: {
             (alert: UIAlertAction!) -> Void in
@@ -387,7 +387,7 @@ class ShopsViewController: UIViewController, UITableViewDataSource, UITableViewD
             
         })
         
-        let cancelAction = UIAlertAction(title: "My Friends are ok w/o it.", style: .Cancel, handler: {
+        let cancelAction = UIAlertAction(title: "No.", style: .Cancel, handler: {
             (alert: UIAlertAction!) -> Void in
             print("Cancelled")
         })
