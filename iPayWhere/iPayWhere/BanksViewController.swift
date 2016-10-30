@@ -21,7 +21,7 @@ class BanksViewController: UIViewController, UITableViewDataSource, UITableViewD
     var filteredBanks = [Bank]()
     var data = [CKRecord]()
     
-    let container = CKContainer.defaultContainer()
+    let container = CKContainer.default()
     var publicDatabase: CKDatabase?
     var currentRecord: CKRecord?
     
@@ -35,17 +35,17 @@ class BanksViewController: UIViewController, UITableViewDataSource, UITableViewD
         super.viewDidLoad()
         
         //Loading icon
-        let activityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.Gray)
+        let activityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.gray)
         tableView.backgroundView = activityIndicatorView
-        tableView.separatorStyle = UITableViewCellSeparatorStyle.None
+        tableView.separatorStyle = UITableViewCellSeparatorStyle.none
         self.activityIndicatorView = activityIndicatorView
         activityIndicatorView.startAnimating()
         
         //Loading advertisement
-        self.bannerView.adUnitID = "a-app-pub-6433292677244522/6849368295"
+        self.bannerView.adUnitID = "ca-app-pub-6433292677244522~5372635090"
         self.bannerView.rootViewController = self
-        var request: GADRequest = GADRequest()
-        self.bannerView.loadRequest(request)
+        let request: GADRequest = GADRequest()
+        self.bannerView.load(request)
         tableView.addSubview(bannerView)
         
         // Retrieve Data
@@ -54,10 +54,10 @@ class BanksViewController: UIViewController, UITableViewDataSource, UITableViewD
         
         // Initialize the pull to refresh control.
         refreshControl = UIRefreshControl()
-        refreshControl?.backgroundColor = UIColor.whiteColor()
+        refreshControl?.backgroundColor = UIColor.white
         refreshControl?.tintColor = UIColor.neonYellow()
         //refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
-        refreshControl!.addTarget(self, action: #selector(BanksViewController.refresh(_:)), forControlEvents: UIControlEvents.ValueChanged)
+        refreshControl!.addTarget(self, action: #selector(BanksViewController.refresh(_:)), for: UIControlEvents.valueChanged)
         tableView.addSubview(refreshControl)
         
         // Search
@@ -65,15 +65,15 @@ class BanksViewController: UIViewController, UITableViewDataSource, UITableViewD
         searchController.dimsBackgroundDuringPresentation = false
         definesPresentationContext = true
         tableView.tableHeaderView = searchController.searchBar
-        self.tableView.contentOffset = CGPointMake(0, CGRectGetHeight(searchController.searchBar.frame));
+        self.tableView.contentOffset = CGPoint(x: 0, y: searchController.searchBar.frame.height);
 
     }
     
-    func refresh(sender:AnyObject) {
+    func refresh(_ sender:AnyObject) {
         getData()
     }
     
-    func cloudKitLoadRecords(result: (objects: [CKRecord]?, error: NSError?) -> Void){
+    func cloudKitLoadRecords(_ result: @escaping (_ objects: [CKRecord]?, _ error: NSError?) -> Void){
         
         // predicate
         var predicate = NSPredicate(value: true)
@@ -85,19 +85,19 @@ class BanksViewController: UIViewController, UITableViewDataSource, UITableViewD
         var records = [CKRecord]()
         
         //operation basis
-        let publicDatabase = CKContainer.defaultContainer().publicCloudDatabase
+        let publicDatabase = CKContainer.default().publicCloudDatabase
         
         // recurrent operations function
         var recurrentOperationsCounter = 101
-        func recurrentOperations(cursor: CKQueryCursor?){
+        func recurrentOperations(_ cursor: CKQueryCursor?){
             let recurrentOperation = CKQueryOperation(cursor: cursor!)
             recurrentOperation.recordFetchedBlock = { (record:CKRecord!) -> Void in
                 records.append(record)
             }
-            recurrentOperation.queryCompletionBlock = { (cursor:CKQueryCursor?, error:NSError?) -> Void in
+            recurrentOperation.queryCompletionBlock = { (cursor:CKQueryCursor?, error: Error?) -> Void in
                 if ((error) != nil)
                 {
-                    result(objects: nil, error: error)
+                    result(nil, error as NSError?)
                 }
                 else
                 {
@@ -107,11 +107,11 @@ class BanksViewController: UIViewController, UITableViewDataSource, UITableViewD
                     }
                     else
                     {
-                        result(objects: records, error: nil)
+                        result(records, nil)
                     }
                 }
             }
-            publicDatabase.addOperation(recurrentOperation)
+            publicDatabase.add(recurrentOperation)
         }
         
         // initial operation
@@ -119,10 +119,10 @@ class BanksViewController: UIViewController, UITableViewDataSource, UITableViewD
         initialOperation.recordFetchedBlock = { (record:CKRecord!) -> Void in
             records.append(record)
         }
-        initialOperation.queryCompletionBlock = { (cursor:CKQueryCursor?, error:NSError?) -> Void in
+        initialOperation.queryCompletionBlock = { (cursor:CKQueryCursor?, error: Error?) -> Void in
             if ((error) != nil)
             {
-                result(objects: nil, error: error)
+                result(nil, error as NSError?)
             }
             else
             {
@@ -132,19 +132,21 @@ class BanksViewController: UIViewController, UITableViewDataSource, UITableViewD
                 }
                 else
                 {
-                    result(objects: records, error: nil)
+                    result(records, nil)
                 }
             }
         }
-        publicDatabase.addOperation(initialOperation)
+        publicDatabase.add(initialOperation)
     }
     
     func getData() { //https://www.reddit.com/r/swift/comments/2txhvb/fetching_record_data_in_cloudkit/
         
         cloudKitLoadRecords() { (queryObjects, error) -> Void in
-            dispatch_async(dispatch_get_main_queue()) {
+            DispatchQueue.main.async {
                 if error != nil
                 {
+                    print("EROROROROROOROROOROROOROOROROROOR:")
+                    print(error)
                     // handle error
                 }
                 else
@@ -170,13 +172,13 @@ class BanksViewController: UIViewController, UITableViewDataSource, UITableViewD
     func retrieveData() {
         self.banksArray = [Bank]()
         for data in self.data {
-            let bankName = data.objectForKey("Name") as! String
+            let bankName = data.object(forKey: "Name") as! String
             let bank = Bank(name: bankName)
             self.activityIndicatorView.stopAnimating()
-            self.tableView.separatorStyle = UITableViewCellSeparatorStyle.SingleLine
+            self.tableView.separatorStyle = UITableViewCellSeparatorStyle.singleLine
             self.banksArray.append(bank)
-            self.banksArray.sortInPlace{
-                $0.name.localizedCaseInsensitiveCompare($1.name) == NSComparisonResult.OrderedAscending
+            self.banksArray.sort{
+                $0.name.localizedCaseInsensitiveCompare($1.name) == ComparisonResult.orderedAscending
             }
         }
         self.tableView.reloadData()
@@ -188,70 +190,70 @@ class BanksViewController: UIViewController, UITableViewDataSource, UITableViewD
         // Dispose of any resources that can be recreated.
     }
 
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 32
     }
     
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 1;
     }
 
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if searchController.active && searchController.searchBar.text != "" {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if searchController.isActive && searchController.searchBar.text != "" {
             return filteredBanks.count
         }
         print(banksArray.count)
         return banksArray.count
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath)
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath)
         -> UITableViewCell {
-            let cell = tableView.dequeueReusableCellWithIdentifier("BankCell", forIndexPath: indexPath) as! BankCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: "BankCell", for: indexPath) as! BankCell
             
             let bank: Bank
-            if searchController.active && searchController.searchBar.text != "" {
-                bank = filteredBanks[indexPath.row]
+            if searchController.isActive && searchController.searchBar.text != "" {
+                bank = filteredBanks[(indexPath as NSIndexPath).row]
             } else {
-                bank = banksArray[indexPath.row]
+                bank = banksArray[(indexPath as NSIndexPath).row]
             }
             
             cell.bank = bank
             return cell
     }
 
-    func filterContentForSearchText(searchText: String, scope: String = "Text") {
+    func filterContentForSearchText(_ searchText: String, scope: String = "Text") {
         filteredBanks = banksArray.filter({ (bank) -> Bool in
-            return (bank.name?.lowercaseString.containsString(searchText.lowercaseString))!
+            return (bank.name?.lowercased().contains(searchText.lowercased()))!
         })
         tableView.reloadData()
     }
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        if searchController.active && searchController.searchBar.text != "" {
-            selectedCell = filteredBanks[indexPath.row].name!
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if searchController.isActive && searchController.searchBar.text != "" {
+            selectedCell = filteredBanks[(indexPath as NSIndexPath).row].name!
         } else {
-            selectedCell = banksArray[indexPath.row].name!
+            selectedCell = banksArray[(indexPath as NSIndexPath).row].name!
         }
         
-        performSegueWithIdentifier("toSelectedBankMap", sender: self)
+        performSegue(withIdentifier: "toSelectedBankMap", sender: self)
     }
 
-    @IBAction func allBanksMapButton(sender: AnyObject) {
-        performSegueWithIdentifier("toAllBanksMap", sender: self)
+    @IBAction func allBanksMapButton(_ sender: AnyObject) {
+        performSegue(withIdentifier: "toAllBanksMap", sender: self)
     }
     
-    @IBAction func unwindToBankTable(segue: UIStoryboardSegue) {
+    @IBAction func unwindToBankTable(_ segue: UIStoryboardSegue) {
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toSelectedBankMap"{
-            let DestViewController = segue.destinationViewController as! UINavigationController
+            let DestViewController = segue.destination as! UINavigationController
             let targetController = DestViewController.topViewController as! BankViewController
             targetController.bankSelected = selectedCell
         }
         
         if segue.identifier == "toAllBanksMap"{
-            let DestViewController = segue.destinationViewController as! UINavigationController
+            let DestViewController = segue.destination as! UINavigationController
             let targetController = DestViewController.topViewController as! AllBanksViewController
             targetController.allBanksArray = banksArray
         }
@@ -260,7 +262,7 @@ class BanksViewController: UIViewController, UITableViewDataSource, UITableViewD
 }
 
 extension BanksViewController: UISearchResultsUpdating {
-    func updateSearchResultsForSearchController(searchController: UISearchController) {
+    func updateSearchResults(for searchController: UISearchController) {
         filterContentForSearchText(searchController.searchBar.text!)
     }
 }

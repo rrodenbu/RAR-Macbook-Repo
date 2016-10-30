@@ -21,7 +21,7 @@ class ShopsViewController: UIViewController, UITableViewDataSource, UITableViewD
     var filteredShops = [Shop]()
     var data = [CKRecord]()
     
-    let container = CKContainer.defaultContainer()
+    let container = CKContainer.default()
     var publicDatabase: CKDatabase?
     var currentRecord: CKRecord?
     
@@ -45,17 +45,17 @@ class ShopsViewController: UIViewController, UITableViewDataSource, UITableViewD
         //navigationItem.titleView = UIImageView(image: image)
         
         // Loading icon
-        let activityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.Gray)
+        let activityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.gray)
         tableView.backgroundView = activityIndicatorView
-        tableView.separatorStyle = UITableViewCellSeparatorStyle.None
+        tableView.separatorStyle = UITableViewCellSeparatorStyle.none
         self.activityIndicatorView = activityIndicatorView
         activityIndicatorView.startAnimating()
         
         //Loading advertisement
-        self.bannerView.adUnitID = "a-app-pub-6433292677244522/6849368295"
+        self.bannerView.adUnitID = "ca-app-pub-6433292677244522~5372635090"
         self.bannerView.rootViewController = self
-        var request: GADRequest = GADRequest()
-        self.bannerView.loadRequest(request)
+        let request: GADRequest = GADRequest()
+        self.bannerView.load(request)
         tableView.addSubview(bannerView)
         
         // Retrieve Data
@@ -64,9 +64,9 @@ class ShopsViewController: UIViewController, UITableViewDataSource, UITableViewD
         
         // Initialize the pull to refresh control.
         refreshControl = UIRefreshControl()
-        refreshControl?.backgroundColor = UIColor.whiteColor()
+        refreshControl?.backgroundColor = UIColor.white
         refreshControl?.tintColor = UIColor.neonYellow()
-        refreshControl!.addTarget(self, action: #selector(BanksViewController.refresh(_:)), forControlEvents: UIControlEvents.ValueChanged)
+        refreshControl!.addTarget(self, action: #selector(BanksViewController.refresh(_:)), for: UIControlEvents.valueChanged)
         tableView.addSubview(refreshControl)
         
         // Search
@@ -74,15 +74,15 @@ class ShopsViewController: UIViewController, UITableViewDataSource, UITableViewD
         searchController.dimsBackgroundDuringPresentation = false
         definesPresentationContext = true
         tableView.tableHeaderView = searchController.searchBar
-        self.tableView.contentOffset = CGPointMake(0, CGRectGetHeight(searchController.searchBar.frame));
+        self.tableView.contentOffset = CGPoint(x: 0, y: searchController.searchBar.frame.height);
         
     }
     
-    func refresh(sender:AnyObject) {
+    func refresh(_ sender:AnyObject) {
         getData()
     }
     
-    func cloudKitLoadRecords(result: (objects: [CKRecord]?, error: NSError?) -> Void){
+    func cloudKitLoadRecords(_ result: @escaping (_ objects: [CKRecord]?, _ error: NSError?) -> Void){
         
         // predicate
         var predicate = NSPredicate(value: true)
@@ -94,19 +94,19 @@ class ShopsViewController: UIViewController, UITableViewDataSource, UITableViewD
         var records = [CKRecord]()
         
         //operation basis
-        let publicDatabase = CKContainer.defaultContainer().publicCloudDatabase
+        let publicDatabase = CKContainer.default().publicCloudDatabase
         
         // recurrent operations function
         var recurrentOperationsCounter = 101
-        func recurrentOperations(cursor: CKQueryCursor?){
+        func recurrentOperations(_ cursor: CKQueryCursor?){
             let recurrentOperation = CKQueryOperation(cursor: cursor!)
             recurrentOperation.recordFetchedBlock = { (record:CKRecord!) -> Void in
                 records.append(record)
             }
-            recurrentOperation.queryCompletionBlock = { (cursor:CKQueryCursor?, error:NSError?) -> Void in
+            recurrentOperation.queryCompletionBlock = { (cursor:CKQueryCursor?, error: Error?) -> Void in
                 if ((error) != nil)
                 {
-                    result(objects: nil, error: error)
+                    result(nil, error as NSError?)
                 }
                 else
                 {
@@ -116,11 +116,11 @@ class ShopsViewController: UIViewController, UITableViewDataSource, UITableViewD
                     }
                     else
                     {
-                        result(objects: records, error: nil)
+                        result(records, nil)
                     }
                 }
             }
-            publicDatabase.addOperation(recurrentOperation)
+            publicDatabase.add(recurrentOperation)
         }
         
         // initial operation
@@ -128,10 +128,10 @@ class ShopsViewController: UIViewController, UITableViewDataSource, UITableViewD
         initialOperation.recordFetchedBlock = { (record:CKRecord!) -> Void in
             records.append(record)
         }
-        initialOperation.queryCompletionBlock = { (cursor:CKQueryCursor?, error:NSError?) -> Void in
+        initialOperation.queryCompletionBlock = { (cursor:CKQueryCursor?, error: Error?) -> Void in
             if ((error) != nil)
             {
-                result(objects: nil, error: error)
+                result(nil, error as NSError?)
             }
             else
             {
@@ -141,17 +141,17 @@ class ShopsViewController: UIViewController, UITableViewDataSource, UITableViewD
                 }
                 else
                 {
-                    result(objects: records, error: nil)
+                    result(records, nil)
                 }
             }
         }
-        publicDatabase.addOperation(initialOperation)
+        publicDatabase.add(initialOperation)
     }
     
     func getData() { //https://www.reddit.com/r/swift/comments/2txhvb/fetching_record_data_in_cloudkit/
         
         cloudKitLoadRecords() { (queryObjects, error) -> Void in
-            dispatch_async(dispatch_get_main_queue()) {
+            DispatchQueue.main.async {
                 if error != nil
                 {
                     print("retrieving data error")
@@ -184,13 +184,13 @@ class ShopsViewController: UIViewController, UITableViewDataSource, UITableViewD
         print("retrieve date")
         self.shopsArray = [Shop]()
         for data in self.data {
-            let shopName = data.objectForKey("Name") as! String
+            let shopName = data.object(forKey: "Name") as! String
             let shop = Shop(name: shopName)
             self.activityIndicatorView.stopAnimating()
-            self.tableView.separatorStyle = UITableViewCellSeparatorStyle.SingleLine
+            self.tableView.separatorStyle = UITableViewCellSeparatorStyle.singleLine
             self.shopsArray.append(shop)
-            self.shopsArray.sortInPlace{
-                $0.name.localizedCaseInsensitiveCompare($1.name) == NSComparisonResult.OrderedAscending
+            self.shopsArray.sort{
+                $0.name.localizedCaseInsensitiveCompare($1.name) == ComparisonResult.orderedAscending
             }
         }
         self.tableView.reloadData()
@@ -202,70 +202,70 @@ class ShopsViewController: UIViewController, UITableViewDataSource, UITableViewD
         // Dispose of any resources that can be recreated.
     }
     
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 32
     }
     
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 1;
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if searchController.active && searchController.searchBar.text != "" {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if searchController.isActive && searchController.searchBar.text != "" {
             return filteredShops.count
         }
         //print(shopsArray.count)
         return shopsArray.count
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath)
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath)
         -> UITableViewCell {
-            let cell = tableView.dequeueReusableCellWithIdentifier("ShopCell", forIndexPath: indexPath) as! ShopCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: "ShopCell", for: indexPath) as! ShopCell
             
             let shop: Shop
-            if searchController.active && searchController.searchBar.text != "" {
-                shop = filteredShops[indexPath.row]
+            if searchController.isActive && searchController.searchBar.text != "" {
+                shop = filteredShops[(indexPath as NSIndexPath).row]
             } else {
-                shop = shopsArray[indexPath.row]
+                shop = shopsArray[(indexPath as NSIndexPath).row]
             }
             
             cell.shop = shop
             return cell
     }
     
-    func filterContentForSearchText(searchText: String, scope: String = "Text") {
+    func filterContentForSearchText(_ searchText: String, scope: String = "Text") {
         filteredShops = shopsArray.filter({ (shop) -> Bool in
-            return (shop.name?.lowercaseString.containsString(searchText.lowercaseString))!
+            return (shop.name?.lowercased().contains(searchText.lowercased()))!
         })
         tableView.reloadData()
     }
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        if searchController.active && searchController.searchBar.text != "" {
-            selectedCell = filteredShops[indexPath.row].name!
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if searchController.isActive && searchController.searchBar.text != "" {
+            selectedCell = filteredShops[(indexPath as NSIndexPath).row].name!
         } else {
-            selectedCell = shopsArray[indexPath.row].name!
+            selectedCell = shopsArray[(indexPath as NSIndexPath).row].name!
         }
         
-        performSegueWithIdentifier("toSelectedShopMap", sender: self)
+        performSegue(withIdentifier: "toSelectedShopMap", sender: self)
     }
     
-    @IBAction func allShopsMapButton(sender: AnyObject) {
-        performSegueWithIdentifier("toAllShopsMap", sender: self)
+    @IBAction func allShopsMapButton(_ sender: AnyObject) {
+        performSegue(withIdentifier: "toAllShopsMap", sender: self)
     }
     
-    @IBAction func unwindToShopTable(segue: UIStoryboardSegue) {
+    @IBAction func unwindToShopTable(_ segue: UIStoryboardSegue) {
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toSelectedShopMap"{
-            let DestViewController = segue.destinationViewController as! UINavigationController
+            let DestViewController = segue.destination as! UINavigationController
             let targetController = DestViewController.topViewController as! ShopViewController
             targetController.shopSelected = selectedCell
         }
         
         if segue.identifier == "toAllShopsMap"{
-            let DestViewController = segue.destinationViewController as! UINavigationController
+            let DestViewController = segue.destination as! UINavigationController
             let targetController = DestViewController.topViewController as! AllShopsViewController
             targetController.allShopsArray = shopsArray
         }
@@ -282,8 +282,8 @@ class ShopsViewController: UIViewController, UITableViewDataSource, UITableViewD
     var iTryAgainSessions = 3
     
     func rateMe() {
-        let neverRate = NSUserDefaults.standardUserDefaults().boolForKey("neverRate")
-        var numLaunches = NSUserDefaults.standardUserDefaults().integerForKey("numLaunches") + 1
+        let neverRate = UserDefaults.standard.bool(forKey: "neverRate")
+        let numLaunches = UserDefaults.standard.integer(forKey: "numLaunches") + 1
         print("NUMBER OF LAUNCHES:")
         print(numLaunches)
         
@@ -292,27 +292,27 @@ class ShopsViewController: UIViewController, UITableViewDataSource, UITableViewD
             showRateMe()
         }
         else if (numLaunches > 9) {
-            NSUserDefaults.standardUserDefaults().setBool(true, forKey: "neverRate")
+            UserDefaults.standard.set(true, forKey: "neverRate")
         }
-        NSUserDefaults.standardUserDefaults().setInteger(numLaunches, forKey: "numLaunches")
+        UserDefaults.standard.set(numLaunches, forKey: "numLaunches")
     }
     
     func showRateMe() {
-        let alert = UIAlertController(title: "Rate Me.", message: "I am a one-man-team, all reviews help. I'll do my best to respond to your suggestions.", preferredStyle: UIAlertControllerStyle.Alert)
+        let alert = UIAlertController(title: "Rate Me.", message: "I am a one-man-team, all reviews help. I'll do my best to respond to your suggestions.", preferredStyle: UIAlertControllerStyle.alert)
         
-        alert.addAction(UIAlertAction(title: "Rate", style: UIAlertActionStyle.Default, handler: { alertAction in
-            NSUserDefaults.standardUserDefaults().setBool(true, forKey: "neverRate")
+        alert.addAction(UIAlertAction(title: "Rate", style: UIAlertActionStyle.default, handler: { alertAction in
+            UserDefaults.standard.set(true, forKey: "neverRate")
             //UIApplication.sharedApplication().openURL(NSURL(string : "itms-apps://itunes.apple.com/app/id959379869")!)
             //UIApplication.sharedApplication().openURL(NSURL(string : "itms-apps://ax.itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?type=Purple+Software&id=<\(appID)>")!)
             let appID = "959379869" // Your AppID
-            if let checkURL = NSURL(string: "itms-apps://ax.itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?type=Purple+Software&id=<\(appID)") {
-                if UIApplication.sharedApplication().openURL(checkURL) {
+            if let checkURL = URL(string: "itms-apps://ax.itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?type=Purple+Software&id=<\(appID)") {
+                if UIApplication.shared.openURL(checkURL) {
                     print("url successfully opened")
                 }
             } else {
                 print("invalid url")
             }
-            alert.dismissViewControllerAnimated(true, completion: nil)
+            alert.dismiss(animated: true, completion: nil)
         }))
         
         //alert.addAction(UIAlertAction(title: "No Thanks", style: UIAlertActionStyle.Default, handler: { alertAction in
@@ -320,11 +320,11 @@ class ShopsViewController: UIViewController, UITableViewDataSource, UITableViewD
         //    alert.dismissViewControllerAnimated(true, completion: nil)
         //}))
         
-        alert.addAction(UIAlertAction(title: "Maybe Later", style: UIAlertActionStyle.Default, handler: { alertAction in
-            alert.dismissViewControllerAnimated(true, completion: nil)
+        alert.addAction(UIAlertAction(title: "Maybe Later", style: UIAlertActionStyle.default, handler: { alertAction in
+            alert.dismiss(animated: true, completion: nil)
         }))
         
-        self.presentViewController(alert, animated: true, completion: nil)
+        self.present(alert, animated: true, completion: nil)
     }
     
     
@@ -333,61 +333,61 @@ class ShopsViewController: UIViewController, UITableViewDataSource, UITableViewD
      */
     
     func tweetMe() {
-        let neverTweet = NSUserDefaults.standardUserDefaults().boolForKey("neverTweet")
-        let numLaunches = NSUserDefaults.standardUserDefaults().integerForKey("numLaunches")
+        let neverTweet = UserDefaults.standard.bool(forKey: "neverTweet")
+        let numLaunches = UserDefaults.standard.integer(forKey: "numLaunches")
         
         if ((numLaunches == 4 || numLaunches == 6) && !neverTweet)
         {
             showTweetMe()
         }
         else if (numLaunches > 6) {
-            NSUserDefaults.standardUserDefaults().setBool(true, forKey: "neverTweet")
+            UserDefaults.standard.set(true, forKey: "neverTweet")
         }
     }
     
     func showTweetMe() {
-        NSUserDefaults.standardUserDefaults().setBool(true, forKey: "neverTweet")
-        let optionMenu = UIAlertController(title: "Socialize.", message: "Help your friends start using Apple Pay.", preferredStyle: .ActionSheet)
+        UserDefaults.standard.set(true, forKey: "neverTweet")
+        let optionMenu = UIAlertController(title: "Socialize.", message: "Help your friends start using Apple Pay.", preferredStyle: .actionSheet)
         
-        let tweetAction = UIAlertAction(title: "Tweet.", style: .Default, handler: {
+        let tweetAction = UIAlertAction(title: "Tweet.", style: .default, handler: {
             (alert: UIAlertAction!) -> Void in
             
-            if SLComposeViewController.isAvailableForServiceType(SLServiceTypeTwitter) {
+            if SLComposeViewController.isAvailable(forServiceType: SLServiceTypeTwitter) {
 
                 let tweetSheet = SLComposeViewController(forServiceType: SLServiceTypeTwitter)
 
-                tweetSheet.setInitialText("Find places that accept Apple Pay @iPayWhere! 🤑 #ApplePay #iPayWhere")
+                tweetSheet?.setInitialText("Find places that accept Apple Pay @iPayWhere! 🤑 #ApplePay #iPayWhere")
                 
-                self.presentViewController(tweetSheet, animated: true, completion: nil)
+                self.present(tweetSheet!, animated: true, completion: nil)
             } else {
                 let alert = UIAlertView()
                 alert.message = "Login to Twitter account in Settings."
-                alert.addButtonWithTitle("OK")
+                alert.addButton(withTitle: "OK")
                 alert.show()
             }
             
 
         })
-        let facebookAction = UIAlertAction(title: "Facebook.", style: .Default, handler: {
+        let facebookAction = UIAlertAction(title: "Facebook.", style: .default, handler: {
             (alert: UIAlertAction!) -> Void in
 
-            if SLComposeViewController.isAvailableForServiceType(SLServiceTypeFacebook) {
+            if SLComposeViewController.isAvailable(forServiceType: SLServiceTypeFacebook) {
                 
                 let facebookComposer = SLComposeViewController(forServiceType: SLServiceTypeFacebook)
                 
-                facebookComposer.setInitialText("Find places that accept Apple Pay with @iPayWere! 🤑 #ApplePay #iPayWhere")
+                facebookComposer?.setInitialText("Find places that accept Apple Pay with @iPayWere! 🤑 #ApplePay #iPayWhere")
                 
-                self.presentViewController(facebookComposer, animated: true, completion: nil)
+                self.present(facebookComposer!, animated: true, completion: nil)
             }else {
                 let alert = UIAlertView()
                 alert.message = "Login to Facebook account in Settings."
-                alert.addButtonWithTitle("OK")
+                alert.addButton(withTitle: "OK")
                 alert.show()
             }
             
         })
         
-        let cancelAction = UIAlertAction(title: "No.", style: .Cancel, handler: {
+        let cancelAction = UIAlertAction(title: "No.", style: .cancel, handler: {
             (alert: UIAlertAction!) -> Void in
             print("Cancelled")
         })
@@ -396,13 +396,13 @@ class ShopsViewController: UIViewController, UITableViewDataSource, UITableViewD
         optionMenu.addAction(facebookAction)
         optionMenu.addAction(cancelAction)
         
-        self.presentViewController(optionMenu, animated: true, completion: nil)
+        self.present(optionMenu, animated: true, completion: nil)
     }
 
 }
 
 extension ShopsViewController: UISearchResultsUpdating {
-    func updateSearchResultsForSearchController(searchController: UISearchController) {
+    func updateSearchResults(for searchController: UISearchController) {
         filterContentForSearchText(searchController.searchBar.text!)
     }
 }

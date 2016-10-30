@@ -20,7 +20,7 @@ class GasStationsViewController: UIViewController, UITableViewDataSource, UITabl
     var filteredGasStations = [GasStation]()
     var data = [CKRecord]()
     
-    let container = CKContainer.defaultContainer()
+    let container = CKContainer.default()
     var publicDatabase: CKDatabase?
     var currentRecord: CKRecord?
     
@@ -34,17 +34,17 @@ class GasStationsViewController: UIViewController, UITableViewDataSource, UITabl
         super.viewDidLoad()
         
         //Loading icon
-        let activityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.Gray)
+        let activityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.gray)
         tableView.backgroundView = activityIndicatorView
-        tableView.separatorStyle = UITableViewCellSeparatorStyle.None
+        tableView.separatorStyle = UITableViewCellSeparatorStyle.none
         self.activityIndicatorView = activityIndicatorView
         activityIndicatorView.startAnimating()
         
         //Loading advertisement
-        self.bannerView.adUnitID = "a-app-pub-6433292677244522/6849368295"
+        self.bannerView.adUnitID = "ca-app-pub-6433292677244522~5372635090"
         self.bannerView.rootViewController = self
-        var request: GADRequest = GADRequest()
-        self.bannerView.loadRequest(request)
+        let request: GADRequest = GADRequest()
+        self.bannerView.load(request)
         tableView.addSubview(bannerView)
         
         // Retrieve Data
@@ -53,9 +53,9 @@ class GasStationsViewController: UIViewController, UITableViewDataSource, UITabl
         
         // Initialize the pull to refresh control.
         refreshControl = UIRefreshControl()
-        refreshControl?.backgroundColor = UIColor.whiteColor()
+        refreshControl?.backgroundColor = UIColor.white
         refreshControl?.tintColor = UIColor.neonYellow()
-        refreshControl!.addTarget(self, action: #selector(BanksViewController.refresh(_:)), forControlEvents: UIControlEvents.ValueChanged)
+        refreshControl!.addTarget(self, action: #selector(BanksViewController.refresh(_:)), for: UIControlEvents.valueChanged)
         tableView.addSubview(refreshControl)
         
         // Search
@@ -63,15 +63,15 @@ class GasStationsViewController: UIViewController, UITableViewDataSource, UITabl
         searchController.dimsBackgroundDuringPresentation = false
         definesPresentationContext = true
         tableView.tableHeaderView = searchController.searchBar
-        self.tableView.contentOffset = CGPointMake(0, CGRectGetHeight(searchController.searchBar.frame));
+        self.tableView.contentOffset = CGPoint(x: 0, y: searchController.searchBar.frame.height);
         
     }
     
-    func refresh(sender:AnyObject) {
+    func refresh(_ sender:AnyObject) {
         getData()
     }
     
-    func cloudKitLoadRecords(result: (objects: [CKRecord]?, error: NSError?) -> Void){
+    func cloudKitLoadRecords(_ result: @escaping (_ objects: [CKRecord]?, _ error: NSError?) -> Void){
         
         // predicate
         var predicate = NSPredicate(value: true)
@@ -83,19 +83,19 @@ class GasStationsViewController: UIViewController, UITableViewDataSource, UITabl
         var records = [CKRecord]()
         
         //operation basis
-        let publicDatabase = CKContainer.defaultContainer().publicCloudDatabase
+        let publicDatabase = CKContainer.default().publicCloudDatabase
         
         // recurrent operations function
         var recurrentOperationsCounter = 101
-        func recurrentOperations(cursor: CKQueryCursor?){
+        func recurrentOperations(_ cursor: CKQueryCursor?){
             let recurrentOperation = CKQueryOperation(cursor: cursor!)
             recurrentOperation.recordFetchedBlock = { (record:CKRecord!) -> Void in
                 records.append(record)
             }
-            recurrentOperation.queryCompletionBlock = { (cursor:CKQueryCursor?, error:NSError?) -> Void in
+            recurrentOperation.queryCompletionBlock = { (cursor:CKQueryCursor?, error: Error?) -> Void in
                 if ((error) != nil)
                 {
-                    result(objects: nil, error: error)
+                    result(nil, error as NSError?)
                 }
                 else
                 {
@@ -105,11 +105,11 @@ class GasStationsViewController: UIViewController, UITableViewDataSource, UITabl
                     }
                     else
                     {
-                        result(objects: records, error: nil)
+                        result( records, nil)
                     }
                 }
             }
-            publicDatabase.addOperation(recurrentOperation)
+            publicDatabase.add(recurrentOperation)
         }
         
         // initial operation
@@ -117,10 +117,10 @@ class GasStationsViewController: UIViewController, UITableViewDataSource, UITabl
         initialOperation.recordFetchedBlock = { (record:CKRecord!) -> Void in
             records.append(record)
         }
-        initialOperation.queryCompletionBlock = { (cursor:CKQueryCursor?, error:NSError?) -> Void in
+        initialOperation.queryCompletionBlock = { (cursor:CKQueryCursor?, error: Error?) -> Void in
             if ((error) != nil)
             {
-                result(objects: nil, error: error)
+                result(nil, error as NSError?)
             }
             else
             {
@@ -130,17 +130,17 @@ class GasStationsViewController: UIViewController, UITableViewDataSource, UITabl
                 }
                 else
                 {
-                    result(objects: records, error: nil)
+                    result(records, nil)
                 }
             }
         }
-        publicDatabase.addOperation(initialOperation)
+        publicDatabase.add(initialOperation)
     }
     
     func getData() { //https://www.reddit.com/r/swift/comments/2txhvb/fetching_record_data_in_cloudkit/
         
         cloudKitLoadRecords() { (queryObjects, error) -> Void in
-            dispatch_async(dispatch_get_main_queue()) {
+            DispatchQueue.main.async {
                 if error != nil
                 {
                     // handle error
@@ -168,13 +168,13 @@ class GasStationsViewController: UIViewController, UITableViewDataSource, UITabl
     func retrieveData() {
         self.gasStationsArray = [GasStation]()
         for data in self.data {
-            let gasStationName = data.objectForKey("Name") as! String
+            let gasStationName = data.object(forKey: "Name") as! String
             let gasStations = GasStation(name: gasStationName)
             self.activityIndicatorView.stopAnimating()
-            self.tableView.separatorStyle = UITableViewCellSeparatorStyle.SingleLine
+            self.tableView.separatorStyle = UITableViewCellSeparatorStyle.singleLine
             self.gasStationsArray.append(gasStations)
-            self.gasStationsArray.sortInPlace{
-                $0.name.localizedCaseInsensitiveCompare($1.name) == NSComparisonResult.OrderedAscending
+            self.gasStationsArray.sort{
+                $0.name.localizedCaseInsensitiveCompare($1.name) == ComparisonResult.orderedAscending
             }
         }
         self.tableView.reloadData()
@@ -186,70 +186,70 @@ class GasStationsViewController: UIViewController, UITableViewDataSource, UITabl
         // Dispose of any resources that can be recreated.
     }
     
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 32
     }
     
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 1;
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if searchController.active && searchController.searchBar.text != "" {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if searchController.isActive && searchController.searchBar.text != "" {
             return gasStationsArray.count
         }
         print(gasStationsArray.count)
         return gasStationsArray.count
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath)
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath)
         -> UITableViewCell {
-            let cell = tableView.dequeueReusableCellWithIdentifier("GasStationCell", forIndexPath: indexPath) as! GasStationCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: "GasStationCell", for: indexPath) as! GasStationCell
             
             let gasStation: GasStation
-            if searchController.active && searchController.searchBar.text != "" {
-                gasStation = filteredGasStations[indexPath.row]
+            if searchController.isActive && searchController.searchBar.text != "" {
+                gasStation = filteredGasStations[(indexPath as NSIndexPath).row]
             } else {
-                gasStation = gasStationsArray[indexPath.row]
+                gasStation = gasStationsArray[(indexPath as NSIndexPath).row]
             }
             
             cell.gasStation = gasStation
             return cell
     }
     
-    func filterContentForSearchText(searchText: String, scope: String = "Text") {
+    func filterContentForSearchText(_ searchText: String, scope: String = "Text") {
         filteredGasStations = gasStationsArray.filter({ (shop) -> Bool in
-            return (shop.name?.lowercaseString.containsString(searchText.lowercaseString))!
+            return (shop.name?.lowercased().contains(searchText.lowercased()))!
         })
         tableView.reloadData()
     }
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        if searchController.active && searchController.searchBar.text != "" {
-            selectedCell = filteredGasStations[indexPath.row].name!
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if searchController.isActive && searchController.searchBar.text != "" {
+            selectedCell = filteredGasStations[(indexPath as NSIndexPath).row].name!
         } else {
-            selectedCell = gasStationsArray[indexPath.row].name!
+            selectedCell = gasStationsArray[(indexPath as NSIndexPath).row].name!
         }
         
-        performSegueWithIdentifier("toSelectedGasStationMap", sender: self)
+        performSegue(withIdentifier: "toSelectedGasStationMap", sender: self)
     }
     
-    @IBAction func allGasStationssMapButton(sender: AnyObject) {
-        performSegueWithIdentifier("toAllGasStationsMap", sender: self)
+    @IBAction func allGasStationssMapButton(_ sender: AnyObject) {
+        performSegue(withIdentifier: "toAllGasStationsMap", sender: self)
     }
     
-    @IBAction func unwindToGasStationTable(segue: UIStoryboardSegue) {
+    @IBAction func unwindToGasStationTable(_ segue: UIStoryboardSegue) {
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toSelectedGasStationMap"{
-            let DestViewController = segue.destinationViewController as! UINavigationController
+            let DestViewController = segue.destination as! UINavigationController
             let targetController = DestViewController.topViewController as! GasStationViewController
             targetController.gasStationSelected = selectedCell
         }
         
         if segue.identifier == "toAllGasStationsMap"{
-            let DestViewController = segue.destinationViewController as! UINavigationController
+            let DestViewController = segue.destination as! UINavigationController
             let targetController = DestViewController.topViewController as! AllGasStationsViewController
             targetController.allGasStationsArray = gasStationsArray
         }
@@ -258,7 +258,7 @@ class GasStationsViewController: UIViewController, UITableViewDataSource, UITabl
 }
 
 extension GasStationsViewController: UISearchResultsUpdating {
-    func updateSearchResultsForSearchController(searchController: UISearchController) {
+    func updateSearchResults(for searchController: UISearchController) {
         filterContentForSearchText(searchController.searchBar.text!)
     }
 }

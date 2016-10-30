@@ -11,7 +11,7 @@ import MapKit
 /*
  String formats an address passed as MKPlacemark
 */
-func parseAddress(selectedItem:MKPlacemark) -> String {
+func parseAddress(_ selectedItem:MKPlacemark) -> String {
     
     // put a space between street number and street name
     let firstSpace = (selectedItem.subThoroughfare != nil &&

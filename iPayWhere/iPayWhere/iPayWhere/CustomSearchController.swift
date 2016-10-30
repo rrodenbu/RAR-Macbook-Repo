@@ -15,7 +15,7 @@ protocol CustomSearchControllerDelegate {
     
     func didTapOnCancelButton()
     
-    func didChangeSearchText(searchText: String)
+    func didChangeSearchText(_ searchText: String)
 }
 
 
@@ -47,7 +47,7 @@ class CustomSearchController: UISearchController, UISearchBarDelegate {
     }
     
     
-    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
     }
     
@@ -58,7 +58,7 @@ class CustomSearchController: UISearchController, UISearchBarDelegate {
     
     // MARK: Custom functions
     
-    func configureSearchBar(frame: CGRect, font: UIFont, textColor: UIColor, bgColor: UIColor) {
+    func configureSearchBar(_ frame: CGRect, font: UIFont, textColor: UIColor, bgColor: UIColor) {
         customSearchBar = CustomSearchBar(frame: frame, font: font , textColor: textColor)
         
         customSearchBar.barTintColor = bgColor
@@ -72,24 +72,24 @@ class CustomSearchController: UISearchController, UISearchBarDelegate {
     
     // MARK: UISearchBarDelegate functions
     
-    func searchBarTextDidBeginEditing(searchBar: UISearchBar) {
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
         customDelegate.didStartSearching()
     }
     
     
-    func searchBarSearchButtonClicked(searchBar: UISearchBar) {
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         customSearchBar.resignFirstResponder()
         customDelegate.didTapOnSearchButton()
     }
     
     
-    func searchBarCancelButtonClicked(searchBar: UISearchBar) {
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         customSearchBar.resignFirstResponder()
         customDelegate.didTapOnCancelButton()
     }
     
     
-    func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         customDelegate.didChangeSearchText(searchText)
     }
     

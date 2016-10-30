@@ -12,14 +12,14 @@ import MapKit
 func getLocations() -> [MKMapItem] {
     
     var matchingItems: [MKMapItem] = []
-    var mapView: MKMapView?
+    let mapView: MKMapView? = MKMapView()
     
     let request = MKLocalSearchRequest()
     request.naturalLanguageQuery = "Target"
     request.region = (mapView?.region)!
     let search = MKLocalSearch(request: request)
     
-    search.startWithCompletionHandler { response, _ in
+    search.start { response, _ in
         guard let response = response else {
             return
         }

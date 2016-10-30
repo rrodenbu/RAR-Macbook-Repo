@@ -38,7 +38,7 @@ class GasStationViewController: UIViewController {
     func getDirections(){
         let mapItem = MKMapItem(placemark: selectedPin!)
         let launchOptions = [MKLaunchOptionsDirectionsModeKey : MKLaunchOptionsDirectionsModeDriving]
-        mapItem.openInMapsWithLaunchOptions(launchOptions)
+        mapItem.openInMaps(launchOptions: launchOptions)
     }
 }
 
@@ -47,13 +47,13 @@ class GasStationViewController: UIViewController {
  */
 extension GasStationViewController : CLLocationManagerDelegate {
     
-    func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
-        if status == .AuthorizedWhenInUse {
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        if status == .authorizedWhenInUse {
             locationManager.requestLocation()
         }
     }
     
-    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let location = locations.first else { return }
         let span = MKCoordinateSpanMake(0.05, 0.05)
         let region = MKCoordinateRegion(center: location.coordinate, span: span)
@@ -62,7 +62,7 @@ extension GasStationViewController : CLLocationManagerDelegate {
         
     }
     
-    func mapViewDidFinishRenderingMap(mapView: MKMapView, fullyRendered: Bool) {
+    func mapViewDidFinishRenderingMap(_ mapView: MKMapView, fullyRendered: Bool) {
         getLocations()
     }
     
@@ -72,7 +72,7 @@ extension GasStationViewController : CLLocationManagerDelegate {
         request.region = mapView.region
         let search = MKLocalSearch(request: request)
         
-        search.startWithCompletionHandler { response, _ in
+        search.start { response, _ in
             print(response)
             guard let response = response else {
                 return
@@ -85,7 +85,7 @@ extension GasStationViewController : CLLocationManagerDelegate {
         }
     }
     
-    func createAnnotations(item: MKMapItem) {
+    func createAnnotations(_ item: MKMapItem) {
         let latitude = item.placemark.coordinate.latitude
         let longitude = item.placemark.coordinate.longitude
         let coordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
@@ -98,7 +98,7 @@ extension GasStationViewController : CLLocationManagerDelegate {
         annotations.append(annotation)
     }
     
-    func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         print("error:: \(error)")
     }
     
@@ -109,7 +109,7 @@ extension GasStationViewController : CLLocationManagerDelegate {
  */
 extension GasStationViewController : MKMapViewDelegate {
     
-    func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView?{
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView?{
         
         if annotation is MKUserLocation {
             
@@ -119,15 +119,15 @@ extension GasStationViewController : MKMapViewDelegate {
         }
         
         let reuseId = "pin"
-        var pinView = mapView.dequeueReusableAnnotationViewWithIdentifier(reuseId) as? MKPinAnnotationView
+        var pinView = mapView.dequeueReusableAnnotationView(withIdentifier: reuseId) as? MKPinAnnotationView
         pinView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
         
         // Add direction button to annotation when a pin is clicked
         pinView?.canShowCallout = true //Allows the annotation to have button
         let smallSquare = CGSize(width: 30, height: 30)
-        let button = UIButton(frame: CGRect(origin: CGPointZero, size: smallSquare))
-        button.setBackgroundImage(UIImage(named: "car"), forState: .Normal)
-        button.addTarget(self, action: #selector(ShopViewController.getDirections), forControlEvents: .TouchUpInside)
+        let button = UIButton(frame: CGRect(origin: CGPoint.zero, size: smallSquare))
+        button.setBackgroundImage(UIImage(named: "car"), for: UIControlState())
+        button.addTarget(self, action: #selector(ShopViewController.getDirections), for: .touchUpInside)
         pinView?.leftCalloutAccessoryView = button
         return pinView
     }

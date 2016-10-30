@@ -20,7 +20,7 @@ class FoodsViewController: UIViewController, UITableViewDataSource, UITableViewD
     var filteredFoods = [Food]()
     var data = [CKRecord]()
     
-    let container = CKContainer.defaultContainer()
+    let container = CKContainer.default()
     var publicDatabase: CKDatabase?
     var currentRecord: CKRecord?
     
@@ -34,17 +34,17 @@ class FoodsViewController: UIViewController, UITableViewDataSource, UITableViewD
         super.viewDidLoad()
         
         //Loading icon
-        let activityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.Gray)
+        let activityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.gray)
         tableView.backgroundView = activityIndicatorView
-        tableView.separatorStyle = UITableViewCellSeparatorStyle.None
+        tableView.separatorStyle = UITableViewCellSeparatorStyle.none
         self.activityIndicatorView = activityIndicatorView
         activityIndicatorView.startAnimating()
         
         //Loading advertisement
-        self.bannerView.adUnitID = "a-app-pub-6433292677244522/6849368295"
+        self.bannerView.adUnitID = "ca-app-pub-6433292677244522~5372635090"
         self.bannerView.rootViewController = self
         var request: GADRequest = GADRequest()
-        self.bannerView.loadRequest(request)
+        self.bannerView.load(request)
         tableView.addSubview(bannerView)
         
         // Retrieve Data
@@ -53,9 +53,9 @@ class FoodsViewController: UIViewController, UITableViewDataSource, UITableViewD
         
         // Initialize the pull to refresh control.
         refreshControl = UIRefreshControl()
-        refreshControl?.backgroundColor = UIColor.whiteColor()
+        refreshControl?.backgroundColor = UIColor.white
         refreshControl?.tintColor = UIColor.neonYellow()
-        refreshControl!.addTarget(self, action: #selector(BanksViewController.refresh(_:)), forControlEvents: UIControlEvents.ValueChanged)
+        refreshControl!.addTarget(self, action: #selector(BanksViewController.refresh(_:)), for: UIControlEvents.valueChanged)
         tableView.addSubview(refreshControl)
         
         // Search
@@ -63,15 +63,15 @@ class FoodsViewController: UIViewController, UITableViewDataSource, UITableViewD
         searchController.dimsBackgroundDuringPresentation = false
         definesPresentationContext = true
         tableView.tableHeaderView = searchController.searchBar
-        self.tableView.contentOffset = CGPointMake(0, CGRectGetHeight(searchController.searchBar.frame));
+        self.tableView.contentOffset = CGPoint(x: 0, y: searchController.searchBar.frame.height);
         
     }
     
-    func refresh(sender:AnyObject) {
+    func refresh(_ sender:AnyObject) {
         getData()
     }
     
-    func cloudKitLoadRecords(result: (objects: [CKRecord]?, error: NSError?) -> Void){
+    func cloudKitLoadRecords(_ result: @escaping (_ objects: [CKRecord]?, _ error: NSError?) -> Void){
         
         // predicate
         var predicate = NSPredicate(value: true)
@@ -83,19 +83,19 @@ class FoodsViewController: UIViewController, UITableViewDataSource, UITableViewD
         var records = [CKRecord]()
         
         //operation basis
-        let publicDatabase = CKContainer.defaultContainer().publicCloudDatabase
+        let publicDatabase = CKContainer.default().publicCloudDatabase
         
         // recurrent operations function
         var recurrentOperationsCounter = 101
-        func recurrentOperations(cursor: CKQueryCursor?){
+        func recurrentOperations(_ cursor: CKQueryCursor?){
             let recurrentOperation = CKQueryOperation(cursor: cursor!)
             recurrentOperation.recordFetchedBlock = { (record:CKRecord!) -> Void in
                 records.append(record)
             }
-            recurrentOperation.queryCompletionBlock = { (cursor:CKQueryCursor?, error:NSError?) -> Void in
+            recurrentOperation.queryCompletionBlock = { (cursor:CKQueryCursor?, error: Error?) -> Void in
                 if ((error) != nil)
                 {
-                    result(objects: nil, error: error)
+                    result( nil, error as NSError?)
                 }
                 else
                 {
@@ -105,11 +105,11 @@ class FoodsViewController: UIViewController, UITableViewDataSource, UITableViewD
                     }
                     else
                     {
-                        result(objects: records, error: nil)
+                        result(records, nil)
                     }
                 }
             }
-            publicDatabase.addOperation(recurrentOperation)
+            publicDatabase.add(recurrentOperation)
         }
         
         // initial operation
@@ -117,10 +117,10 @@ class FoodsViewController: UIViewController, UITableViewDataSource, UITableViewD
         initialOperation.recordFetchedBlock = { (record:CKRecord!) -> Void in
             records.append(record)
         }
-        initialOperation.queryCompletionBlock = { (cursor:CKQueryCursor?, error:NSError?) -> Void in
+        initialOperation.queryCompletionBlock = { (cursor:CKQueryCursor?, error: Error?) -> Void in
             if ((error) != nil)
             {
-                result(objects: nil, error: error)
+                result(nil, error as NSError?)
             }
             else
             {
@@ -130,17 +130,17 @@ class FoodsViewController: UIViewController, UITableViewDataSource, UITableViewD
                 }
                 else
                 {
-                    result(objects: records, error: nil)
+                    result(records, nil)
                 }
             }
         }
-        publicDatabase.addOperation(initialOperation)
+        publicDatabase.add(initialOperation)
     }
     
     func getData() { //https://www.reddit.com/r/swift/comments/2txhvb/fetching_record_data_in_cloudkit/
         
         cloudKitLoadRecords() { (queryObjects, error) -> Void in
-            dispatch_async(dispatch_get_main_queue()) {
+            DispatchQueue.main.async {
                 if error != nil
                 {
                     // handle error
@@ -168,13 +168,13 @@ class FoodsViewController: UIViewController, UITableViewDataSource, UITableViewD
     func retrieveData() {
         self.foodsArray = [Food]()
         for data in self.data {
-            let foodName = data.objectForKey("Name") as! String
+            let foodName = data.object(forKey: "Name") as! String
             let food = Food(name: foodName)
             self.activityIndicatorView.stopAnimating()
-            self.tableView.separatorStyle = UITableViewCellSeparatorStyle.SingleLine
+            self.tableView.separatorStyle = UITableViewCellSeparatorStyle.singleLine
             self.foodsArray.append(food)
-            self.foodsArray.sortInPlace{
-                $0.name.localizedCaseInsensitiveCompare($1.name) == NSComparisonResult.OrderedAscending
+            self.foodsArray.sort{
+                $0.name.localizedCaseInsensitiveCompare($1.name) == ComparisonResult.orderedAscending
             }
         }
         self.tableView.reloadData()
@@ -186,70 +186,70 @@ class FoodsViewController: UIViewController, UITableViewDataSource, UITableViewD
         // Dispose of any resources that can be recreated.
     }
     
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 32
     }
     
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 1;
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if searchController.active && searchController.searchBar.text != "" {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if searchController.isActive && searchController.searchBar.text != "" {
             return filteredFoods.count
         }
         print(foodsArray.count)
         return foodsArray.count
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath)
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath)
         -> UITableViewCell {
-            let cell = tableView.dequeueReusableCellWithIdentifier("FoodCell", forIndexPath: indexPath) as! FoodCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: "FoodCell", for: indexPath) as! FoodCell
             
             let food: Food
-            if searchController.active && searchController.searchBar.text != "" {
-                food = filteredFoods[indexPath.row]
+            if searchController.isActive && searchController.searchBar.text != "" {
+                food = filteredFoods[(indexPath as NSIndexPath).row]
             } else {
-                food = foodsArray[indexPath.row]
+                food = foodsArray[(indexPath as NSIndexPath).row]
             }
             
             cell.food = food
             return cell
     }
     
-    func filterContentForSearchText(searchText: String, scope: String = "Text") {
+    func filterContentForSearchText(_ searchText: String, scope: String = "Text") {
         filteredFoods = foodsArray.filter({ (shop) -> Bool in
-            return (shop.name?.lowercaseString.containsString(searchText.lowercaseString))!
+            return (shop.name?.lowercased().contains(searchText.lowercased()))!
         })
         tableView.reloadData()
     }
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        if searchController.active && searchController.searchBar.text != "" {
-            selectedCell = filteredFoods[indexPath.row].name!
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if searchController.isActive && searchController.searchBar.text != "" {
+            selectedCell = filteredFoods[(indexPath as NSIndexPath).row].name!
         } else {
-            selectedCell = foodsArray[indexPath.row].name!
+            selectedCell = foodsArray[(indexPath as NSIndexPath).row].name!
         }
         
-        performSegueWithIdentifier("toSelectedFoodMap", sender: self)
+        performSegue(withIdentifier: "toSelectedFoodMap", sender: self)
     }
     
-    @IBAction func allFoodsMapButton(sender: AnyObject) {
-        performSegueWithIdentifier("toAllFoodsMap", sender: self)
+    @IBAction func allFoodsMapButton(_ sender: AnyObject) {
+        performSegue(withIdentifier: "toAllFoodsMap", sender: self)
     }
     
-    @IBAction func unwindToFoodTable(segue: UIStoryboardSegue) {
+    @IBAction func unwindToFoodTable(_ segue: UIStoryboardSegue) {
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toSelectedFoodMap"{
-            let DestViewController = segue.destinationViewController as! UINavigationController
+            let DestViewController = segue.destination as! UINavigationController
             let targetController = DestViewController.topViewController as! FoodViewController
             targetController.foodSelected = selectedCell
         }
         
         if segue.identifier == "toAllFoodsMap"{
-            let DestViewController = segue.destinationViewController as! UINavigationController
+            let DestViewController = segue.destination as! UINavigationController
             let targetController = DestViewController.topViewController as! AllFoodsViewController
             targetController.allFoodsArray = foodsArray
         }
@@ -258,7 +258,7 @@ class FoodsViewController: UIViewController, UITableViewDataSource, UITableViewD
 }
 
 extension FoodsViewController: UISearchResultsUpdating {
-    func updateSearchResultsForSearchController(searchController: UISearchController) {
+    func updateSearchResults(for searchController: UISearchController) {
         filterContentForSearchText(searchController.searchBar.text!)
     }
 }
