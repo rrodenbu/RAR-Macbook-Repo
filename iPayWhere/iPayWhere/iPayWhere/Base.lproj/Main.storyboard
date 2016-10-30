@@ -185,7 +185,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oiy-Bt-dnh" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="UPg-AP-yXn" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1932.5" y="-1167.5"/>
+            <point key="canvasLocation" x="2345" y="-1168"/>
         </scene>
         <!--Banks-->
         <scene sceneID="W73-C3-tBo">
@@ -309,21 +309,17 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lSm-d6-RUH" customClass="GADBannerView">
-                                <frame key="frameInset" minX="28" minY="568" width="320" height="50"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lSm-d6-RUH" customClass="GADBannerView">
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="50" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="IqC-0S-aGE">
-                                <frame key="frameInset" width="375" height="624"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="50" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="IqC-0S-aGE">
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="BankCell" rowHeight="32" id="aXs-2F-wbs" customClass="BankCell" customModule="iPayWhere" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="32"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="aXs-2F-wbs" id="YnA-57-xqJ">
-                                            <frame key="frameInset" width="342" height="31.5"/>
+                                            <frame key="frameInset" width="342" height="32"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="100" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pn8-5X-80y">
@@ -351,6 +347,16 @@
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="bottomMargin" secondItem="IqC-0S-aGE" secondAttribute="bottom" constant="43" id="Cfs-9v-VUe"/>
+                            <constraint firstItem="IqC-0S-aGE" firstAttribute="centerX" secondItem="lSm-d6-RUH" secondAttribute="centerX" id="Kju-sD-MtG"/>
+                            <constraint firstItem="IqC-0S-aGE" firstAttribute="top" secondItem="jJl-T6-swv" secondAttribute="top" id="KyC-pX-FHq"/>
+                            <constraint firstItem="lSm-d6-RUH" firstAttribute="leading" secondItem="jJl-T6-swv" secondAttribute="leadingMargin" constant="12" id="S8A-rq-R78"/>
+                            <constraint firstItem="lSm-d6-RUH" firstAttribute="top" secondItem="WoA-2r-R4Z" secondAttribute="bottom" constant="504" id="b2J-v5-yAt"/>
+                            <constraint firstAttribute="trailing" secondItem="IqC-0S-aGE" secondAttribute="trailing" id="cUJ-3f-xoe"/>
+                            <constraint firstItem="2VF-Hd-phz" firstAttribute="top" secondItem="lSm-d6-RUH" secondAttribute="bottom" constant="5" id="gdO-pe-Fvx"/>
+                            <constraint firstItem="IqC-0S-aGE" firstAttribute="leading" secondItem="jJl-T6-swv" secondAttribute="leading" id="sMX-qA-XRX"/>
+                        </constraints>
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="BANKS" id="FSk-Aa-Rxq">
@@ -738,21 +744,17 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oJA-tZ-grp" customClass="GADBannerView">
-                                <frame key="frameInset" minX="28" minY="568" width="320" height="50"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oJA-tZ-grp" customClass="GADBannerView">
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="50" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="d4e-CW-6Ip">
-                                <frame key="frameInset" width="375" height="624"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="50" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="d4e-CW-6Ip">
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="ShopCell" rowHeight="32" id="meU-UP-Up9" customClass="ShopCell" customModule="iPayWhere" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="32"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="meU-UP-Up9" id="Wn6-EC-TgU">
-                                            <frame key="frameInset" width="342" height="31.5"/>
+                                            <frame key="frameInset" width="342" height="32"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="100" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hus-VB-TfQ">
@@ -780,6 +782,16 @@
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="bottomMargin" secondItem="d4e-CW-6Ip" secondAttribute="bottom" constant="43" id="27U-nC-Oqw"/>
+                            <constraint firstItem="d4e-CW-6Ip" firstAttribute="centerX" secondItem="oJA-tZ-grp" secondAttribute="centerX" id="8Gb-lx-lXR"/>
+                            <constraint firstItem="oJA-tZ-grp" firstAttribute="top" secondItem="e3Z-Wd-ldI" secondAttribute="bottom" constant="504" id="JGf-RW-YJL"/>
+                            <constraint firstItem="cG0-Qo-IeN" firstAttribute="top" secondItem="oJA-tZ-grp" secondAttribute="bottom" constant="5" id="XMJ-Sp-vId"/>
+                            <constraint firstItem="d4e-CW-6Ip" firstAttribute="top" secondItem="5oQ-ro-ypN" secondAttribute="top" id="Y0X-fi-X7z"/>
+                            <constraint firstItem="oJA-tZ-grp" firstAttribute="leading" secondItem="5oQ-ro-ypN" secondAttribute="leadingMargin" constant="12" id="Zuv-zh-ahU"/>
+                            <constraint firstItem="d4e-CW-6Ip" firstAttribute="leading" secondItem="5oQ-ro-ypN" secondAttribute="leading" id="iVq-mG-dog"/>
+                            <constraint firstAttribute="trailing" secondItem="d4e-CW-6Ip" secondAttribute="trailing" id="u5q-Id-EgV"/>
+                        </constraints>
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="SHOPS" id="oGX-5w-qe1">
@@ -836,21 +848,17 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Lld-lz-sNr" customClass="GADBannerView">
-                                <frame key="frameInset" minX="28" minY="568" width="320" height="50"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Lld-lz-sNr" customClass="GADBannerView">
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="50" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="HPO-Bu-vZP">
-                                <frame key="frameInset" width="375" height="624"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="50" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="HPO-Bu-vZP">
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="FoodCell" rowHeight="32" id="nqd-qt-Wdd" customClass="FoodCell" customModule="iPayWhere" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="32"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="nqd-qt-Wdd" id="24O-ey-pjb">
-                                            <frame key="frameInset" width="342" height="31.5"/>
+                                            <frame key="frameInset" width="342" height="32"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="100" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="siS-o7-Kz0">
@@ -878,6 +886,16 @@
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="Lld-lz-sNr" firstAttribute="leading" secondItem="3bj-yp-3TC" secondAttribute="leadingMargin" constant="12" id="17y-48-wjS"/>
+                            <constraint firstItem="Lld-lz-sNr" firstAttribute="top" secondItem="DFP-jb-fOR" secondAttribute="bottom" constant="504" id="G19-ck-wFK"/>
+                            <constraint firstItem="HPO-Bu-vZP" firstAttribute="centerX" secondItem="Lld-lz-sNr" secondAttribute="centerX" id="NGT-ip-dCB"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="HPO-Bu-vZP" secondAttribute="bottom" constant="43" id="R99-R8-N43"/>
+                            <constraint firstItem="HPO-Bu-vZP" firstAttribute="top" secondItem="3bj-yp-3TC" secondAttribute="top" id="UCv-cn-7ud"/>
+                            <constraint firstAttribute="trailing" secondItem="HPO-Bu-vZP" secondAttribute="trailing" id="XwN-fc-N6o"/>
+                            <constraint firstItem="NJt-L5-rb0" firstAttribute="top" secondItem="Lld-lz-sNr" secondAttribute="bottom" constant="5" id="dOt-Vn-alc"/>
+                            <constraint firstItem="HPO-Bu-vZP" firstAttribute="leading" secondItem="3bj-yp-3TC" secondAttribute="leading" id="rLa-cc-C7z"/>
+                        </constraints>
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="FOOD " id="rGx-ye-tY0">
@@ -938,21 +956,17 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xfv-Mv-thc" customClass="GADBannerView">
-                                <frame key="frameInset" minX="28" minY="568" width="320" height="50"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xfv-Mv-thc" customClass="GADBannerView">
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="50" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="enB-HX-nie">
-                                <frame key="frameInset" width="375" height="624"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="50" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="enB-HX-nie">
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="GasStationCell" rowHeight="32" id="dJY-Lr-oCr" customClass="GasStationCell" customModule="iPayWhere" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="32"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="dJY-Lr-oCr" id="G2k-Tn-4gE">
-                                            <frame key="frameInset" width="342" height="31.5"/>
+                                            <frame key="frameInset" width="342" height="32"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="100" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tjE-je-pzd">
@@ -980,6 +994,16 @@
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="bottomMargin" secondItem="enB-HX-nie" secondAttribute="bottom" constant="43" id="9nA-jX-BmH"/>
+                            <constraint firstItem="PUs-lG-0Y3" firstAttribute="top" secondItem="xfv-Mv-thc" secondAttribute="bottom" constant="5" id="FAU-co-Erq"/>
+                            <constraint firstItem="enB-HX-nie" firstAttribute="leading" secondItem="jBV-Zk-p7Y" secondAttribute="leading" id="G64-rP-gZN"/>
+                            <constraint firstAttribute="trailing" secondItem="enB-HX-nie" secondAttribute="trailing" id="b8m-kr-q1h"/>
+                            <constraint firstItem="xfv-Mv-thc" firstAttribute="top" secondItem="JcR-if-2wT" secondAttribute="bottom" constant="504" id="k5Q-jM-6lj"/>
+                            <constraint firstItem="enB-HX-nie" firstAttribute="centerX" secondItem="xfv-Mv-thc" secondAttribute="centerX" id="m4e-Du-byi"/>
+                            <constraint firstItem="enB-HX-nie" firstAttribute="top" secondItem="jBV-Zk-p7Y" secondAttribute="top" id="qIR-bD-vCc"/>
+                            <constraint firstItem="xfv-Mv-thc" firstAttribute="leading" secondItem="jBV-Zk-p7Y" secondAttribute="leadingMargin" constant="12" id="tlA-LU-aAQ"/>
+                        </constraints>
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="GAS STATIONS" id="l4p-io-TH1">

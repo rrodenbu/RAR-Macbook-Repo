@@ -42,7 +42,7 @@ class BanksViewController: UIViewController, UITableViewDataSource, UITableViewD
         activityIndicatorView.startAnimating()
         
         //Loading advertisement
-        self.bannerView.adUnitID = "ca-app-pub-6433292677244522~5372635090"
+        self.bannerView.adUnitID = "ca-app-pub-3940256099942544/2934735716"
         self.bannerView.rootViewController = self
         let request: GADRequest = GADRequest()
         self.bannerView.load(request)
@@ -145,8 +145,6 @@ class BanksViewController: UIViewController, UITableViewDataSource, UITableViewD
             DispatchQueue.main.async {
                 if error != nil
                 {
-                    print("EROROROROROOROROOROROOROOROROROOR:")
-                    print(error)
                     // handle error
                 }
                 else
