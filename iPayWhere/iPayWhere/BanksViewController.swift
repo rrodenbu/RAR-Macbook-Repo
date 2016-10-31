@@ -145,6 +145,7 @@ class BanksViewController: UIViewController, UITableViewDataSource, UITableViewD
             DispatchQueue.main.async {
                 if error != nil
                 {
+                    print("ERROROROOROOROROROOR")
                     // handle error
                 }
                 else

@@ -1,0 +1,6 @@
+framework module Pods_iPayWhere {
+  umbrella header "Pods-iPayWhere-umbrella.h"
+
+  export *
+  module * { export * }
+}
