@@ -37,6 +37,19 @@
 		303B470C1D7E6795005B0338 /* AllGasStationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 303B470B1D7E6795005B0338 /* AllGasStationsViewController.swift */; };
 		303B470E1D7F5829005B0338 /* CustomSearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 303B470D1D7F5828005B0338 /* CustomSearchBar.swift */; };
 		303B47101D7F5999005B0338 /* CustomSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 303B470F1D7F5999005B0338 /* CustomSearchController.swift */; };
+		306140AF1E0C527100591BC9 /* GoogleMobileAds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 306140AE1E0C527100591BC9 /* GoogleMobileAds.framework */; };
+		30A371E81E05889800A1DB87 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30A371E71E05889800A1DB87 /* Accelerate.framework */; };
+		30A371EA1E0588A900A1DB87 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30A371E91E0588A900A1DB87 /* CoreData.framework */; };
+		30A371EC1E0588F100A1DB87 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30A371EB1E0588F100A1DB87 /* CoreLocation.framework */; };
+		30A371EE1E0588FA00A1DB87 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30A371ED1E0588FA00A1DB87 /* CoreText.framework */; };
+		30A371F01E05890200A1DB87 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30A371EF1E05890200A1DB87 /* GLKit.framework */; };
+		30A371F21E05890900A1DB87 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30A371F11E05890900A1DB87 /* ImageIO.framework */; };
+		30A371F41E05891800A1DB87 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 30A371F31E05891800A1DB87 /* libc++.tbd */; };
+		30A371F61E05892100A1DB87 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 30A371F51E05892100A1DB87 /* libz.tbd */; };
+		30A371F81E05892800A1DB87 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30A371F71E05892800A1DB87 /* OpenGLES.framework */; };
+		30A371FA1E05892E00A1DB87 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30A371F91E05892E00A1DB87 /* QuartzCore.framework */; };
+		30A371FC1E05894300A1DB87 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30A371FB1E05894300A1DB87 /* UIKit.framework */; };
+		30A372001E05A69B00A1DB87 /* AllViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30A371FF1E05A69B00A1DB87 /* AllViewController.swift */; };
 		30BC85551D7CA8F20025EE44 /* AllBanksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BC85541D7CA8F20025EE44 /* AllBanksViewController.swift */; };
 		30D8EF941D836AB700C22836 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30D8EF931D836AB700C22836 /* AdSupport.framework */; };
 		30D8EF961D836ABD00C22836 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30D8EF951D836ABD00C22836 /* AudioToolbox.framework */; };
@@ -47,7 +60,6 @@
 		30D8EFA01D836AE300C22836 /* EventKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30D8EF9F1D836AE300C22836 /* EventKit.framework */; };
 		30D8EFA21D836AE900C22836 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30D8EFA11D836AE900C22836 /* MessageUI.framework */; };
 		30D8EFA61D836AFA00C22836 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30D8EFA51D836AFA00C22836 /* SystemConfiguration.framework */; };
-		30D8EFAB1D8386D300C22836 /* GoogleMobileAds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30D8EFAA1D8386D300C22836 /* GoogleMobileAds.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -97,6 +109,19 @@
 		303B470B1D7E6795005B0338 /* AllGasStationsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllGasStationsViewController.swift; sourceTree = "<group>"; };
 		303B470D1D7F5828005B0338 /* CustomSearchBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomSearchBar.swift; sourceTree = "<group>"; };
 		303B470F1D7F5999005B0338 /* CustomSearchController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomSearchController.swift; sourceTree = "<group>"; };
+		306140AE1E0C527100591BC9 /* GoogleMobileAds.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMobileAds.framework; sourceTree = "<group>"; };
+		30A371E71E05889800A1DB87 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
+		30A371E91E0588A900A1DB87 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		30A371EB1E0588F100A1DB87 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		30A371ED1E0588FA00A1DB87 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
+		30A371EF1E05890200A1DB87 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
+		30A371F11E05890900A1DB87 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
+		30A371F31E05891800A1DB87 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
+		30A371F51E05892100A1DB87 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		30A371F71E05892800A1DB87 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
+		30A371F91E05892E00A1DB87 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		30A371FB1E05894300A1DB87 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		30A371FF1E05A69B00A1DB87 /* AllViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllViewController.swift; sourceTree = "<group>"; };
 		30BC85541D7CA8F20025EE44 /* AllBanksViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllBanksViewController.swift; sourceTree = "<group>"; };
 		30D8EF931D836AB700C22836 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
 		30D8EF951D836ABD00C22836 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
@@ -107,7 +132,6 @@
 		30D8EF9F1D836AE300C22836 /* EventKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKit.framework; path = System/Library/Frameworks/EventKit.framework; sourceTree = SDKROOT; };
 		30D8EFA11D836AE900C22836 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		30D8EFA51D836AFA00C22836 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
-		30D8EFAA1D8386D300C22836 /* GoogleMobileAds.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMobileAds.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,14 +139,25 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				30352B291D84C23600D18C1B /* Social.framework in Frameworks */,
+				30A371FC1E05894300A1DB87 /* UIKit.framework in Frameworks */,
 				30D8EFA61D836AFA00C22836 /* SystemConfiguration.framework in Frameworks */,
+				30A371FA1E05892E00A1DB87 /* QuartzCore.framework in Frameworks */,
+				30A371F81E05892800A1DB87 /* OpenGLES.framework in Frameworks */,
+				30A371F61E05892100A1DB87 /* libz.tbd in Frameworks */,
+				30A371F41E05891800A1DB87 /* libc++.tbd in Frameworks */,
+				30A371F21E05890900A1DB87 /* ImageIO.framework in Frameworks */,
+				30A371F01E05890200A1DB87 /* GLKit.framework in Frameworks */,
+				30A371EE1E0588FA00A1DB87 /* CoreText.framework in Frameworks */,
+				30A371EC1E0588F100A1DB87 /* CoreLocation.framework in Frameworks */,
+				30D8EF9A1D836ACA00C22836 /* CoreGraphics.framework in Frameworks */,
+				30A371EA1E0588A900A1DB87 /* CoreData.framework in Frameworks */,
+				30A371E81E05889800A1DB87 /* Accelerate.framework in Frameworks */,
+				306140AF1E0C527100591BC9 /* GoogleMobileAds.framework in Frameworks */,
+				30352B291D84C23600D18C1B /* Social.framework in Frameworks */,
 				30D8EFA21D836AE900C22836 /* MessageUI.framework in Frameworks */,
 				30D8EFA01D836AE300C22836 /* EventKit.framework in Frameworks */,
 				30D8EF9E1D836ADE00C22836 /* EventKitUI.framework in Frameworks */,
 				30D8EF9C1D836AD000C22836 /* CoreTelephony.framework in Frameworks */,
-				30D8EFAB1D8386D300C22836 /* GoogleMobileAds.framework in Frameworks */,
-				30D8EF9A1D836ACA00C22836 /* CoreGraphics.framework in Frameworks */,
 				30D8EF981D836AC300C22836 /* AVFoundation.framework in Frameworks */,
 				3032B3181DC58A6200861E6A /* CloudKit.framework in Frameworks */,
 				30D8EF961D836ABD00C22836 /* AudioToolbox.framework in Frameworks */,
@@ -136,8 +171,8 @@
 		302E2EFE1D78A799009CACD5 = {
 			isa = PBXGroup;
 			children = (
+				306140AE1E0C527100591BC9 /* GoogleMobileAds.framework */,
 				30352B281D84C23600D18C1B /* Social.framework */,
-				30D8EFAA1D8386D300C22836 /* GoogleMobileAds.framework */,
 				30D8EFA51D836AFA00C22836 /* SystemConfiguration.framework */,
 				30D8EFA11D836AE900C22836 /* MessageUI.framework */,
 				30D8EF9F1D836AE300C22836 /* EventKit.framework */,
@@ -171,6 +206,7 @@
 				302E2F2E1D7A0C2C009CACD5 /* iPayWhere.entitlements */,
 				302E2F0A1D78A79A009CACD5 /* AppDelegate.swift */,
 				302E2F0E1D78A79A009CACD5 /* Main.storyboard */,
+				30A371FF1E05A69B00A1DB87 /* AllViewController.swift */,
 				302EDF651D8EC28A005D6DAF /* Icon-App-76x76@3x.png */,
 				302E2F111D78A79A009CACD5 /* Assets.xcassets */,
 				302E2F131D78A79A009CACD5 /* LaunchScreen.storyboard */,
@@ -186,6 +222,17 @@
 		3032B3161DC58A6200861E6A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				30A371FB1E05894300A1DB87 /* UIKit.framework */,
+				30A371F91E05892E00A1DB87 /* QuartzCore.framework */,
+				30A371F71E05892800A1DB87 /* OpenGLES.framework */,
+				30A371F51E05892100A1DB87 /* libz.tbd */,
+				30A371F31E05891800A1DB87 /* libc++.tbd */,
+				30A371F11E05890900A1DB87 /* ImageIO.framework */,
+				30A371EF1E05890200A1DB87 /* GLKit.framework */,
+				30A371ED1E0588FA00A1DB87 /* CoreText.framework */,
+				30A371EB1E0588F100A1DB87 /* CoreLocation.framework */,
+				30A371E91E0588A900A1DB87 /* CoreData.framework */,
+				30A371E71E05889800A1DB87 /* Accelerate.framework */,
 				3032B3171DC58A6200861E6A /* CloudKit.framework */,
 			);
 			name = Frameworks;
@@ -275,6 +322,9 @@
 						DevelopmentTeam = QYDDDH8RL4;
 						LastSwiftMigration = 0800;
 						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
 							com.apple.InAppPurchase = {
 								enabled = 0;
 							};
@@ -282,7 +332,7 @@
 								enabled = 0;
 							};
 							com.apple.Push = {
-								enabled = 0;
+								enabled = 1;
 							};
 							com.apple.iCloud = {
 								enabled = 1;
@@ -344,6 +394,7 @@
 				303B46FB1D7CFF51005B0338 /* FoodCell.swift in Sources */,
 				303B46F91D7CFF32005B0338 /* Food.swift in Sources */,
 				303B470E1D7F5829005B0338 /* CustomSearchBar.swift in Sources */,
+				30A372001E05A69B00A1DB87 /* AllViewController.swift in Sources */,
 				303B46F61D7CF047005B0338 /* AllShopsViewController.swift in Sources */,
 				30BC85551D7CA8F20025EE44 /* AllBanksViewController.swift in Sources */,
 				303B47081D7E654B005B0338 /* GasStationsViewController.swift in Sources */,
@@ -420,6 +471,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				"OTHER_LDFLAGS[arch=*]" = "-ObjC";
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -460,6 +512,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				"OTHER_LDFLAGS[arch=*]" = "-ObjC";
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				VALIDATE_PRODUCT = YES;
@@ -477,7 +530,7 @@
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = iPayWhere/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.buddhabuddha.iPayWhere;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -496,7 +549,7 @@
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = iPayWhere/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.buddhabuddha.iPayWhere;
 				PRODUCT_NAME = "$(TARGET_NAME)";

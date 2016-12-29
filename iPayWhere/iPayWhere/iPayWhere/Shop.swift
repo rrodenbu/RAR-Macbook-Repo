@@ -10,8 +10,10 @@ import UIKit
 
 struct Shop {
     var name: String!
+    var image: UIImage?
     
-    init(name: String?) {
+    init(name: String?, image: UIImage?) {
         self.name = name
+        self.image = image
     }
 }

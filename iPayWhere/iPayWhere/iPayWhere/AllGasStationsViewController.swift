@@ -13,6 +13,7 @@ import MapKit
 class AllGasStationsViewController: UIViewController {
     
     var allGasStationsArray = [GasStation]()
+    var allGasStationNames:[String] = []
     
     var selectedPin: MKPlacemark?
     
@@ -24,7 +25,11 @@ class AllGasStationsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        print(allGasStationsArray)
+        for gasStation in allGasStationsArray {
+            var cleanGasStation = gasStation.name.replacingOccurrences(of: "’", with: "'", options: .regularExpression, range: nil)
+            cleanGasStation = cleanGasStation.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
+            allGasStationNames.append(cleanGasStation)
+        }
         
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
@@ -33,9 +38,11 @@ class AllGasStationsViewController: UIViewController {
     }
     
     func getDirections(){
+        print("#######################")
         let mapItem = MKMapItem(placemark: selectedPin!)
+        print(mapItem.name)
         let launchOptions = [MKLaunchOptionsDirectionsModeKey : MKLaunchOptionsDirectionsModeDriving]
-        mapItem.openInMaps(launchOptions: launchOptions)
+        //mapItem.openInMaps(launchOptions: launchOptions)
     }
 }
 
@@ -52,7 +59,7 @@ extension AllGasStationsViewController : CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let location = locations.first else { return }
-        let span = MKCoordinateSpanMake(0.05, 0.05)
+        let span = MKCoordinateSpanMake(0.75, 0.75)
         let region = MKCoordinateRegion(center: location.coordinate, span: span)
         mapView.setRegion(region, animated: true)
         
@@ -65,6 +72,7 @@ extension AllGasStationsViewController : CLLocationManagerDelegate {
     func getLocations() {
         for shop in allGasStationsArray {
             addPinToMap(shop.name)
+            print(shop.name)
         }
         
     }
@@ -80,8 +88,19 @@ extension AllGasStationsViewController : CLLocationManagerDelegate {
                 return
             }
             for item in response.mapItems {
-                self.matchingItems.append(item)
-                self.createAnnotations(item)
+                
+                let businessName = item.name! as String
+                print(businessName)
+                if(self.allGasStationNames.contains(businessName)){
+                    self.matchingItems.append(item)
+                    self.createAnnotations(item)
+                }
+                else if(businessName.localizedCaseInsensitiveContains("texaco")){
+                    print("FOUND")
+                    print(businessName)
+                    self.matchingItems.append(item)
+                    self.createAnnotations(item)
+                }
             }
             self.mapView.addAnnotations(self.annotations)
         }
@@ -131,5 +150,34 @@ extension AllGasStationsViewController : MKMapViewDelegate {
         button.addTarget(self, action: #selector(AllGasStationsViewController.getDirections), for: .touchUpInside)
         pinView?.leftCalloutAccessoryView = button
         return pinView
+    }
+    
+    func mapView(_ mapView: MKMapView!, annotationView view: MKAnnotationView!,
+                 calloutAccessoryControlTapped control: UIControl!) {
+        print("HERE WE ARE !")
+        let selectedLoc = view.annotation
+        print(selectedLoc?.title)
+        
+        //println("Annotation '\(selectedLoc.title!)' has been selected")
+        
+        //let mapItem = MKMapItem(placemark: selectedPin!)
+        //print("#######################")
+        //print(mapItem.name)
+        //let launchOptions = [MKLaunchOptionsDirectionsModeKey : MKLaunchOptionsDirectionsModeDriving]
+        //mapItem.openInMaps(launchOptions: launchOptions)
+        
+        
+        //let currentLocMapItem = MKMapItem.forCurrentLocation()
+        
+        let selectedPlacemark = MKPlacemark(coordinate: (selectedLoc?.coordinate)!, addressDictionary: nil)
+        let selectedMapItem = MKMapItem(placemark: selectedPlacemark)
+        let mapItem = MKMapItem(placemark: selectedPlacemark)
+        mapItem.name = (selectedLoc?.title)!
+        print(mapItem.name)
+        print(mapItem.placemark)
+        //let mapItems = [selectedMapItem, currentLocMapItem]
+        
+        let launchOptions = [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDriving]
+        mapItem.openInMaps(launchOptions:launchOptions)
     }
 }

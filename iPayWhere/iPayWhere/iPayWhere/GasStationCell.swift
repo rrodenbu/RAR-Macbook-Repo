@@ -11,10 +11,12 @@ import UIKit
 class GasStationCell: UITableViewCell {
     
     @IBOutlet var nameLabel: UILabel!
+    @IBOutlet var newImage: UIImageView!
     
     var gasStation: GasStation! {
         didSet {
             nameLabel.text = gasStation.name
+            newImage.image = gasStation.image
         }
     }
 }

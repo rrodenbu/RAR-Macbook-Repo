@@ -41,7 +41,7 @@ class GasStationsViewController: UIViewController, UITableViewDataSource, UITabl
         activityIndicatorView.startAnimating()
         
         //Loading advertisement
-        self.bannerView.adUnitID = "ca-app-pub-3940256099942544/2934735716"
+        self.bannerView.adUnitID = "ca-app-pub-6433292677244522/6849368295"
         self.bannerView.rootViewController = self
         let request: GADRequest = GADRequest()
         self.bannerView.load(request)
@@ -49,14 +49,14 @@ class GasStationsViewController: UIViewController, UITableViewDataSource, UITabl
         
         // Retrieve Data
         publicDatabase = container.publicCloudDatabase
-        getData()
+        loadTable()
+        
         
         // Initialize the pull to refresh control.
         refreshControl = UIRefreshControl()
         refreshControl?.backgroundColor = UIColor.white
-        refreshControl?.tintColor = UIColor.neonYellow()
-        refreshControl!.addTarget(self, action: #selector(BanksViewController.refresh(_:)), for: UIControlEvents.valueChanged)
-        tableView.addSubview(refreshControl)
+        refreshControl!.addTarget(self, action: #selector(GasStationsViewController.refresh(_:)), for: UIControlEvents.valueChanged)
+        //tableView.addSubview(refreshControl)
         
         // Search
         searchController.searchResultsUpdater = self
@@ -68,118 +68,182 @@ class GasStationsViewController: UIViewController, UITableViewDataSource, UITabl
     }
     
     func refresh(_ sender:AnyObject) {
-        getData()
+        //loadTable()
+        if refreshControl.isRefreshing
+        {
+            refreshControl.endRefreshing()
+        }
     }
     
-    func cloudKitLoadRecords(_ result: @escaping (_ objects: [CKRecord]?, _ error: NSError?) -> Void){
+    func loadTable() {
+        let pred = NSPredicate(value: true)
+        let sort = NSSortDescriptor(key: "Name", ascending: true)
+        let query = CKQuery(recordType: "Gas", predicate: pred)
+        query.sortDescriptors = [sort]
+        let operation = CKQueryOperation(query: query)
+        operation.desiredKeys = ["Name", "Photo"]
+        operation.resultsLimit = 100;
         
-        // predicate
-        var predicate = NSPredicate(value: true)
-        
-        // query
-        let cloudKitQuery = CKQuery(recordType: "Gas", predicate: predicate)
-        
-        // records to store
-        var records = [CKRecord]()
-        
-        //operation basis
-        let publicDatabase = CKContainer.default().publicCloudDatabase
-        
-        // recurrent operations function
-        var recurrentOperationsCounter = 101
-        func recurrentOperations(_ cursor: CKQueryCursor?){
-            let recurrentOperation = CKQueryOperation(cursor: cursor!)
-            recurrentOperation.recordFetchedBlock = { (record:CKRecord!) -> Void in
-                records.append(record)
+        var newGasStations = [GasStation]()
+        operation.recordFetchedBlock = { record in
+            
+            var gasStationImage = UIImage(named:"nothing")
+            if record["Photo"] != nil {
+                let imageAsset = record["Photo"] as? CKAsset
+                let imageData = NSData(contentsOf: imageAsset!.fileURL)
+                gasStationImage = UIImage(data: imageData as! Data)
             }
-            recurrentOperation.queryCompletionBlock = { (cursor:CKQueryCursor?, error: Error?) -> Void in
-                if ((error) != nil)
-                {
-                    result(nil, error as NSError?)
-                }
-                else
-                {
-                    if cursor != nil
-                    {
-                        recurrentOperations(cursor!)
-                    }
-                    else
-                    {
-                        result( records, nil)
-                    }
-                }
-            }
-            publicDatabase.add(recurrentOperation)
-        }
-        
-        // initial operation
-        let initialOperation = CKQueryOperation(query: cloudKitQuery)
-        initialOperation.recordFetchedBlock = { (record:CKRecord!) -> Void in
-            records.append(record)
-        }
-        initialOperation.queryCompletionBlock = { (cursor:CKQueryCursor?, error: Error?) -> Void in
-            if ((error) != nil)
-            {
-                result(nil, error as NSError?)
-            }
-            else
-            {
-                if cursor != nil
-                {
-                    recurrentOperations(cursor!)
-                }
-                else
-                {
-                    result(records, nil)
-                }
+            
+            let gasStationName = record.object(forKey: "Name") as? String
+            
+            let gasStation = GasStation(name: gasStationName, image: gasStationImage)
+            
+            if record["Photo"] != nil {
+                newGasStations.insert(gasStation, at: 0)
+            } else {
+                newGasStations.append(gasStation)
             }
         }
-        publicDatabase.add(initialOperation)
-    }
-    
-    func getData() { //https://www.reddit.com/r/swift/comments/2txhvb/fetching_record_data_in_cloudkit/
         
-        cloudKitLoadRecords() { (queryObjects, error) -> Void in
+        operation.queryCompletionBlock = { [unowned self] (cursor, error) in
             DispatchQueue.main.async {
-                if error != nil
-                {
-                    // handle error
-                }
-                else
-                {
-                    // clean objects array if you need to
-                    self.data.removeAll()
-                    
-                    if queryObjects!.count == 0
-                    {
-                        // do nothing
-                    }
-                    else
-                    {
-                        // attach found objects to your object array
-                        self.data = queryObjects!
-                        self.retrieveData()
-                    }
+                if error == nil {
+                    self.gasStationsArray = newGasStations
+                    self.tableView.separatorStyle = UITableViewCellSeparatorStyle.singleLine
+                    self.tableView.reloadData()
+                } else {
+                    let ac = UIAlertController(title: "Fetch failed", message: "There was a problem fetching the list of gas stations; please try again: \(error!.localizedDescription)", preferredStyle: .alert)
+                    ac.addAction(UIAlertAction(title: "OK", style: .default))
+                    self.present(ac, animated: true)
                 }
             }
         }
+        CKContainer.default().publicCloudDatabase.add(operation)
     }
     
-    func retrieveData() {
-        self.gasStationsArray = [GasStation]()
-        for data in self.data {
-            let gasStationName = data.object(forKey: "Name") as! String
-            let gasStations = GasStation(name: gasStationName)
-            self.activityIndicatorView.stopAnimating()
-            self.tableView.separatorStyle = UITableViewCellSeparatorStyle.singleLine
-            self.gasStationsArray.append(gasStations)
-            self.gasStationsArray.sort{
-                $0.name.localizedCaseInsensitiveCompare($1.name) == ComparisonResult.orderedAscending
-            }
-        }
-        self.tableView.reloadData()
-        refreshControl!.endRefreshing()
-    }
+//    func cloudKitLoadRecords(_ result: @escaping (_ objects: [CKRecord]?, _ error: NSError?) -> Void){
+//        
+//        // predicate
+//        var predicate = NSPredicate(value: true)
+//        
+//        // query
+//        let cloudKitQuery = CKQuery(recordType: "Gas", predicate: predicate)
+//        
+//        // records to store
+//        var records = [CKRecord]()
+//        
+//        //operation basis
+//        let publicDatabase = CKContainer.default().publicCloudDatabase
+//        
+//        // recurrent operations function
+//        var recurrentOperationsCounter = 101
+//        func recurrentOperations(_ cursor: CKQueryCursor?){
+//            let recurrentOperation = CKQueryOperation(cursor: cursor!)
+//            recurrentOperation.recordFetchedBlock = { (record:CKRecord!) -> Void in
+//
+//            }
+//            recurrentOperation.queryCompletionBlock = { (cursor:CKQueryCursor?, error: Error?) -> Void in
+//                if ((error) != nil)
+//                {
+//                    result(nil, error as NSError?)
+//                }
+//                else
+//                {
+//                    if cursor != nil
+//                    {
+//                        recurrentOperations(cursor!)
+//                    }
+//                    else
+//                    {
+//                        result( records, nil)
+//                    }
+//                }
+//            }
+//            publicDatabase.add(recurrentOperation)
+//        }
+//        
+//        // initial operation
+//        let initialOperation = CKQueryOperation(query: cloudKitQuery)
+//        initialOperation.recordFetchedBlock = { (record:CKRecord!) -> Void in
+//            records.append(record)
+//
+//            let gasStationName = record.object(forKey: "Name") as! String
+//            let gasStations = GasStation(name: gasStationName)
+//            self.activityIndicatorView.stopAnimating()
+//            self.tableView.separatorStyle = UITableViewCellSeparatorStyle.singleLine
+//            self.gasStationsArray.append(gasStations)
+//            self.gasStationsArray.sort{
+//                $0.name.localizedCaseInsensitiveCompare($1.name) == ComparisonResult.orderedAscending
+//            }
+//            DispatchQueue.main.async{
+//                self.tableView.reloadData()
+//            }
+//            
+//        }
+//        initialOperation.queryCompletionBlock = { (cursor:CKQueryCursor?, error: Error?) -> Void in
+//            if ((error) != nil)
+//            {
+//                result(nil, error as NSError?)
+//            }
+//            else
+//            {
+//                if cursor != nil
+//                {
+//                    recurrentOperations(cursor!)
+//                }
+//                else
+//                {
+//                    result(records, nil)
+//                }
+//            }
+//        }
+//        publicDatabase.add(initialOperation)
+//    }
+//    
+//    func getData() { //https://www.reddit.com/r/swift/comments/2txhvb/fetching_record_data_in_cloudkit/
+//        cloudKitLoadRecords() { (queryObjects, error) -> Void in
+//            DispatchQueue.main.async {
+//                if error != nil
+//                {
+//                    // handle error
+//                }
+//                else
+//                {
+//                    // clean objects array if you need to
+//                    
+//                    self.data.removeAll()
+//                    
+//                    self.activityIndicatorView.stopAnimating()
+//                    if queryObjects!.count == 0
+//                    {
+//                        // do nothing
+//                    }
+//                    else
+//                    {
+//                        refreshControl!.endRefreshing()
+//                        return
+//                        // attach found objects to your object array
+//                    }
+//                }
+//            }
+//        }
+//    }
+    
+//    func retrieveData() {
+//        self.gasStationsArray = [GasStation]()
+//        for data in self.data {
+//            let gasStationName = data.object(forKey: "Name") as! String
+//            let gasStations = GasStation(name: gasStationName)
+//            self.activityIndicatorView.stopAnimating()
+//            self.tableView.separatorStyle = UITableViewCellSeparatorStyle.singleLine
+//            self.gasStationsArray.append(gasStations)
+//            self.gasStationsArray.sort{
+//                $0.name.localizedCaseInsensitiveCompare($1.name) == ComparisonResult.orderedAscending
+//            }
+//        }
+//        self.tableView.reloadData()
+//        refreshControl!.endRefreshing()
+//    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -195,6 +259,7 @@ class GasStationsViewController: UIViewController, UITableViewDataSource, UITabl
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
         if searchController.isActive && searchController.searchBar.text != "" {
             return gasStationsArray.count
         }
@@ -204,6 +269,8 @@ class GasStationsViewController: UIViewController, UITableViewDataSource, UITabl
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath)
         -> UITableViewCell {
+            print("here2")
+            self.activityIndicatorView.stopAnimating()
             let cell = tableView.dequeueReusableCell(withIdentifier: "GasStationCell", for: indexPath) as! GasStationCell
             
             let gasStation: GasStation
@@ -211,6 +278,7 @@ class GasStationsViewController: UIViewController, UITableViewDataSource, UITabl
                 gasStation = filteredGasStations[(indexPath as NSIndexPath).row]
             } else {
                 gasStation = gasStationsArray[(indexPath as NSIndexPath).row]
+                
             }
             
             cell.gasStation = gasStation
@@ -225,6 +293,9 @@ class GasStationsViewController: UIViewController, UITableViewDataSource, UITabl
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        tableView.deselectRow(at: indexPath as IndexPath, animated: true)
+        
         if searchController.isActive && searchController.searchBar.text != "" {
             selectedCell = filteredGasStations[(indexPath as NSIndexPath).row].name!
         } else {

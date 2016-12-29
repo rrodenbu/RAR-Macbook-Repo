@@ -10,10 +10,12 @@ import UIKit
 
 class BankCell: UITableViewCell {
     @IBOutlet weak var nameLabel: UILabel!
-    
+    @IBOutlet var newImage: UIImageView!
+        
     var bank: Bank! {
         didSet {
             nameLabel.text = bank.name
+            newImage.image = bank.image
         }
     }
 }

@@ -31,6 +31,16 @@ class ShopsViewController: UIViewController, UITableViewDataSource, UITableViewD
     
     @IBOutlet var bannerView: GADBannerView!
     
+    func isICloudContainerAvailable()->Bool {
+        let currentToken = FileManager.default.ubiquityIdentityToken
+        if(currentToken != nil){
+            return true
+        }
+        else {
+            return false
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -39,6 +49,15 @@ class ShopsViewController: UIViewController, UITableViewDataSource, UITableViewD
         
         // Social Media Call Out
         tweetMe()
+        
+        if(isICloudContainerAvailable() == false) {
+            let alert = UIAlertView()
+            alert.message = "Please sign into iCloud in your Settings."
+            alert.addButton(withTitle: "OK")
+            alert.show()
+        }
+        loadTable()
+        
         
         //Logo
         //let image = UIImage(named: "Icon-App-29x29")
@@ -52,7 +71,7 @@ class ShopsViewController: UIViewController, UITableViewDataSource, UITableViewD
         activityIndicatorView.startAnimating()
         
         //Loading advertisement
-        self.bannerView.adUnitID = "ca-app-pub-3940256099942544/2934735716"
+        self.bannerView.adUnitID = "ca-app-pub-6433292677244522/6849368295"
         self.bannerView.rootViewController = self
         let request: GADRequest = GADRequest()
         self.bannerView.load(request)
@@ -60,14 +79,14 @@ class ShopsViewController: UIViewController, UITableViewDataSource, UITableViewD
         
         // Retrieve Data
         publicDatabase = container.publicCloudDatabase
-        getData()
+        //loadTable()
+        
         
         // Initialize the pull to refresh control.
         refreshControl = UIRefreshControl()
         refreshControl?.backgroundColor = UIColor.white
-        refreshControl?.tintColor = UIColor.neonYellow()
-        refreshControl!.addTarget(self, action: #selector(BanksViewController.refresh(_:)), for: UIControlEvents.valueChanged)
-        tableView.addSubview(refreshControl)
+        refreshControl!.addTarget(self, action: #selector(ShopsViewController.refresh(_:)), for: UIControlEvents.valueChanged)
+        //tableView.addSubview(refreshControl)
         
         // Search
         searchController.searchResultsUpdater = self
@@ -79,123 +98,177 @@ class ShopsViewController: UIViewController, UITableViewDataSource, UITableViewD
     }
     
     func refresh(_ sender:AnyObject) {
-        getData()
+        //loadTable()
+        if refreshControl.isRefreshing
+        {
+            refreshControl.endRefreshing()
+        }
     }
     
-    func cloudKitLoadRecords(_ result: @escaping (_ objects: [CKRecord]?, _ error: NSError?) -> Void){
+    func loadTable() {
+
+        let pred = NSPredicate(value: true)
+        let sort = NSSortDescriptor(key: "Name", ascending: true)
+        let query = CKQuery(recordType: "Stores", predicate: pred)
+        query.sortDescriptors = [sort]
+
+        let operation = CKQueryOperation(query: query)
+        operation.desiredKeys = ["Name", "Photo"]
+        operation.resultsLimit = 5000;
         
-        // predicate
-        var predicate = NSPredicate(value: true)
-        
-        // query
-        let cloudKitQuery = CKQuery(recordType: "Stores", predicate: predicate)
-        
-        // records to store
-        var records = [CKRecord]()
-        
-        //operation basis
-        let publicDatabase = CKContainer.default().publicCloudDatabase
-        
-        // recurrent operations function
-        var recurrentOperationsCounter = 101
-        func recurrentOperations(_ cursor: CKQueryCursor?){
-            let recurrentOperation = CKQueryOperation(cursor: cursor!)
-            recurrentOperation.recordFetchedBlock = { (record:CKRecord!) -> Void in
-                records.append(record)
-            }
-            recurrentOperation.queryCompletionBlock = { (cursor:CKQueryCursor?, error: Error?) -> Void in
-                if ((error) != nil)
-                {
-                    result(nil, error as NSError?)
-                }
-                else
-                {
-                    if cursor != nil
-                    {
-                        recurrentOperations(cursor!)
-                    }
-                    else
-                    {
-                        result(records, nil)
-                    }
-                }
-            }
-            publicDatabase.add(recurrentOperation)
-        }
-        
-        // initial operation
-        let initialOperation = CKQueryOperation(query: cloudKitQuery)
-        initialOperation.recordFetchedBlock = { (record:CKRecord!) -> Void in
-            records.append(record)
-        }
-        initialOperation.queryCompletionBlock = { (cursor:CKQueryCursor?, error: Error?) -> Void in
-            if ((error) != nil)
-            {
-                result(nil, error as NSError?)
-            }
-            else
-            {
-                if cursor != nil
-                {
-                    recurrentOperations(cursor!)
-                }
-                else
-                {
-                    result(records, nil)
-                }
-            }
-        }
-        publicDatabase.add(initialOperation)
-    }
+        var newShops = [Shop]()
+        operation.recordFetchedBlock = { record in
     
-    func getData() { //https://www.reddit.com/r/swift/comments/2txhvb/fetching_record_data_in_cloudkit/
+            var shopImage = UIImage(named:"nothing")
+            if record["Photo"] != nil {
+                let imageAsset = record["Photo"] as? CKAsset
+                let imageData = NSData(contentsOf: imageAsset!.fileURL)
+                shopImage = UIImage(data: imageData as! Data)
+            }
+            
+            let shopName = record.object(forKey: "Name") as? String
+            
+            let shop = Shop(name: shopName, image: shopImage)
+            
+            if record["Photo"] != nil {
+                newShops.insert(shop, at: 0)
+            } else {
+                newShops.append(shop)
+            }
+        }
         
-        cloudKitLoadRecords() { (queryObjects, error) -> Void in
+        operation.queryCompletionBlock = { [unowned self] (cursor, error) in
             DispatchQueue.main.async {
-                if error != nil
-                {
-                    print("retrieving data error")
-                    print(error)
-                    // handle error
-                }
-                else
-                {
-                    // clean objects array if you need to
-                    self.data.removeAll()
-                    
-                    if queryObjects!.count == 0
-                    {
-                        print("not objects to query")
-                        // do nothing
-                    }
-                    else
-                    {
-                        // attach found objects to your object array
-                        print("found objects")
-                        self.data = queryObjects!
-                        self.retrieveData()
-                    }
+                if error == nil {
+                    self.shopsArray = newShops
+                    self.tableView.separatorStyle = UITableViewCellSeparatorStyle.singleLine
+                    self.tableView.reloadData()
+                } else {
+                    let ac = UIAlertController(title: "Fetch failed", message: "There was a problem fetching the list of shops; please try again: \(error!.localizedDescription)", preferredStyle: .alert)
+                    ac.addAction(UIAlertAction(title: "OK", style: .default))
+                    self.present(ac, animated: true)
                 }
             }
+            self.activityIndicatorView.stopAnimating()
         }
+        CKContainer.default().publicCloudDatabase.add(operation)
     }
     
-    func retrieveData() {
-        print("retrieve date")
-        self.shopsArray = [Shop]()
-        for data in self.data {
-            let shopName = data.object(forKey: "Name") as! String
-            let shop = Shop(name: shopName)
-            self.activityIndicatorView.stopAnimating()
-            self.tableView.separatorStyle = UITableViewCellSeparatorStyle.singleLine
-            self.shopsArray.append(shop)
-            self.shopsArray.sort{
-                $0.name.localizedCaseInsensitiveCompare($1.name) == ComparisonResult.orderedAscending
-            }
-        }
-        self.tableView.reloadData()
-        refreshControl!.endRefreshing()
-    }
+//    func cloudKitLoadRecords(_ result: @escaping (_ objects: [CKRecord]?, _ error: NSError?) -> Void){
+//        
+//        // predicate
+//        var predicate = NSPredicate(value: true)
+//        
+//        // query
+//        let cloudKitQuery = CKQuery(recordType: "Stores", predicate: predicate)
+//        
+//        // records to store
+//        var records = [CKRecord]()
+//        
+//        //operation basis
+//        let publicDatabase = CKContainer.default().publicCloudDatabase
+//        
+//        // recurrent operations function
+//        var recurrentOperationsCounter = 101
+//        func recurrentOperations(_ cursor: CKQueryCursor?){
+//            let recurrentOperation = CKQueryOperation(cursor: cursor!)
+//            recurrentOperation.recordFetchedBlock = { (record:CKRecord!) -> Void in
+//                records.append(record)
+//            }
+//            recurrentOperation.queryCompletionBlock = { (cursor:CKQueryCursor?, error: Error?) -> Void in
+//                if ((error) != nil)
+//                {
+//                    result(nil, error as NSError?)
+//                }
+//                else
+//                {
+//                    if cursor != nil
+//                    {
+//                        recurrentOperations(cursor!)
+//                    }
+//                    else
+//                    {
+//                        result(records, nil)
+//                    }
+//                }
+//            }
+//            publicDatabase.add(recurrentOperation)
+//        }
+//        
+//        // initial operation
+//        let initialOperation = CKQueryOperation(query: cloudKitQuery)
+//        initialOperation.recordFetchedBlock = { (record:CKRecord!) -> Void in
+//            records.append(record)
+//        }
+//        initialOperation.queryCompletionBlock = { (cursor:CKQueryCursor?, error: Error?) -> Void in
+//            if ((error) != nil)
+//            {
+//                result(nil, error as NSError?)
+//            }
+//            else
+//            {
+//                if cursor != nil
+//                {
+//                    recurrentOperations(cursor!)
+//                }
+//                else
+//                {
+//                    result(records, nil)
+//                }
+//            }
+//        }
+//        publicDatabase.add(initialOperation)
+//    }
+//    
+//    func getData() { //https://www.reddit.com/r/swift/comments/2txhvb/fetching_record_data_in_cloudkit/
+//        
+//        cloudKitLoadRecords() { (queryObjects, error) -> Void in
+//            DispatchQueue.main.async {
+//                if error != nil
+//                {
+//                    print("retrieving data error")
+//                    // handle error
+//                }
+//                else
+//                {
+//                    // clean objects array if you need to
+//                    
+//                    self.data.removeAll()
+//                    
+//                    
+//                    if queryObjects!.count == 0
+//                    {
+//                        print("not objects to query")
+//                        // do nothing
+//                    }
+//                    else
+//                    {
+//                        // attach found objects to your object array
+//                        print("found objects")
+//                        self.data = queryObjects!
+//                        self.retrieveData()
+//                    }
+//                }
+//            }
+//        }
+//    }
+//    
+//    func retrieveData() {
+//        print("retrieve data")
+//        self.shopsArray = [Shop]()
+//        for data in self.data {
+//            let shopName = data.object(forKey: "Name") as! String
+//            let shop = Shop(name: shopName)
+//            self.activityIndicatorView.stopAnimating()
+//            self.tableView.separatorStyle = UITableViewCellSeparatorStyle.singleLine
+//            self.shopsArray.append(shop)
+//            self.shopsArray.sort{
+//                $0.name.localizedCaseInsensitiveCompare($1.name) == ComparisonResult.orderedAscending
+//            }
+//        }
+//        self.tableView.reloadData()
+//        refreshControl!.endRefreshing()
+//    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -241,6 +314,9 @@ class ShopsViewController: UIViewController, UITableViewDataSource, UITableViewD
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        tableView.deselectRow(at: indexPath as IndexPath, animated: true)
+        
         if searchController.isActive && searchController.searchBar.text != "" {
             selectedCell = filteredShops[(indexPath as NSIndexPath).row].name!
         } else {
@@ -284,8 +360,8 @@ class ShopsViewController: UIViewController, UITableViewDataSource, UITableViewD
     func rateMe() {
         let neverRate = UserDefaults.standard.bool(forKey: "neverRate")
         let numLaunches = UserDefaults.standard.integer(forKey: "numLaunches") + 1
-        print("NUMBER OF LAUNCHES:")
-        print(numLaunches)
+//        print("NUMBER OF LAUNCHES:")
+//        print(numLaunches)
         
         if (!neverRate && (numLaunches == 3 || numLaunches == 5 || numLaunches == 9))
         {
@@ -297,21 +373,30 @@ class ShopsViewController: UIViewController, UITableViewDataSource, UITableViewD
         UserDefaults.standard.set(numLaunches, forKey: "numLaunches")
     }
     
+    func rateApp(){
+        let appID = "1153347253"
+        let link:String = "https://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?id=\(appID)&pageNumber=0&sortOrdering=2&type=Purple+Software&mt=8"
+        UIApplication.shared.openURL(URL(string : link)!)
+    }
+    
     func showRateMe() {
-        let alert = UIAlertController(title: "Rate Me.", message: "I am a one-man-team, all reviews help. I'll do my best to respond to your suggestions.", preferredStyle: UIAlertControllerStyle.alert)
+        let alert = UIAlertController(title: "Rate Me.", message: "Help spread Apple Pay. Give me suggestions.", preferredStyle: UIAlertControllerStyle.alert)
         
         alert.addAction(UIAlertAction(title: "Rate", style: UIAlertActionStyle.default, handler: { alertAction in
             UserDefaults.standard.set(true, forKey: "neverRate")
             //UIApplication.sharedApplication().openURL(NSURL(string : "itms-apps://itunes.apple.com/app/id959379869")!)
             //UIApplication.sharedApplication().openURL(NSURL(string : "itms-apps://ax.itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?type=Purple+Software&id=<\(appID)>")!)
-            let appID = "959379869" // Your AppID
-            if let checkURL = URL(string: "itms-apps://ax.itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?type=Purple+Software&id=<\(appID)") {
+            let appID = "1153347253" // Your AppID
+           //itms-apps://ax.itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?type=Purple+Software&id=<\(appID)
+            print("want to rate")
+            //UIApplication.sharedApplication().openURL(NSURL(string : "itms-apps://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?id=\(APP_ID)&onlyLatestVersion=true&pageNumber=0&sortOrdering=1)")!);
+            /*if let checkURL = NSURL(string: "itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?id=1153347253&onlyLatestVersion=true&pageNumber=0&sortOrdering=1&type=Purple+Software") {
                 if UIApplication.shared.openURL(checkURL) {
                     print("url successfully opened")
                 }
-            } else {
-                print("invalid url")
-            }
+                print("broken")
+            }*/
+            self.rateApp()
             alert.dismiss(animated: true, completion: nil)
         }))
         
@@ -320,8 +405,11 @@ class ShopsViewController: UIViewController, UITableViewDataSource, UITableViewD
         //    alert.dismissViewControllerAnimated(true, completion: nil)
         //}))
         
-        alert.addAction(UIAlertAction(title: "Maybe Later", style: UIAlertActionStyle.default, handler: { alertAction in
-            alert.dismiss(animated: true, completion: nil)
+        alert.addAction(UIAlertAction(title: "I won't help.", style: UIAlertActionStyle.default, handler: { alertAction in
+            OperationQueue.main.addOperation({
+                alert.dismiss(animated: true, completion: nil)
+            })
+            
         }))
         
         self.present(alert, animated: true, completion: nil)
@@ -356,7 +444,7 @@ class ShopsViewController: UIViewController, UITableViewDataSource, UITableViewD
 
                 let tweetSheet = SLComposeViewController(forServiceType: SLServiceTypeTwitter)
 
-                tweetSheet?.setInitialText("Find places that accept Apple Pay @iPayWhere! 🤑 #ApplePay #iPayWhere")
+                tweetSheet?.setInitialText("Find places that accept Apple Pay @iPayWhere! 🤑 #ApplePayFinder #iPayWhere")
                 
                 self.present(tweetSheet!, animated: true, completion: nil)
             } else {
@@ -375,7 +463,7 @@ class ShopsViewController: UIViewController, UITableViewDataSource, UITableViewD
                 
                 let facebookComposer = SLComposeViewController(forServiceType: SLServiceTypeFacebook)
                 
-                facebookComposer?.setInitialText("Find places that accept Apple Pay with @iPayWere! 🤑 #ApplePay #iPayWhere")
+                facebookComposer?.setInitialText("Find places that accept Apple Pay with @iPayWere! 🤑 #ApplePayFinder #iPayWhere")
                 
                 self.present(facebookComposer!, animated: true, completion: nil)
             }else {
@@ -387,7 +475,7 @@ class ShopsViewController: UIViewController, UITableViewDataSource, UITableViewD
             
         })
         
-        let cancelAction = UIAlertAction(title: "No.", style: .cancel, handler: {
+        let cancelAction = UIAlertAction(title: "I won't help.", style: .cancel, handler: {
             (alert: UIAlertAction!) -> Void in
             print("Cancelled")
         })

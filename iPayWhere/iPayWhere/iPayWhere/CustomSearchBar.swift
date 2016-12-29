@@ -75,7 +75,7 @@ class CustomSearchBar: UISearchBar {
         
         var index: Int!
         let searchBarView = subviews[0]
-        var subviewsCount = searchBarView.subviews.count + 1
+        let subviewsCount = searchBarView.subviews.count + 1
         let range = 0..<subviewsCount
         
         for i in range {

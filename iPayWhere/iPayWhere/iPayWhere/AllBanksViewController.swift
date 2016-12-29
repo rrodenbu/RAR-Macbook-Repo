@@ -14,7 +14,7 @@ import MapKit
 class AllBanksViewController: UIViewController {
     
     var allBanksArray = [Bank]()
-    
+    var allBankNames:[String] = []
     var selectedPin: MKPlacemark?
     
     let locationManager = CLLocationManager()
@@ -25,7 +25,12 @@ class AllBanksViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        print(allBanksArray)
+        for bank in allBanksArray {
+            var cleanBank = bank.name.replacingOccurrences(of: "’", with: "'", options: .regularExpression, range: nil)
+            cleanBank = cleanBank.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
+            allBankNames.append(cleanBank)
+        }
+        
         
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
@@ -36,7 +41,7 @@ class AllBanksViewController: UIViewController {
     func getDirections(){
         let mapItem = MKMapItem(placemark: selectedPin!)
         let launchOptions = [MKLaunchOptionsDirectionsModeKey : MKLaunchOptionsDirectionsModeDriving]
-        mapItem.openInMaps(launchOptions: launchOptions)
+        //mapItem.openInMaps(launchOptions: launchOptions)
     }
 }
 
@@ -53,7 +58,7 @@ extension AllBanksViewController : CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let location = locations.first else { return }
-        let span = MKCoordinateSpanMake(0.05, 0.05)
+        let span = MKCoordinateSpanMake(0.75, 0.75)
         let region = MKCoordinateRegion(center: location.coordinate, span: span)
         mapView.setRegion(region, animated: true)
         
@@ -64,29 +69,56 @@ extension AllBanksViewController : CLLocationManagerDelegate {
     }
     
     func getLocations() {
-        for bank in allBanksArray {
-            addPinToMap(bank.name)
+        let request = MKLocalSearchRequest()
+        var keywords = ["bank", "credit"]
+        for keyword in keywords {
+            request.naturalLanguageQuery = keyword
+            request.region = mapView.region
+            let search = MKLocalSearch(request: request)
+            
+            search.start { response, _ in
+                guard let response = response else {
+                    return
+                }
+                for item in response.mapItems {
+                    let businessName = item.name! as String
+                    if(self.allBankNames.contains(businessName)){
+                        self.matchingItems.append(item)
+                        self.createAnnotations(item)
+                    }
+                }
+                self.mapView.addAnnotations(self.annotations)
+            }
         }
+        
+        
+//        for bank in allBanksArray[1200,allBanksArray.count-1] {
+//            print(bank.name)
+//            addPinToMap(bank.name)
+//        }
         
     }
     
-    func addPinToMap(_ bankName: String) {
-        let request = MKLocalSearchRequest()
-        request.naturalLanguageQuery = bankName
-        request.region = mapView.region
-        let search = MKLocalSearch(request: request)
-        
-        search.start { response, _ in
-            guard let response = response else {
-                return
-            }
-            for item in response.mapItems {
-                self.matchingItems.append(item)
-                self.createAnnotations(item)
-            }
-            self.mapView.addAnnotations(self.annotations)
-        }
-    }
+//    func addPinToMap(_ bankName: String) {
+//        let request = MKLocalSearchRequest()
+//        request.naturalLanguageQuery = "Bank"
+//        request.region = mapView.region
+//        let search = MKLocalSearch(request: request)
+//        
+//        search.start { response, _ in
+//            guard let response = response else {
+//                return
+//            }
+//            for item in response.mapItems {
+//                print("Annotation: ")
+//                print(item.name! as String)
+//                self.matchingItems.append(item)
+//                self.createAnnotations(item)
+//            }
+//            self.mapView.addAnnotations(self.annotations)
+//        }
+//        print(search.isSearching)
+//    }
     
     func createAnnotations(_ item: MKMapItem) {
         let latitude = item.placemark.coordinate.latitude
@@ -133,5 +165,38 @@ extension AllBanksViewController : MKMapViewDelegate {
         pinView?.leftCalloutAccessoryView = button
         return pinView
     }
+    
+    func mapView(_ mapView: MKMapView!, annotationView view: MKAnnotationView!,
+                 calloutAccessoryControlTapped control: UIControl!) {
+        print("HERE WE ARE !")
+        let selectedLoc = view.annotation
+        print(selectedLoc?.title)
+        
+        //println("Annotation '\(selectedLoc.title!)' has been selected")
+        
+        //let mapItem = MKMapItem(placemark: selectedPin!)
+        //print("#######################")
+        //print(mapItem.name)
+        //let launchOptions = [MKLaunchOptionsDirectionsModeKey : MKLaunchOptionsDirectionsModeDriving]
+        //mapItem.openInMaps(launchOptions: launchOptions)
+        
+        
+        //let currentLocMapItem = MKMapItem.forCurrentLocation()
+        
+        let selectedPlacemark = MKPlacemark(coordinate: (selectedLoc?.coordinate)!, addressDictionary: nil)
+        let selectedMapItem = MKMapItem(placemark: selectedPlacemark)
+        let mapItem = MKMapItem(placemark: selectedPlacemark)
+        mapItem.name = (selectedLoc?.title)!
+        print(mapItem.name)
+        print(mapItem.placemark)
+        //let mapItems = [selectedMapItem, currentLocMapItem]
+        
+        let launchOptions = [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDriving]
+        mapItem.openInMaps(launchOptions:launchOptions)
+    }
+    
+
 }
+
+
 

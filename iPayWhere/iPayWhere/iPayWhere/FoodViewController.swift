@@ -22,11 +22,13 @@ class FoodViewController: UIViewController {
     @IBOutlet var mapView: MKMapView!
     
     override func viewDidLoad() {
+
+        selectedFood = foodSelected.replacingOccurrences(of: "’", with: "'", options: .regularExpression, range: nil)
+        selectedFood = selectedFood.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
         
-        selectedFood = foodSelected
         
         self.title = "\(foodSelected) Locations";
-        self.navigationController!.navigationBar.titleTextAttributes = [NSFontAttributeName: UIFont(name: "HelveticaNeue-CondensedBlack", size: 15.0)!];
+        self.navigationController!.navigationBar.titleTextAttributes = [NSFontAttributeName: UIFont(name: "HelveticaNeue", size: 15.0)!];
         
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
@@ -37,7 +39,7 @@ class FoodViewController: UIViewController {
     func getDirections(){
         let mapItem = MKMapItem(placemark: selectedPin!)
         let launchOptions = [MKLaunchOptionsDirectionsModeKey : MKLaunchOptionsDirectionsModeDriving]
-        mapItem.openInMaps(launchOptions: launchOptions)
+        //mapItem.openInMaps(launchOptions: launchOptions)
     }
 }
 
@@ -54,7 +56,7 @@ extension FoodViewController : CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let location = locations.first else { return }
-        let span = MKCoordinateSpanMake(0.05, 0.05)
+        let span = MKCoordinateSpanMake(0.75, 0.75)
         let region = MKCoordinateRegion(center: location.coordinate, span: span)
         print(region)
         mapView.setRegion(region, animated: true)
@@ -72,13 +74,15 @@ extension FoodViewController : CLLocationManagerDelegate {
         let search = MKLocalSearch(request: request)
         
         search.start { response, _ in
-            print(response)
             guard let response = response else {
                 return
             }
             for item in response.mapItems {
-                self.matchingItems.append(item)
-                self.createAnnotations(item)
+                let businessName = item.name! as String
+                if(businessName == selectedFood) {
+                    self.matchingItems.append(item)
+                    self.createAnnotations(item)
+                }
             }
             self.mapView.addAnnotations(self.annotations)
         }
@@ -129,6 +133,35 @@ extension FoodViewController : MKMapViewDelegate {
         button.addTarget(self, action: #selector(ShopViewController.getDirections), for: .touchUpInside)
         pinView?.leftCalloutAccessoryView = button
         return pinView
+    }
+    
+    func mapView(_ mapView: MKMapView!, annotationView view: MKAnnotationView!,
+                 calloutAccessoryControlTapped control: UIControl!) {
+        print("HERE WE ARE !")
+        let selectedLoc = view.annotation
+        print(selectedLoc?.title)
+        
+        //println("Annotation '\(selectedLoc.title!)' has been selected")
+        
+        //let mapItem = MKMapItem(placemark: selectedPin!)
+        //print("#######################")
+        //print(mapItem.name)
+        //let launchOptions = [MKLaunchOptionsDirectionsModeKey : MKLaunchOptionsDirectionsModeDriving]
+        //mapItem.openInMaps(launchOptions: launchOptions)
+        
+        
+        //let currentLocMapItem = MKMapItem.forCurrentLocation()
+        
+        let selectedPlacemark = MKPlacemark(coordinate: (selectedLoc?.coordinate)!, addressDictionary: nil)
+        let selectedMapItem = MKMapItem(placemark: selectedPlacemark)
+        let mapItem = MKMapItem(placemark: selectedPlacemark)
+        mapItem.name = (selectedLoc?.title)!
+        print(mapItem.name)
+        print(mapItem.placemark)
+        //let mapItems = [selectedMapItem, currentLocMapItem]
+        
+        let launchOptions = [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDriving]
+        mapItem.openInMaps(launchOptions:launchOptions)
     }
 }
 

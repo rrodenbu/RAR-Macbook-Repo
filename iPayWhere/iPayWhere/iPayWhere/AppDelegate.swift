@@ -8,6 +8,7 @@
 
 import UIKit
 import CloudKit
+import OneSignal
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -18,7 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
         UINavigationBar.appearance().titleTextAttributes = [
-            NSFontAttributeName: UIFont(name: "HelveticaNeue-CondensedBlack", size: 15)!
+            NSFontAttributeName: UIFont(name: "HelveticaNeue-Bold", size: 18)!
             
         ]
         
@@ -29,6 +30,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         //UITextField.appearanceWhenContainedInInstancesOfClasses([UISearchBar.self]).tintColor = UIColor.corelRed()
     
+        //Add this line. Replace '5eb5a37e-b458-11e3-ac11-000c2940e62c' with your OneSignal App ID.
+        OneSignal.initWithLaunchOptions(launchOptions, appId: "cdccf749-bc19-4a2a-88b9-e55de81061a6")
+        
+        // Sync hashed email if you have a login system or collect it.
+        //   Will be used to reach the user at the most optimal time of day.
+        // OneSignal.syncHashedEmail(userEmail)
+
         return true
     }
     

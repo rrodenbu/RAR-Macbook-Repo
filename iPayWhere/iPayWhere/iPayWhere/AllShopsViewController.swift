@@ -13,6 +13,7 @@ import MapKit
 class AllShopsViewController: UIViewController {
     
     var allShopsArray = [Shop]()
+    var allShopNames:[String] = []
     
     var selectedPin: MKPlacemark?
     
@@ -23,6 +24,12 @@ class AllShopsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        print(allShopNames.count)
+        for shop in allShopsArray {
+            var cleanShop = shop.name.replacingOccurrences(of: "’", with: "'", options: .regularExpression, range: nil)
+            cleanShop = cleanShop.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
+            allShopNames.append(cleanShop)
+        }
         
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
@@ -32,8 +39,11 @@ class AllShopsViewController: UIViewController {
     
     func getDirections(){
         let mapItem = MKMapItem(placemark: selectedPin!)
+        print("#######################")
+        print(mapItem.name)
+        
         let launchOptions = [MKLaunchOptionsDirectionsModeKey : MKLaunchOptionsDirectionsModeDriving]
-        mapItem.openInMaps(launchOptions: launchOptions)
+        //mapItem.openInMaps(launchOptions: launchOptions)
     }
 }
 
@@ -50,22 +60,53 @@ extension AllShopsViewController : CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let location = locations.first else { return }
-        let span = MKCoordinateSpanMake(0.05, 0.05)
+        let span = MKCoordinateSpanMake(0.75, 0.75)
         let region = MKCoordinateRegion(center: location.coordinate, span: span)
         mapView.setRegion(region, animated: true)
+        getLocations()
         
     }
     
     func mapViewDidFinishRenderingMap(_ mapView: MKMapView, fullyRendered: Bool) {
-        getLocations()
+        
     }
     
     func getLocations() {
-        for shop in allShopsArray {
-            addPinToMap(shop.name)
+        let request = MKLocalSearchRequest()
+        let keywords = ["shopping"]
+        
+        for keyword in keywords {
+            request.naturalLanguageQuery = keyword
+            request.region = mapView.region
+            let search = MKLocalSearch(request: request)
+            //print(allFoodNames)
+            search.start { response, _ in
+                guard let response = response else {
+                    return
+                }
+                for item in response.mapItems {
+                    print(item.name! as String)
+                    
+                    let businessName = item.name! as String
+                    //print(self.allFoodNames.contains(businessName))
+                    if(self.allShopNames.contains(businessName)){
+                        self.matchingItems.append(item)
+                        self.createAnnotations(item)
+                    }
+                }
+                self.mapView.addAnnotations(self.annotations)
+            }
         }
         
     }
+    /*
+    func getLocations() {
+        for shop in allShopsArray {
+            addPinToMap(shop.name)
+            print(shop.name)
+        }
+        
+    }*/
     
     func addPinToMap(_ shopName: String) {
         let request = MKLocalSearchRequest()
@@ -78,8 +119,11 @@ extension AllShopsViewController : CLLocationManagerDelegate {
                 return
             }
             for item in response.mapItems {
-                self.matchingItems.append(item)
-                self.createAnnotations(item)
+                let businessName = item.name! as String
+                if(self.allShopNames.contains(businessName)){
+                    self.matchingItems.append(item)
+                    self.createAnnotations(item)
+                }
             }
             self.mapView.addAnnotations(self.annotations)
         }
@@ -106,7 +150,7 @@ extension AllShopsViewController : CLLocationManagerDelegate {
 /*
  For the directions button to annotations (clicked pin) on map
  */
-extension AllShopsViewController : MKMapViewDelegate {
+extension AllViewController : MKMapViewDelegate {
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView?{
         
@@ -129,6 +173,35 @@ extension AllShopsViewController : MKMapViewDelegate {
         button.addTarget(self, action: #selector(AllShopsViewController.getDirections), for: .touchUpInside)
         pinView?.leftCalloutAccessoryView = button
         return pinView
+    }
+    
+    func mapView(_ mapView: MKMapView!, annotationView view: MKAnnotationView!,
+                 calloutAccessoryControlTapped control: UIControl!) {
+        print("HERE WE ARE !")
+        let selectedLoc = view.annotation
+        print(selectedLoc?.title)
+        
+        //println("Annotation '\(selectedLoc.title!)' has been selected")
+        
+        //let mapItem = MKMapItem(placemark: selectedPin!)
+        //print("#######################")
+        //print(mapItem.name)
+        //let launchOptions = [MKLaunchOptionsDirectionsModeKey : MKLaunchOptionsDirectionsModeDriving]
+        //mapItem.openInMaps(launchOptions: launchOptions)
+        
+        
+        //let currentLocMapItem = MKMapItem.forCurrentLocation()
+        
+        let selectedPlacemark = MKPlacemark(coordinate: (selectedLoc?.coordinate)!, addressDictionary: nil)
+        let selectedMapItem = MKMapItem(placemark: selectedPlacemark)
+        let mapItem = MKMapItem(placemark: selectedPlacemark)
+        mapItem.name = (selectedLoc?.title)!
+        print(mapItem.name)
+        print(mapItem.placemark)
+        //let mapItems = [selectedMapItem, currentLocMapItem]
+        
+        let launchOptions = [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDriving]
+        mapItem.openInMaps(launchOptions:launchOptions)
     }
 }
 

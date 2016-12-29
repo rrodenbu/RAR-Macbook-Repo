@@ -11,10 +11,12 @@ import UIKit
 class ShopCell: UITableViewCell {
     
     @IBOutlet var nameLabel: UILabel!
+    @IBOutlet var newImage: UIImageView!
     
     var shop: Shop! {
         didSet {
             nameLabel.text = shop.name
+            newImage.image = shop.image
         }
     }
 }
